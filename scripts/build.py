@@ -146,6 +146,12 @@ def strip_source_prefix(text: str) -> str:
     return SOURCE_LABEL_RE.sub("", text).strip()
 
 
+def split_sources(text: str) -> list[str]:
+    """「出典：[a](URL)、[b](URL)」のように読点で並べた出典を1件ずつに分ける。"""
+    parts = re.split(r"\s*[、,]\s*(?=\[)", text)
+    return [p.strip() for p in parts if p.strip()]
+
+
 def join_lines(lines: list[str]) -> str:
     """連続する行を1段落にする。日本語どうしは詰め、英数字・記号（ASCII）どうしは空白で継ぐ。"""
     out = ""
@@ -182,9 +188,7 @@ class _StoryBuilder:
             text = join_lines(self.para)
             self.para = []
             if SOURCE_LABEL_RE.match(text):
-                rest = strip_source_prefix(text)
-                if rest:
-                    self.story.sources.append(rest)
+                self.story.sources.extend(split_sources(strip_source_prefix(text)))
             elif not self.story.lead and not self.story.body:
                 self.story.lead = text
             else:
@@ -201,9 +205,7 @@ class _StoryBuilder:
         if SOURCE_LABEL_RE.match(line.strip()):
             # 出典行は前後に空行がなくても単独で扱う
             self.flush()
-            rest = strip_source_prefix(line.strip())
-            if rest:
-                self.story.sources.append(rest)
+            self.story.sources.extend(split_sources(strip_source_prefix(line.strip())))
             return
         if line.startswith("### "):
             self.flush()
@@ -223,9 +225,7 @@ class _StoryBuilder:
         if top:
             text = top.group(1).strip()
             if SOURCE_LABEL_RE.match(text):
-                rest = strip_source_prefix(text)
-                if rest:
-                    self.story.sources.append(rest)
+                self.story.sources.extend(split_sources(strip_source_prefix(text)))
                 return
             if self.list is None:
                 if self.para or self.quote:
