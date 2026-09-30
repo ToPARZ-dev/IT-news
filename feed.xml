@@ -7,5 +7,12 @@
     <language>ja</language>
     <lastBuildDate>Wed, 30 Sep 2026 09:00:00 +0900</lastBuildDate>
     <atom:link href="https://toparz-dev.github.io/IT-news/feed.xml" rel="self" type="application/rss+xml"/>
+    <item>
+      <title>2026年9月30日（水）のIT・AIニュース（2本）</title>
+      <link>https://toparz-dev.github.io/IT-news/articles/2026-09-30.html</link>
+      <guid isPermaLink="true">https://toparz-dev.github.io/IT-news/articles/2026-09-30.html</guid>
+      <pubDate>Wed, 30 Sep 2026 09:00:00 +0900</pubDate>
+      <description>&lt;ol&gt;&lt;li&gt;GPT-6.1 Sol、長い作業で気になる入力の再利用コスト&lt;/li&gt;&lt;li&gt;OpenClaw Enterprise公開、社内で働くAIの権限と記録を管理&lt;/li&gt;&lt;/ol&gt;</description>
+    </item>
   </channel>
 </rss>
