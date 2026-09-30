@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{page_title}}</title>
+<meta name="description" content="{{description}}">
+<link rel="canonical" href="{{canonical_url}}">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="{{site_name}}">
+<meta property="og:title" content="{{og_title}}">
+<meta property="og:description" content="{{description}}">
+<meta property="og:url" content="{{canonical_url}}">
+<meta property="og:locale" content="ja_JP">
+<meta property="article:published_time" content="{{date_iso}}">
+<meta name="build-id" content="{{build_id}}">
+<meta name="twitter:card" content="summary">
+<link rel="icon" type="image/svg+xml" href="{{assets_path}}favicon.svg">
+<link rel="alternate" type="application/rss+xml" title="{{site_name}}" href="{{rss_path}}">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="{{assets_path}}style.css">
+</head>
+<body>
+<a class="skip" href="#main">本文へ移動</a>
+
+<header class="masthead">
+  <div class="wrap masthead-inner">
+    <a class="brand" href="{{index_path}}">{{site_name}}</a>
+    <p class="masthead-tagline">{{tagline}}</p>
+  </div>
+</header>
+
+<main id="main" class="wrap">
+  <header class="issue-head">
+    <p class="kicker">{{kicker}}</p>
+    <h1 class="issue-title">{{issue_title}}</h1>
+    <p class="issue-meta">{{issue_meta}}</p>
+    {{issue_intro}}
+  </header>
+
+  {{digest}}
+
+  {{stories}}
+
+  {{issue_nav}}
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p class="policy">{{policy}}</p>
+    <p class="colophon">© {{year}} {{publisher}} ・ <a href="{{index_path}}">バックナンバー</a> ・ <a href="{{rss_path}}">RSS</a></p>
+  </div>
+</footer>
+</body>
+</html>
