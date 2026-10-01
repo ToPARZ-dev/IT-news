@@ -920,6 +920,12 @@ code {
     letter-spacing: 0;
   }
 
+  /* 出典は1件ずつ行を分ける（件数が多いと、リンクと掲載元が入り組んで読みにくいため） */
+  .story-source .label,
+  .source-item {
+    flex: 1 1 100%;
+  }
+
   .feature {
     padding: 20px 18px 22px;
   }
