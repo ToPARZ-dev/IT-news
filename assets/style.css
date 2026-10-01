@@ -317,6 +317,11 @@ code {
   word-break: auto-phrase; /* 対応ブラウザでは文節の切れ目で改行する */
 }
 
+/* 「GPT-6.1」のような名前をハイフンの位置で折り返さない */
+.nobr {
+  white-space: nowrap;
+}
+
 .story p {
   margin: 0 0 1.1em;
 }
@@ -418,6 +423,38 @@ code {
   color: var(--warn);
 }
 
+/* メモ（名前・使える場所・料金・上限など）。本文より小さく、確かめたい人だけが読めばよい欄 */
+
+.part-spec {
+  padding: 14px 20px 16px;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-sm);
+  color: var(--ink-2);
+  font-size: 0.9rem;
+  line-height: 1.75;
+}
+
+.part-spec .part-title {
+  margin-bottom: 4px;
+  color: var(--ink-3);
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+}
+
+.part-spec .story-list {
+  margin: 0;
+  padding-left: 1.1em;
+}
+
+.part-spec .story-list li {
+  margin: 5px 0;
+  line-height: 1.7;
+}
+
+.part-spec strong {
+  color: var(--ink);
+}
+
 /* ---- 表（数字の比較） ---- */
 
 .table-wrap {
@@ -461,6 +498,15 @@ code {
   white-space: nowrap;
 }
 
+.story-table td.num {
+  white-space: nowrap;
+}
+
+/* 1列目（比べる対象の名前）は折り返してよい */
+.story-table td:first-child {
+  white-space: normal;
+}
+
 .story-table .center {
   text-align: center;
 }
@@ -475,6 +521,11 @@ code {
   color: var(--ink-3);
   font-size: 0.86rem;
   line-height: 1.75;
+}
+
+/* 囲みの外に置く注記（訂正など）は、囲みとくっつけない */
+.story .part + p.note {
+  margin-top: 16px;
 }
 
 /* ---- 発言の引用（最終行に「— 発言者」を付けた引用） ---- */
@@ -852,13 +903,21 @@ code {
     padding: 16px 16px 18px;
   }
 
+  .part-spec {
+    padding: 12px 14px 14px;
+  }
+
   .story-table {
-    font-size: 0.88rem;
+    font-size: 0.86rem;
   }
 
   .story-table th,
   .story-table td {
-    padding: 8px 8px;
+    padding: 8px 6px;
+  }
+
+  .story-table th {
+    letter-spacing: 0;
   }
 
   .feature {

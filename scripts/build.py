@@ -44,6 +44,7 @@ JST = dt.timezone(dt.timedelta(hours=9))
 SUMMARY_LABELS = ("3行で", "３行で", "要点")
 INSIGHT_LABELS = ("どう見るか", "編集部の見方", "視点")
 CAUTION_LABELS = ("まだ分かっていないこと", "ただし", "注意点")
+SPEC_LABELS = ("メモ",)  # 名前・使える場所・料金・上限など、使う人が確かめたい事実をまとめる欄
 SUMMARY_ITEMS = 3  # 要約の行数の目安
 # 引用（> ）の最終行がこの記号で始まれば、発言者として表示する
 CITE_MARKS = ("—", "―", "─", "–")
@@ -57,6 +58,10 @@ TOP_ITEM_RE = re.compile(r"^- (.*)$")
 SUB_ITEM_RE = re.compile(r"^(?: {2,}|\t+)- (.*)$")
 TABLE_ROW_RE = re.compile(r"^\|(.*)\|\s*$")
 TABLE_RULE_RE = re.compile(r"^:?-{2,}:?$")  # 表の2行目（区切り行）のセル
+NAME_NOBREAK_RE = re.compile(r"[A-Za-z0-9][A-Za-z0-9.]*(?:-[A-Za-z0-9.]+)+")  # GLM-5.3、GPT-6.1 など
+NAME_NOBREAK_MAX = 24  # これより長いものは、狭い画面からはみ出すので折り返しを許す
+TABLE_NUM_RE = re.compile(r"\d")
+TABLE_NUM_MAX = 14  # これより短く数字を含むセルは、数字のセルとして折り返さない
 PLACEHOLDER_RE = re.compile(r"\{\{\s*([A-Za-z_]\w*)\s*\}\}")
 DATE_RE = re.compile(r"^\d{4}-\d{2}-\d{2}$")
 
@@ -75,7 +80,7 @@ class Paragraph:
 @dataclass
 class Heading:
     text: str
-    kind: str  # summary / insight / caution / plain
+    kind: str  # summary / insight / caution / spec / plain
 
 
 @dataclass
@@ -110,8 +115,16 @@ class Story:
     def text_length(self) -> int:
         """読了時間の目安に使う文字数。出典と表は数えない（読み飛ばせるため）。"""
         total = len(self.title) + len(self.lead)
+        in_spec = False  # メモ欄の箇条書きは数えない（確かめたい人だけが読む欄のため）
         for block in self.body:
+            if isinstance(block, Heading):
+                in_spec = block.kind == "spec"
+                if in_spec:
+                    continue
             if isinstance(block, ListBlock):
+                if in_spec:
+                    in_spec = False
+                    continue
                 total += sum(len(t) + sum(len(s) for s in subs) for t, subs in block.items)
             elif isinstance(block, Quote):
                 total += len(block.text) + len(block.cite)
@@ -168,6 +181,8 @@ def classify(label: str) -> str:
         return "insight"
     if label.startswith(CAUTION_LABELS):
         return "caution"
+    if label.startswith(SPEC_LABELS):
+        return "spec"
     return "plain"
 
 
@@ -440,9 +455,12 @@ def render_list(block: ListBlock) -> str:
 def render_table(block: TableBlock) -> str:
     def cells(tag: str, values: list[str]) -> str:
         scope = ' scope="col"' if tag == "th" else ""
-        return "".join(
-            f'<{tag} class="{block.aligns[i]}"{scope}>{inline(v)}</{tag}>' for i, v in enumerate(values)
-        )
+        out = []
+        for i, v in enumerate(values):
+            # 数字のセル（「2ドル／10ドル」など）は、狭い画面でも途中で折り返さない
+            num = " num" if tag == "td" and TABLE_NUM_RE.search(v) and len(v) <= TABLE_NUM_MAX else ""
+            out.append(f'<{tag} class="{block.aligns[i]}{num}"{scope}>{inline(v)}</{tag}>')
+        return "".join(out)
 
     body = "".join(f"<tr>{cells('td', row)}</tr>" for row in block.rows)
     return (
@@ -466,7 +484,34 @@ def render_sources(sources: list[str]) -> str:
     return f'<footer class="story-source"><span class="label">出典</span>{items}</footer>'
 
 
+def keep_names_together(fragment: str) -> str:
+    """「GPT-6.1」「GLM-5.3」のような名前が、ハイフンの位置で行をまたがないようにする。
+
+    タグの中（URLなど）とコード表記の中は触らない。
+    """
+
+    def wrap(m: re.Match[str]) -> str:
+        name = m.group(0)
+        return f'<span class="nobr">{name}</span>' if len(name) <= NAME_NOBREAK_MAX else name
+
+    out, in_code = [], False
+    for piece in re.split(r"(<[^>]+>)", fragment):
+        if piece.startswith("<"):
+            if piece.startswith("<code"):
+                in_code = True
+            elif piece.startswith("</code"):
+                in_code = False
+        elif not in_code:
+            piece = NAME_NOBREAK_RE.sub(wrap, piece)
+        out.append(piece)
+    return "".join(out)
+
+
 def render_story(story: Story, index: int) -> str:
+    return keep_names_together(_render_story(story, index))
+
+
+def _render_story(story: Story, index: int) -> str:
     out = [
         f'<article class="story" id="story-{index}">',
         f'<p class="story-num">{index:02d}</p>',
@@ -492,8 +537,8 @@ def render_story(story: Story, index: int) -> str:
             out.append(render_quote(block))
         elif isinstance(block, ListBlock):
             out.append(render_list(block))
-            if open_kind == "summary":
-                # 要約の囲みは箇条書きまで。続く段落は本文に戻す
+            if open_kind in ("summary", "spec"):
+                # 要約とメモの囲みは箇条書きまで。続く段落は本文に戻す
                 out.append("</section>")
                 open_kind = ""
                 if lead:
@@ -555,7 +600,7 @@ def issue_meta_parts(issue: Issue) -> list[str]:
 def render_issue_scope(issue: Issue) -> str:
     """号の末尾に小さく添える、話題を確認した範囲。なければ何も出さない。"""
     scope = issue.meta.get("scope", "")
-    return f'<p class="issue-scope">取材の範囲：{html.escape(scope)}</p>' if scope else ""
+    return f'<p class="issue-scope">この号について：{html.escape(scope)}</p>' if scope else ""
 
 
 def nav_link(issue: Issue | None, kind: str) -> str:
