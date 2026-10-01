@@ -39,11 +39,14 @@ WEEKDAYS = "月火水木金土日"
 CHARS_PER_MINUTE = 500  # 日本語の読了時間の目安
 JST = dt.timezone(dt.timedelta(hours=9))
 
-# 小見出し（### ）の語から種類を決める。先に一致したものを採用する。
-KIND_KEYWORDS = (
-    ("caution", ("注意", "制約", "留意", "未確認", "リスク", "課題", "限界", "懸念", "ただし", "落とし穴", "分からない", "わからない")),
-    ("insight", ("分析", "示唆", "使いどころ", "見方", "考察", "影響", "意味", "なぜ", "どう", "どこで", "読み解", "注目", "ポイント")),
-)
+# 小見出し（### ）の種類。決まった書き出しのものだけを囲みにし、それ以外は本文の小見出し（plain）として扱う。
+# 先に一致したものを採用する。旧形式の「〜（分析）」「ただし」も囲みのまま表示できるよう残している。
+SUMMARY_LABELS = ("3行で", "３行で", "要点")
+INSIGHT_LABELS = ("どう見るか", "編集部の見方", "視点")
+CAUTION_LABELS = ("まだ分かっていないこと", "ただし", "注意点")
+SUMMARY_ITEMS = 3  # 要約の行数の目安
+# 引用（> ）の最終行がこの記号で始まれば、発言者として表示する
+CITE_MARKS = ("—", "―", "─", "–")
 # 出典行：「出典」「参考」などの語そのもの、またはその語＋コロンで始まる行
 SOURCE_LABEL_RE = re.compile(r"^(出典|参考資料|参考リンク|参考|参照|一次資料)\s*(?:[:：]|$)")
 
@@ -52,6 +55,8 @@ FRONT_RE = re.compile(r"\A---[ \t]*\n(.*?)\n---[ \t]*\n", re.S)
 LINK_RE = re.compile(r"\[([^\]]+)\]\((https?://(?:[^\s()]|\([^\s()]*\))+)\)")
 TOP_ITEM_RE = re.compile(r"^- (.*)$")
 SUB_ITEM_RE = re.compile(r"^(?: {2,}|\t+)- (.*)$")
+TABLE_ROW_RE = re.compile(r"^\|(.*)\|\s*$")
+TABLE_RULE_RE = re.compile(r"^:?-{2,}:?$")  # 表の2行目（区切り行）のセル
 PLACEHOLDER_RE = re.compile(r"\{\{\s*([A-Za-z_]\w*)\s*\}\}")
 DATE_RE = re.compile(r"^\d{4}-\d{2}-\d{2}$")
 
@@ -64,17 +69,19 @@ DATE_RE = re.compile(r"^\d{4}-\d{2}-\d{2}$")
 @dataclass
 class Paragraph:
     text: str
+    note: bool = False  # 「※」で始まる注記（小さく表示する）
 
 
 @dataclass
 class Heading:
     text: str
-    kind: str  # insight / caution / fact
+    kind: str  # summary / insight / caution / plain
 
 
 @dataclass
 class Quote:
     text: str
+    cite: str = ""  # 発言者。あれば発言の引用、なければ締めの一文として表示する
 
 
 @dataclass
@@ -82,24 +89,43 @@ class ListBlock:
     items: list[tuple[str, list[str]]] = field(default_factory=list)  # (項目, 入れ子の項目)
 
 
-Block = Union[Paragraph, Heading, Quote, ListBlock]
+@dataclass
+class TableBlock:
+    header: list[str]
+    aligns: list[str]  # 列ごとの "left" / "right" / "center"
+    rows: list[list[str]] = field(default_factory=list)
+
+
+Block = Union[Paragraph, Heading, Quote, ListBlock, TableBlock]
 
 
 @dataclass
 class Story:
     title: str
-    lead: str = ""  # 見出し直後の段落（つかみ）
+    lead: str = ""  # 書き出しの段落（少し大きく表示する）
+    lead_after_summary: bool = False  # 要約の囲みを先に置き、その直後を書き出しにした場合
     body: list[Block] = field(default_factory=list)  # 出現順
     sources: list[str] = field(default_factory=list)  # 出典の文（リンクを含む）
 
     def text_length(self) -> int:
-        total = len(self.title) + len(self.lead) + sum(len(s) for s in self.sources)
+        """読了時間の目安に使う文字数。出典と表は数えない（読み飛ばせるため）。"""
+        total = len(self.title) + len(self.lead)
         for block in self.body:
             if isinstance(block, ListBlock):
                 total += sum(len(t) + sum(len(s) for s in subs) for t, subs in block.items)
-            else:
+            elif isinstance(block, Quote):
+                total += len(block.text) + len(block.cite)
+            elif not isinstance(block, TableBlock):
                 total += len(block.text)
         return total
+
+    def summary_items(self) -> int | None:
+        """要約（3行で言うと）の行数。要約がなければ None。"""
+        for i, block in enumerate(self.body):
+            if isinstance(block, Heading) and block.kind == "summary":
+                nxt = self.body[i + 1] if i + 1 < len(self.body) else None
+                return len(nxt.items) if isinstance(nxt, ListBlock) else 0
+        return None
 
 
 @dataclass
@@ -136,10 +162,17 @@ class Issue:
 
 
 def classify(label: str) -> str:
-    for kind, words in KIND_KEYWORDS:
-        if any(w in label for w in words):
-            return kind
-    return "fact"
+    if label.startswith(SUMMARY_LABELS):
+        return "summary"
+    if label.startswith(INSIGHT_LABELS) or label.endswith(("（分析）", "(分析)")):
+        return "insight"
+    if label.startswith(CAUTION_LABELS):
+        return "caution"
+    return "plain"
+
+
+def split_table_row(line: str) -> list[str]:
+    return [cell.strip() for cell in TABLE_ROW_RE.match(line).group(1).split("|")]
 
 
 def strip_source_prefix(text: str) -> str:
@@ -181,6 +214,7 @@ class _StoryBuilder:
         self.story = Story(title=title)
         self.para: list[str] = []
         self.quote: list[str] = []
+        self.table: list[list[str]] = []
         self.list: ListBlock | None = None
 
     def flush(self) -> None:
@@ -191,12 +225,46 @@ class _StoryBuilder:
                 self.story.sources.extend(split_sources(strip_source_prefix(text)))
             elif not self.story.lead and not self.story.body:
                 self.story.lead = text
+            elif not self.story.lead and self._only_summary_so_far() and not text.startswith("※"):
+                self.story.lead = text
+                self.story.lead_after_summary = True
             else:
-                self.story.body.append(Paragraph(text))
+                self.story.body.append(Paragraph(text, note=text.startswith("※")))
         if self.quote:
-            self.story.body.append(Quote(join_lines(self.quote)))
+            lines = [q for q in self.quote if q]
+            cite = ""
+            if len(lines) > 1 and lines[-1].startswith(CITE_MARKS):
+                cite = lines.pop().lstrip("".join(CITE_MARKS) + " ").strip()
+            self.story.body.append(Quote(join_lines(lines), cite))
             self.quote = []
+        if self.table:
+            self.story.body.append(self._table())
+            self.table = []
         self.list = None
+
+    def _only_summary_so_far(self) -> bool:
+        """ここまでの本文が「要約の小見出し＋箇条書き」だけか。"""
+        body = self.story.body
+        return (
+            len(body) == 2
+            and isinstance(body[0], Heading)
+            and body[0].kind == "summary"
+            and isinstance(body[1], ListBlock)
+        )
+
+    def _table(self) -> TableBlock:
+        """「| 見出し | … |」「| --- | ---: |」「| 値 | … |」の3行以上を表にする。区切り行がなければ1行目を見出しとする。"""
+        header, rest = self.table[0], self.table[1:]
+        aligns = ["left"] * len(header)
+        if rest and all(TABLE_RULE_RE.match(c) for c in rest[0]):
+            for i, cell in enumerate(rest[0][: len(header)]):
+                if cell.startswith(":") and cell.endswith(":"):
+                    aligns[i] = "center"
+                elif cell.endswith(":"):
+                    aligns[i] = "right"
+            rest = rest[1:]
+        rows = [(row + [""] * len(header))[: len(header)] for row in rest]
+        return TableBlock(header, aligns, rows)
 
     def line(self, line: str) -> None:
         if not line.strip():
@@ -212,6 +280,13 @@ class _StoryBuilder:
             text = line[4:].strip()
             self.story.body.append(Heading(text, classify(text)))
             return
+        if TABLE_ROW_RE.match(line.strip()):
+            if self.para or self.quote or self.list:
+                self.flush()
+            self.table.append(split_table_row(line.strip()))
+            return
+        if self.table:
+            self.flush()
         if line.startswith(">"):
             if self.para or self.list:
                 self.flush()
@@ -288,15 +363,16 @@ def parse_issue(path: Path) -> Issue:
 def warn_issue(issue: Issue, name: str) -> None:
     for i, st in enumerate(issue.stories, 1):
         if not st.lead:
-            print(f"[注意] {name} 記事{i}: 見出しの直後のリード段落がありません", file=sys.stderr)
+            print(f"[注意] {name} 記事{i}: 書き出しの段落（見出しの直後か、要約の直後）がありません", file=sys.stderr)
         if not st.body:
             print(f"[注意] {name} 記事{i}: 本文がありません", file=sys.stderr)
         if not st.sources:
             print(f"[注意] {name} 記事{i}: 出典がありません", file=sys.stderr)
-        if not any(isinstance(b, Heading) and b.kind == "caution" for b in st.body):
-            print(f"[注意] {name} 記事{i}: 「ただし」などの注意の小見出しがありません", file=sys.stderr)
-        if not any(isinstance(b, Quote) for b in st.body):
-            print(f"[注意] {name} 記事{i}: 締めの一文（> で始まる引用）がありません", file=sys.stderr)
+        items = st.summary_items()
+        if items is None:
+            print(f"[注意] {name} 記事{i}: 要約（### 3行で言うと）がありません", file=sys.stderr)
+        elif items != SUMMARY_ITEMS:
+            print(f"[注意] {name} 記事{i}: 要約は箇条書き{SUMMARY_ITEMS}行にしてください（現在 {items}行）", file=sys.stderr)
 
 
 # ---------------------------------------------------------------------------
@@ -361,6 +437,30 @@ def render_list(block: ListBlock) -> str:
     return "".join(out)
 
 
+def render_table(block: TableBlock) -> str:
+    def cells(tag: str, values: list[str]) -> str:
+        scope = ' scope="col"' if tag == "th" else ""
+        return "".join(
+            f'<{tag} class="{block.aligns[i]}"{scope}>{inline(v)}</{tag}>' for i, v in enumerate(values)
+        )
+
+    body = "".join(f"<tr>{cells('td', row)}</tr>" for row in block.rows)
+    return (
+        '<div class="table-wrap"><table class="story-table">'
+        f"<thead><tr>{cells('th', block.header)}</tr></thead><tbody>{body}</tbody></table></div>"
+    )
+
+
+def render_quote(block: Quote) -> str:
+    """発言者があれば発言の引用、なければ締めの一文（旧形式の「ひとこと」）。"""
+    if block.cite:
+        return (
+            f'<blockquote class="voice"><p>{inline(block.text)}</p>'
+            f"<footer>{inline(block.cite)}</footer></blockquote>"
+        )
+    return f'<blockquote class="takeaway"><p>{inline(block.text)}</p></blockquote>'
+
+
 def render_sources(sources: list[str]) -> str:
     items = "".join(f'<span class="source-item">{inline(s, links="source")}</span>' for s in sources)
     return f'<footer class="story-source"><span class="label">出典</span>{items}</footer>'
@@ -372,26 +472,40 @@ def render_story(story: Story, index: int) -> str:
         f'<p class="story-num">{index:02d}</p>',
         f'<h2 class="story-title">{inline(story.title)}</h2>',
     ]
-    if story.lead:
-        out.append(f'<p class="story-lead">{inline(story.lead)}</p>')
-    open_part = False
+    lead = f'<p class="story-lead">{inline(story.lead)}</p>' if story.lead else ""
+    if lead and not story.lead_after_summary:
+        out.append(lead)
+        lead = ""
+    open_kind = ""  # 開いている節の種類（開いていなければ空）
     for block in story.body:
         if isinstance(block, Heading):
-            if open_part:
+            if open_kind:
                 out.append("</section>")
             out.append(f'<section class="part part-{block.kind}">')
             out.append(f'<h3 class="part-title">{inline(block.text)}</h3>')
-            open_part = True
+            open_kind = block.kind
         elif isinstance(block, Quote):
-            if open_part:
+            # 締めの一文は節の外に出す。発言の引用は節の中に置く
+            if open_kind and not block.cite:
                 out.append("</section>")
-                open_part = False
-            out.append(f'<blockquote class="takeaway"><p>{inline(block.text)}</p></blockquote>')
+                open_kind = ""
+            out.append(render_quote(block))
         elif isinstance(block, ListBlock):
             out.append(render_list(block))
+            if open_kind == "summary":
+                # 要約の囲みは箇条書きまで。続く段落は本文に戻す
+                out.append("</section>")
+                open_kind = ""
+                if lead:
+                    out.append(lead)
+                    lead = ""
+        elif isinstance(block, TableBlock):
+            out.append(render_table(block))
+        elif block.note:
+            out.append(f'<p class="note">{inline(block.text)}</p>')
         else:
             out.append(f"<p>{inline(block.text)}</p>")
-    if open_part:
+    if open_kind:
         out.append("</section>")
     if story.sources:
         out.append(render_sources(story.sources))
@@ -408,7 +522,12 @@ def render_headline_list(issue: Issue, href_prefix: str = "") -> str:
     )
 
 
+DIGEST_MIN_STORIES = 3  # 目次を出す本数。これより少ない号は、見出しの繰り返しになるので出さない
+
+
 def render_digest(issue: Issue) -> str:
+    if len(issue.stories) < DIGEST_MIN_STORIES:
+        return ""
     return (
         '<nav class="digest" aria-labelledby="digest-title">'
         f'<h2 id="digest-title" class="digest-title">今日の{len(issue.stories)}本</h2>'
@@ -422,13 +541,21 @@ def issue_description(issue: Issue) -> str:
 
 
 def issue_meta_parts(issue: Issue) -> list[str]:
-    parts = []
-    scope = issue.meta.get("scope", "")
-    if scope:
-        parts.append(f"確認範囲：{html.escape(scope)}")
-    parts.append(f"{len(issue.stories)}本")
-    parts.append(f"読了 約{issue.reading_minutes}分")
+    parts = [f"{len(issue.stories)}本", f"読了 約{issue.reading_minutes}分"]
+    updated = issue.meta.get("updated", "")
+    if updated:
+        try:
+            d = dt.date.fromisoformat(updated)
+        except ValueError:
+            raise SystemExit(f"{issue.slug}.md: updated は YYYY-MM-DD 形式で書いてください（現在: {updated}）")
+        parts.append(f"{d.month}月{d.day}日 再編集")
     return parts
+
+
+def render_issue_scope(issue: Issue) -> str:
+    """号の末尾に小さく添える、話題を確認した範囲。なければ何も出さない。"""
+    scope = issue.meta.get("scope", "")
+    return f'<p class="issue-scope">取材の範囲：{html.escape(scope)}</p>' if scope else ""
 
 
 def nav_link(issue: Issue | None, kind: str) -> str:
@@ -488,6 +615,7 @@ def build_article(site: dict[str, str], issue: Issue, prev: Issue | None, nxt: I
         "issue_intro": "".join(f'<p class="issue-intro">{inline(p)}</p>' for p in issue.intro),
         "digest": render_digest(issue),
         "stories": "\n\n".join(render_story(st, i) for i, st in enumerate(issue.stories, 1)),
+        "issue_scope": render_issue_scope(issue),
         "issue_nav": render_issue_nav(prev, nxt),
         "year": str(issue.date.year),
     }
@@ -609,16 +737,19 @@ def check(issues: list[Issue]) -> None:
         print(f"No.{iss.number} {iss.title_ja}  {len(iss.stories)}本 / 読了 約{iss.reading_minutes}分")
         for i, st in enumerate(iss.stories, 1):
             print(f"  {i:02d} {st.title}")
-            print(f"     リード {len(st.lead)}字")
+            print(f"     書き出し {len(st.lead)}字" + ("（要約の後）" if st.lead_after_summary else ""))
             for block in st.body:
                 if isinstance(block, Heading):
                     print(f"     ### [{block.kind}] {block.text}")
                 elif isinstance(block, Quote):
-                    print(f"     > {block.text[:40]}")
+                    print(f"     > {block.text[:40]}" + (f"（{block.cite}）" if block.cite else ""))
                 elif isinstance(block, ListBlock):
                     print(f"     箇条書き {len(block.items)}項目")
+                elif isinstance(block, TableBlock):
+                    print(f"     表 {len(block.header)}列×{len(block.rows)}行")
                 else:
-                    print(f"     段落 {len(block.text)}字")
+                    print(f"     {'注記' if block.note else '段落'} {len(block.text)}字")
+            print(f"     本文 計{st.text_length()}字")
             for src in st.sources:
                 print(f"     出典 {src}")
 

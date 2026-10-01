@@ -327,30 +327,82 @@ code {
   font-weight: 500;
 }
 
-/* ---- 記事内の節（小見出し＋段落）。分析は青、注意は黄の縦線で示す ---- */
+/* ---- 記事内の節（小見出し＋段落）。本文の小見出しは地の文と同じ幅で流し、
+        要約・意見・注意だけを囲みにする ---- */
 
 .part {
-  margin: 26px 0 0;
-  padding: 2px 0 0 18px;
-  border-left: 3px solid var(--line-strong);
+  margin: 34px 0 0;
 }
 
 .part-title {
-  margin: 0 0 8px;
-  font-size: 1rem;
+  margin: 0 0 10px;
+  font-size: 1.14rem;
   font-weight: 700;
-  letter-spacing: 0.04em;
-  line-height: 1.6;
-  color: var(--ink-2);
+  letter-spacing: 0.02em;
+  line-height: 1.55;
+  color: var(--ink);
   font-feature-settings: "palt";
+  word-break: auto-phrase;
 }
 
-.part p:last-child {
+.part > :last-child {
   margin-bottom: 0;
 }
 
-.part-insight {
-  border-color: var(--accent);
+/* 要約（3行で言うと）。リードの直後に置く */
+
+.part-summary {
+  margin-top: 22px;
+  padding: 18px 24px 20px;
+  background: var(--accent-tint);
+  border-radius: var(--radius-sm);
+}
+
+.story-title + .part-summary {
+  margin-top: 18px;
+}
+
+.part-summary + .story-lead {
+  margin-top: 24px;
+}
+
+.part-summary .part-title {
+  margin-bottom: 6px;
+  color: var(--accent-strong);
+  font-size: 0.8rem;
+  letter-spacing: 0.14em;
+}
+
+.part-summary .story-list {
+  margin: 0;
+  padding-left: 1.15em;
+}
+
+.part-summary .story-list li {
+  margin: 7px 0;
+  line-height: 1.75;
+  font-weight: 500;
+}
+
+.part-summary .story-list li::marker {
+  color: var(--accent);
+}
+
+/* 意見（どう見るか：青）・注意（黄）。事実の節と区別するための囲み */
+
+.part-insight,
+.part-caution {
+  padding: 18px 24px 20px;
+  background: var(--surface-2);
+  border-left: 3px solid var(--accent);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+}
+
+.part-insight .part-title,
+.part-caution .part-title {
+  margin-bottom: 6px;
+  font-size: 1rem;
+  letter-spacing: 0.06em;
 }
 
 .part-insight .part-title {
@@ -358,15 +410,96 @@ code {
 }
 
 .part-caution {
-  border-color: var(--warn);
+  background: var(--warn-tint);
+  border-left-color: var(--warn);
 }
 
 .part-caution .part-title {
   color: var(--warn);
 }
 
-.part + .part {
-  margin-top: 22px;
+/* ---- 表（数字の比較） ---- */
+
+.table-wrap {
+  margin: 0 0 1.1em;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.story-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.94rem;
+  line-height: 1.6;
+  font-variant-numeric: tabular-nums;
+}
+
+.story-table th,
+.story-table td {
+  padding: 9px 12px;
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+  vertical-align: baseline;
+}
+
+.story-table th {
+  color: var(--ink-3);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  border-bottom-color: var(--line-strong);
+  white-space: nowrap;
+}
+
+.story-table th:first-child,
+.story-table td:first-child {
+  padding-left: 2px;
+}
+
+.story-table .right {
+  text-align: right;
+  white-space: nowrap;
+}
+
+.story-table .center {
+  text-align: center;
+}
+
+.story-table tbody tr:last-child td {
+  border-bottom-color: var(--line-strong);
+}
+
+/* 表や数字の直後に添える注記（「※」で始まる段落） */
+
+.story p.note {
+  color: var(--ink-3);
+  font-size: 0.86rem;
+  line-height: 1.75;
+}
+
+/* ---- 発言の引用（最終行に「— 発言者」を付けた引用） ---- */
+
+.voice {
+  margin: 1.5em 0;
+  padding: 2px 0 2px 20px;
+  border-left: 3px solid var(--line-strong);
+}
+
+.voice p {
+  margin: 0;
+  font-weight: 600;
+  line-height: 1.8;
+}
+
+.voice footer {
+  margin-top: 6px;
+  color: var(--ink-3);
+  font-size: 0.86rem;
+  line-height: 1.6;
+}
+
+.voice footer::before {
+  content: "— ";
 }
 
 /* ---- 締めの一文 ---- */
@@ -463,6 +596,15 @@ code {
   font-family: var(--font-mono);
   font-size: 0.78rem;
   color: var(--ink-3);
+}
+
+/* ---- 号の末尾に添える、話題を確認した範囲 ---- */
+
+.issue-scope {
+  margin: 28px 4px 0;
+  color: var(--ink-3);
+  font-size: 0.82rem;
+  line-height: 1.75;
 }
 
 /* ---- 前後の号 ---- */
@@ -704,9 +846,19 @@ code {
     border-radius: 14px;
   }
 
-  .block-insight,
-  .block-caution {
-    padding: 12px 14px 12px 14px;
+  .part-summary,
+  .part-insight,
+  .part-caution {
+    padding: 16px 16px 18px;
+  }
+
+  .story-table {
+    font-size: 0.88rem;
+  }
+
+  .story-table th,
+  .story-table td {
+    padding: 8px 8px;
   }
 
   .feature {

@@ -4,16 +4,16 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>2026年10月1日（木）のIT・AIニュース｜ToPARZ IT News</title>
-<meta name="description" content="今日の2本：Gemini 4 Argon、長い仕事を支える100万トークン出力へ／GLM-5.3の新研究、AIの攻撃能力と安全対策を分けて検証">
+<meta name="description" content="今日の2本：最強のAIは、発表されても試せない時代に　Googleの新モデルも「守る側」限定／修正済みの欠陥が8時間・約3,200円で攻撃コードに　公開AIでAnthropicが実験">
 <link rel="canonical" href="https://toparz-dev.github.io/IT-news/articles/2026-10-01.html">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="ToPARZ IT News">
 <meta property="og:title" content="2026年10月1日（木）のIT・AIニュース｜ToPARZ IT News">
-<meta property="og:description" content="今日の2本：Gemini 4 Argon、長い仕事を支える100万トークン出力へ／GLM-5.3の新研究、AIの攻撃能力と安全対策を分けて検証">
+<meta property="og:description" content="今日の2本：最強のAIは、発表されても試せない時代に　Googleの新モデルも「守る側」限定／修正済みの欠陥が8時間・約3,200円で攻撃コードに　公開AIでAnthropicが実験">
 <meta property="og:url" content="https://toparz-dev.github.io/IT-news/articles/2026-10-01.html">
 <meta property="og:locale" content="ja_JP">
 <meta property="article:published_time" content="2026-10-01">
-<meta name="build-id" content="e575ecc6442f37a3">
+<meta name="build-id" content="0f709d07321c8aab">
 <meta name="twitter:card" content="summary">
 <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
 <link rel="alternate" type="application/rss+xml" title="ToPARZ IT News" href="../feed.xml">
@@ -36,47 +36,74 @@
   <header class="issue-head">
     <p class="kicker">Daily IT News ・ No.2</p>
     <h1 class="issue-title">2026年10月1日（木）</h1>
-    <p class="issue-meta"><span>確認範囲：今回確認したXホーム・関連投稿・検索の範囲。10月1日08時台（日本時間）に、直近24時間の投稿を中心に確認</span><span>2本</span><span>読了 約5分</span></p>
-    <p class="issue-intro">長い仕事をAIに任せるための性能は、どこまで進んだのでしょうか。今回は、長い出力に対応するGoogleの新モデルと、公開モデルのサイバー能力を調べた新研究を取り上げます。複数の発信者による言及を確認し、発表された仕様、実験で分かったこと、今後への見方を分けてお伝えします。</p>
+    <p class="issue-meta"><span>2本</span><span>読了 約7分</span><span>10月1日 再編集</span></p>
+    <p class="issue-intro">最新のAIを、まずサイバー防御の担当者だけに渡す動きが広がっています。その外側では、攻撃コードづくりで近い力を持つAIが、誰でもダウンロードできる形で出回っています。</p>
   </header>
 
-  <nav class="digest" aria-labelledby="digest-title"><h2 id="digest-title" class="digest-title">今日の2本</h2><ol><li><a href="#story-1"><span class="n">01</span><span>Gemini 4 Argon、長い仕事を支える100万トークン出力へ</span></a></li><li><a href="#story-2"><span class="n">02</span><span>GLM-5.3の新研究、AIの攻撃能力と安全対策を分けて検証</span></a></li></ol></nav>
+  
 
   <article class="story" id="story-1">
 <p class="story-num">01</p>
-<h2 class="story-title">Gemini 4 Argon、長い仕事を支える100万トークン出力へ</h2>
-<p class="story-lead">AIが一度に生成できる量が、大きく増えようとしています。Googleは9月30日、Gemini 4 Argonを発表し、出力上限を従来の6万4千から100万トークンへ広げると説明しました。トークンは文章を処理する単位で、文字数とは異なります。</p>
-<p>同社が狙うのは、何段階もの判断を伴う開発や調査などの仕事です。出力の余地を広げ、長い推論や生成を続けられるようにする方針を示しています。公式のモデル説明でも、ソフトウェア開発や企業の知識業務、サイバー防御を主な用途に挙げています。</p>
-<p>今回確認した投稿では、読み込める資料の量と出力の上限の違いに注目する声や、一度に大量に出せても実際にそう使うべきか、という疑問がありました。いずれも発表への反応で、100万トークンの成果物を検証した利用報告ではありません。</p>
+<h2 class="story-title">最強のAIは、発表されても試せない時代に　Googleの新モデルも「守る側」限定</h2>
+<section class="part part-summary">
+<h3 class="part-title">3行で言うと</h3>
+<ul class="story-list"><li>Googleが最上位のAI「Gemini 4 Argon」を発表した。今日から使えるのは、政府や重要インフラを守るサイバー防御の担当者に限られる</li><li>OpenAIとAnthropicも、最上位のAIは審査した相手から先に渡している。発表の日に自分で試して選ぶ、ということができなくなってきた</li><li>一般の利用者が使えるGeminiには、まだ入っていない。開始日は未定で、当面の値段は入力2ドル・出力10ドルと予告されている</li></ul>
+</section>
+<p class="story-lead">「できるだけ早く、できるだけ安全に提供する。だから待っていてほしい」。Googleのスンダー・ピチャイCEOは9月30日（米国時間）、新モデルの発表にこう書き添えました。7か月あまりぶりの最上位モデルは、発表と同時には一般に公開されませんでした。</p>
+<section class="part part-plain">
+<h3 class="part-title">先に渡すのは、守る側と政府</h3>
+<p>受け取れるのは、Googleが9月に始めた限定プログラム「Fairwind Program」の参加組織です。政府機関や、医療・通信・エネルギー・金融といった重要インフラの事業者などが対象で、650を超える組織が参加しています。米国政府にも渡されました。</p>
+<p>理由は悪用の心配です。Googleは、攻撃にも使える能力を先に守る側へ渡し、狙われる前にシステムを固める時間を作ると説明しています。OpenAIは最上位のサイバー機能を限られた参加者に出す方針で、Anthropicも最上位のAIを審査済みの相手に限っています。</p>
+</section>
+<section class="part part-plain">
+<h3 class="part-title">成績は首位が多いが、コーディングでは負けもある</h3>
+<p>Googleの比較表では、OpenAIとAnthropicの上位モデルを相手に、18項目中12項目で単独首位でした。一方、コーディング分野の2つの試験では負けています。FrontierSWE v2ではOpenAIのAstraに10.5ポイント、Terminal-bench 4.0ではAnthropicのClaude Opus 5.5に9ポイントの差がつきました。</p>
+<p>第三者のArtificial Analysisの計測では、知らないことを誤って答える割合が15%で、Astraの51%、Opus 5.5の59%より大幅に低い結果でした。その代わり正答率は50%で、Opus 5.5の66%に届きません。米Bloombergは、社内には試験の成績ほど実務では振るわず、一部のコーディングで苦戦しているという声があると報じました。Googleは異議を唱えています。</p>
+</section>
+<section class="part part-plain">
+<h3 class="part-title">書き出せる量は16倍に、使い道はこれから</h3>
+<p>もうひとつの目玉は、AIが書き出せる量の上限です。6万4,000トークンから100万トークンへ、約16倍に広がりました。OpenAIやAnthropicの主力は12万8,000トークンです。Googleは、深く考えながら大量に書ければ難問を一度で解ける、と説明します。ただArtificial Analysisの計測では、課題1件で実際に書いた量は平均6万2,000トークン。新しい上限の6%ほどでした。</p>
+</section>
 <section class="part part-insight">
-<h3 class="part-title">長い作業でどう効くか（分析）</h3>
-<p>資料を調べ、比較し、文章にまとめる仕事では、途中で生成を打ち切られにくくなる可能性があります。ただ、最後まで長く書けることだけでは、内容の一貫性や正確さは判断できません。業務で試す際には、必要な結論にたどり着いたか、途中の誤りを後から直せるか、人が確認する量がどれほど増えるかを見ると、実際の使いどころが分かりそうです。</p>
+<h3 class="part-title">どう見るか</h3>
+<p>変わったのは順位表より、配り方です。Google、OpenAI、Anthropicの3社がそろって、最上位のAIを審査した相手から渡す形になりました。「発表されたら自分で試して決める」という選び方は、最上位については当面使えません。この見方が外れるのは、どこか1社が最上位のAIを発表の日に誰にでも開いたときです。</p>
+<p>値段も目印になります。Googleは最上位のAIに、OpenAIやAnthropicの中位モデルと同じ入力2ドル・出力10ドルを付けました。ただしこれは導入価格で、その後は4ドル・20ドルに上がります。</p>
 </section>
-<section class="part part-caution">
-<h3 class="part-title">ただし</h3>
-<p>発表時点の提供先は、Fairwind Programに参加する一部のサイバー防御担当者です。Googleは安全対策を改善しながら提供を広げる方針を示していますが、一般向けの開始日は明記していません。出力上限は能力の枠であり、常にその長さが必要、または正確に使えるという保証ではありません。</p>
-</section>
-<blockquote class="takeaway"><p>長さの上限が広がった後は、仕事を終えるまでの正確さと確認のしやすさが問われそうです。</p></blockquote>
-<footer class="story-source"><span class="label">出典</span><span class="source-item"><a href="https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-argon/" target="_blank" rel="noopener">Googleの新モデル発表</a><span class="domain">blog.google</span></span><span class="source-item"><a href="https://deepmind.google/models/gemini/" target="_blank" rel="noopener">Google DeepMindのモデル説明</a><span class="domain">deepmind.google</span></span></footer>
+<footer class="story-source"><span class="label">出典</span><span class="source-item"><a href="https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-argon/" target="_blank" rel="noopener">Googleの発表</a><span class="domain">blog.google</span></span><span class="source-item"><a href="https://deepmind.google/models/gemini/" target="_blank" rel="noopener">Google DeepMindの比較表</a><span class="domain">deepmind.google</span></span><span class="source-item"><a href="https://blog.google/innovation-and-ai/technology/safety-security/fairwind-program/" target="_blank" rel="noopener">Fairwind Programの説明</a><span class="domain">blog.google</span></span><span class="source-item"><a href="https://artificialanalysis.ai/articles/gemini-4-argon-google-top-three-labs" target="_blank" rel="noopener">Artificial Analysisの計測</a><span class="domain">artificialanalysis.ai</span></span><span class="source-item"><a href="https://www.japantimes.co.jp/business/2026/10/01/tech/google-employee-skepticism-gemini-4/" target="_blank" rel="noopener">Bloombergの報道（The Japan Times掲載）</a><span class="domain">japantimes.co.jp</span></span><span class="source-item"><a href="https://thehackernews.com/2026/09/google-anthropic-and-openai-unveil.html" target="_blank" rel="noopener">The Hacker Newsの報道</a><span class="domain">thehackernews.com</span></span></footer>
 </article>
 
 <article class="story" id="story-2">
 <p class="story-num">02</p>
-<h2 class="story-title">GLM-5.3の新研究、AIの攻撃能力と安全対策を分けて検証</h2>
-<p class="story-lead">AIが危険な依頼を断る仕組みを備えていても、条件を変えた場合まで防げるとは限りません。Anthropicは9月29日、Z.aiのGLM-5.3について、サイバー攻撃に使える能力と、悪用を抑える仕組みを調べた研究を公開しました。</p>
-<p>同社の報告では、隔離した環境で既知のソフトウェアの欠陥を使う試験を行い、GLM-5.3は410回の試行のうち50回で一連の攻撃を成立させました。比較対象のClaude Mythos Previewは56回です。別の模擬環境での試験では、GLM-5.3は直接的な悪用依頼を拒否した一方、条件を変えると安全対策を回避できたと報告しています。</p>
-<p>今回読んだ投稿には、この研究を警戒材料として伝える発信と、同じ技術の防御への活用にも目を向ける独自の評価がありました。投稿の多さや評価の強さは、攻撃の成功率や実際の被害を示すものではありません。</p>
+<h2 class="story-title">修正済みの欠陥が8時間・約3,200円で攻撃コードに　公開AIでAnthropicが実験</h2>
+<section class="part part-summary">
+<h3 class="part-title">3行で言うと</h3>
+<ul class="story-list"><li>誰でもダウンロードできる中国製AI「GLM-5.3」が、公表・修正済みのChromeの欠陥から、動く攻撃コードを8時間で組み上げた。Anthropicの実験</li><li>このAIは中身が公開されているので、悪用を断る安全装置を取り外せる。外した版はすでに出回っている</li><li>今日できる対策は、修正が出ているのに当てていないソフトを探すこと。納品後に更新を止めているシステムが最も危ない</li></ul>
+</section>
+<p class="story-lead">人が手を動かしたのは20分。あとはAIが8時間、作業を続けました。出来上がったのは、ブラウザのChromeにある既知の欠陥を突く、実際に動く攻撃コードです。利用料の試算は20ドル40セント（約3,200円）。Anthropicが9月29日（米国時間）に公開した報告の一場面です。</p>
+<section class="part part-plain">
+<h3 class="part-title">危ないのは、修正が出てから当てるまでの間</h3>
+<p>使われた欠陥は、すでに公表され、修正版も配られているものでした。研究者は、その公開情報を中国Z.aiのAI「GLM-5.3」の小型版に渡しただけです。Anthropicは、公開された修正がどれだけ速く攻撃に変わるかを確かめる実験だったと説明しています。</p>
+<p>修正が出れば安全、とは言えなくなります。安全になるのは修正を当てた人だけで、当てるまでの間は、以前より安く速く狙われうるからです。</p>
+</section>
+<section class="part part-plain">
+<h3 class="part-title">誰でも手に入り、安全装置は外せる</h3>
+<p>GLM-5.3は、AIの中身（重み）がインターネットで公開されています。誰でも手元に落として動かせ、改造もできます。配布サイトでは直近1か月で約137万回ダウンロードされました。</p>
+<p>そのままなら、攻撃を手伝う依頼は断ります。ところがAnthropicの模擬試験では、「これは演習だ」と偽るだけで64%が攻撃に取りかかりました。安全装置を取り除く改造も、同社のチームは約4,400ドル（約69万円）の計算費用でやり遂げ、慣れた人なら約1,200ドル（約19万円）と見積もっています。改造版は、公開から数日で出回りました。</p>
+</section>
+<section class="part part-plain">
+<h3 class="part-title">能力の評価は、Anthropicと米政府で食い違う</h3>
+<p>Anthropicは、GLM-5.3の攻撃コードづくりは、同社が一般公開を見送ってきたAI（Claude Mythos Preview）に近い水準だとしています。既知の欠陥を突く試験で410回中50回成功し、安全装置を外した自社のAIは56回でした。一方、米政府のAI評価機関CAISIは、公開されたAIとしては過去最高と認めたうえで、米国の最先端とは大きな差があると評価しました。個別の試験では、40.4%対90.2%のように2倍以上開いています。</p>
+<p>反発もあります。セキュリティ研究者のKuba Gretzky氏は、報告は「自社製でない同等のAIを、政府は禁止すべきだ」と言っているに等しいと皮肉りました。AnthropicはZ.aiの競合です。開発元のZ.aiは、GLM-5.3が389のオープンソースソフトの欠陥探しに役立っていると説明しています。小型版は9月29日、米国の事業者を通じて、OpenAIの開発ツールでも企業向けに選べるようになりました。</p>
+</section>
 <section class="part part-insight">
-<h3 class="part-title">運用する側への意味（分析）</h3>
-<p>モデルを選ぶ企業にとっては、問題を解く性能に加え、誰がどの条件で使えるかも判断材料になりそうです。防御目的の調査を助ける力が、悪用する側にも届くなら、ソフトウェアの修正を配る速さや、更新を適用するまでの時間がこれまで以上に効く可能性があります。性能比較を、日々の運用の見直しにつなげる視点です。</p>
+<h3 class="part-title">どう見るか</h3>
+<p>Anthropicの言い分は、攻撃者が実際に入手できるAIで比べるべきだ、というものです。筋は通っています。同時に、AIの中身を公開しない同社の商売に都合のよい理屈でもあります。筋と都合は両立します。なお、同社が競合であることはこの記事が補った注記で、報告には書かれていません。</p>
+<p>受託開発の現場に関わるのは1点です。修正が公開された欠陥は、8時間と約3,200円で攻撃コードになりえます。客先の事情で更新を止めている納品済みのシステムがあれば、今週確認するのはそこです。</p>
 </section>
-<section class="part part-caution">
-<h3 class="part-title">ただし</h3>
-<p>Anthropicは競合企業であり、この結果は同社の試験条件での報告です。9月17日のNIST傘下CAISIの評価でもGLM-5.3の能力向上を認めていますが、米国の最先端モデルより総合的には低いとしています。一部の試験で近い数字が出ても、あらゆる攻撃で同等とは言えません。模擬試験の結果を、そのまま現実の被害率に読み替えることもできません。</p>
-</section>
-<blockquote class="takeaway"><p>AIの能力が広く手に入るほど、防御側が修正と運用をどれだけ早く進められるかが重要になりそうです。</p></blockquote>
-<footer class="story-source"><span class="label">出典</span><span class="source-item"><a href="https://www.anthropic.com/research/glm-5-3-and-the-spread-of-advanced-cyber-capabilities" target="_blank" rel="noopener">Anthropicの研究報告</a><span class="domain">anthropic.com</span></span><span class="source-item"><a href="https://www.nist.gov/news-events/news/2026/09/caisis-assessment-zais-glm-53-cyber-capabilities" target="_blank" rel="noopener">NIST・CAISIの評価</a><span class="domain">nist.gov</span></span></footer>
+<footer class="story-source"><span class="label">出典</span><span class="source-item"><a href="https://www.anthropic.com/research/glm-5-3-and-the-spread-of-advanced-cyber-capabilities" target="_blank" rel="noopener">Anthropicの報告</a><span class="domain">anthropic.com</span></span><span class="source-item"><a href="https://www.nist.gov/news-events/news/2026/09/caisis-assessment-zais-glm-53-cyber-capabilities" target="_blank" rel="noopener">NIST・CAISIの評価</a><span class="domain">nist.gov</span></span><span class="source-item"><a href="https://huggingface.co/zai-org/GLM-5.3" target="_blank" rel="noopener">GLM-5.3の配布ページ</a><span class="domain">huggingface.co</span></span><span class="source-item"><a href="https://www.baseten.co/blog/baseten-openai-partnership/" target="_blank" rel="noopener">BasetenとOpenAIの提携発表</a><span class="domain">baseten.co</span></span><span class="source-item"><a href="https://the-decoder.com/anthropic-says-zhipus-open-weight-glm-5-3-nearly-matches-claude-mythos-preview-at-building-exploits/" target="_blank" rel="noopener">The Decoderの報道</a><span class="domain">the-decoder.com</span></span></footer>
 </article>
+
+  <p class="issue-scope">取材の範囲：Xのホームと検索で10月1日朝（日本時間）に話題を確認。同日中に発表元の資料と報道で取材し直し、全文を書き直しました</p>
 
   <nav class="issue-nav" aria-label="前後の号"><a class="prev" href="2026-09-30.html"><small>前の号</small>← 2026年9月30日（水）</a></nav>
 </main>
