@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>2026年10月2日（金）のIT・AIニュース｜ToPARZ IT News</title>
+<meta name="description" content="今日の2本：Claude Codeのmods、画面も仕事の進め方も自分仕様に／dots、会話していない間にも資料を読み、確認事項を届ける">
+<link rel="canonical" href="https://toparz-dev.github.io/IT-news/articles/2026-10-02.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="ToPARZ IT News">
+<meta property="og:title" content="2026年10月2日（金）のIT・AIニュース｜ToPARZ IT News">
+<meta property="og:description" content="今日の2本：Claude Codeのmods、画面も仕事の進め方も自分仕様に／dots、会話していない間にも資料を読み、確認事項を届ける">
+<meta property="og:url" content="https://toparz-dev.github.io/IT-news/articles/2026-10-02.html">
+<meta property="og:locale" content="ja_JP">
+<meta property="article:published_time" content="2026-10-02">
+<meta name="build-id" content="bfa147b7439eb4c2">
+<meta name="twitter:card" content="summary">
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+<link rel="alternate" type="application/rss+xml" title="ToPARZ IT News" href="../feed.xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">本文へ移動</a>
+
+<header class="masthead">
+  <div class="wrap masthead-inner">
+    <a class="brand" href="../">ToPARZ IT News</a>
+    <p class="masthead-tagline">Xで複数の人が話題にしたIT・AIの動きを、事実と分析に分けて日々お届けします。</p>
+  </div>
+</header>
+
+<main id="main" class="wrap">
+  <header class="issue-head">
+    <p class="kicker">Daily IT News ・ No.3</p>
+    <h1 class="issue-title">2026年10月2日（金）</h1>
+    <p class="issue-meta"><span>確認範囲：今回確認したXホーム・関連投稿・検索の範囲。10月2日08時台（日本時間）に、直近24時間の投稿を中心に確認。発表日は本文に記載</span><span>2本</span><span>読了 約5分</span></p>
+    <p class="issue-intro">AIの使い方を、自分の仕事にどこまで合わせられるのでしょうか。今回は、開発用AIの動作を変えるClaude Codeのmodsと、会話の合間にも仕事を見守るOpenAIのdotsを取り上げます。どちらも複数の発信者の言及を確認し、公式の仕様と利用者の報告、今後への見方を分けました。</p>
+  </header>
+
+  <nav class="digest" aria-labelledby="digest-title"><h2 id="digest-title" class="digest-title">今日の2本</h2><ol><li><a href="#story-1"><span class="n">01</span><span>Claude Codeのmods、画面も仕事の進め方も自分仕様に</span></a></li><li><a href="#story-2"><span class="n">02</span><span>dots、会話していない間にも資料を読み、確認事項を届ける</span></a></li></ol></nav>
+
+  <article class="story" id="story-1">
+<p class="story-num">01</p>
+<h2 class="story-title">Claude Codeのmods、画面も仕事の進め方も自分仕様に</h2>
+<p class="story-lead">AIが働いている横に進捗を表示したり、実行しようとする操作を途中で止めたりする。Claude Codeに、そんな変更を加える「mods」が登場しました。Anthropicが10月1日に発表した、画面や動作を利用者側で組み替える仕組みです。</p>
+<p>modsは、TypeScriptなどで書く小さなプログラムです。AIへの指示を書き換える、ツールの実行内容を変更する、画面にボタンや情報欄を追加するといったことができます。自分で書くほか、Claude Codeに作成を頼む方法も公式に案内されています。プラグインとして配布し、端末のコマンド画面やデスクトップアプリで利用できます。</p>
+<p>今回読んだ投稿には、通常の設定用の仕組みとの違いを整理する説明や、導入前に「何へ介入するか」を確かめる必要があるという独自の評価がありました。見た目の好みだけでなく、仕事の進め方を変えられる点への関心です。</p>
+<section class="part part-insight">
+<h3 class="part-title">チームの確認手順をどう組み込むか（分析）</h3>
+<p>開発の進捗を別画面で確認したり、操作前に決まった確認を挟んだりする職場では、その手順をAIの作業画面へまとめられそうです。公式も、本番環境に触れる前の確認や、操作記録を残す用途を例示しています。同じ注意を毎回文章で伝える負担が減る可能性があります。ただし、確認の抜けを本当に減らせるかは、実際の仕事で確かめる必要があります。</p>
+</section>
+<section class="part part-caution">
+<h3 class="part-title">ただし</h3>
+<p>modsはClaude Codeと同じ権限で動き、隔離された安全な実行領域には閉じ込められません。ファイルや通信に触れ、操作の承認にも関われるため、導入元と機能の確認が必要です。対応版は2.1.287以降で、管理者が読み込むmodsを制限する仕組みもあります。便利な画面が付くことだけを理由に導入するのは早計です。</p>
+</section>
+<blockquote class="takeaway"><p>自分の仕事に合わせて変えられる範囲が広がるほど、何を変えるプログラムなのかを確かめる意味も増しそうです。</p></blockquote>
+<footer class="story-source"><span class="label">出典</span><span class="source-item"><a href="https://claude.com/blog/claude-code-mods" target="_blank" rel="noopener">Anthropicのmods発表</a><span class="domain">claude.com</span></span><span class="source-item"><a href="https://code.claude.com/docs/en/plugins/mods/overview" target="_blank" rel="noopener">Claude Codeの公式仕様</a><span class="domain">code.claude.com</span></span></footer>
+</article>
+
+<article class="story" id="story-2">
+<p class="story-num">02</p>
+<h2 class="story-title">dots、会話していない間にも資料を読み、確認事項を届ける</h2>
+<p class="story-lead">共有フォルダーに追加された提案書を読み、仕事の範囲が広すぎないか、使う前に確認したほうがよいと知らせてきた。今回読んだ投稿には、OpenAIの「dots」について、そんな本人の報告がありました。別の利用者も、常時そばで仕事を見てくれる感覚に言及しています。</p>
+<p>OpenAIが9月29日に発表したdotsは、専用のクラウド上のコンピューターを持ち、利用者の目標に沿って継続的に働くAIです。ChatGPTやSlack、Teamsからやり取りでき、接続を許したアプリを使います。前述の報告は利用者の体験であり、同じ働きを誰もが再現できると検証された結果ではありません。</p>
+<p>公式説明で押さえたいのは、利用者が直接やり取りしていない間の自発的な調査は、接続済みアプリの読み取り専用ツールで行うという点です。この調査だけでメッセージを送信したり、アプリ内の内容を書き換えたりすることはできません。調べて気づきを届ける段階と、実際に操作する段階には境界があります。</p>
+<section class="part part-insight">
+<h3 class="part-title">確認を始めるきっかけへの意味（分析）</h3>
+<p>資料が更新されても、担当者が気づかなければ確認は始まりません。読む対象と目的を絞って継続的に見てもらえれば、人が確認すべき変化を拾いやすくなる可能性があります。例えば提案書なら、修正の量だけでなく、約束する仕事の範囲が変わっていないかを知らせてもらう使い方です。役立つ通知と余計な通知を見分け、見てほしい点を伝え直すことが定着の鍵になりそうです。</p>
+</section>
+<section class="part part-caution">
+<h3 class="part-title">ただし</h3>
+<p>提供は対象地域のPro、Business Premiumなどから段階的に進み、Enterpriseでは管理者による有効化が必要です。常時動くことは、無制限に仕事を処理できるという意味ではありません。CodexやChatGPT Workへ依頼した作業には通常の利用枠が適用されます。誤った判断もあり得るため、重要な変更や外部への約束は人が内容を確認する必要があります。</p>
+</section>
+<blockquote class="takeaway"><p>先回りした気づきが役立つかは、何を見てもらい、どこで人が判断するかによって変わりそうです。</p></blockquote>
+<footer class="story-source"><span class="label">出典</span><span class="source-item"><a href="https://openai.com/index/introducing-dots/" target="_blank" rel="noopener">OpenAIのdots発表</a><span class="domain">openai.com</span></span><span class="source-item"><a href="https://openai.com/index/how-we-build-safety-security-and-privacy-into-dots/" target="_blank" rel="noopener">自発的な調査と操作の制限</a><span class="domain">openai.com</span></span></footer>
+</article>
+
+  <nav class="issue-nav" aria-label="前後の号"><a class="prev" href="2026-10-01.html"><small>前の号</small>← 2026年10月1日（木）</a></nav>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p class="policy">編集方針：Xで異なる発信者2人以上が言及した話題を選び、発表内容や数値は公式発表・一次資料で確認しています。個人の作例や体験は投稿者本人の報告として記載し、推測は「分析」と明示しています。</p>
+    <p class="colophon">© 2026 合同会社ToPARZ ・ <a href="../">バックナンバー</a> ・ <a href="../feed.xml">RSS</a></p>
+  </div>
+</footer>
+</body>
+</html>
