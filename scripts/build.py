@@ -7,7 +7,8 @@ articles/YYYY-MM-DD.html・index.html・latest.html・feed.xml を生成する�
 
 使い方:
     python3 scripts/build.py           # すべて生成
-    python3 scripts/build.py --check   # 原稿の解析結果だけ表示する（ファイルは書かない）
+    python3 scripts/build.py --check   # 原稿の解析結果と [注意] だけ表示する（ファイルは書かない）
+    python3 scripts/build.py --check YYYY-MM-DD   # その号だけを検査する
     python3 scripts/build.py --url YYYY-MM-DD   # その号の公開URLを表示する
 
 原稿の書き方は README.md を参照。
@@ -64,6 +65,20 @@ TABLE_NUM_RE = re.compile(r"\d")
 TABLE_NUM_MAX = 14  # これより短く数字を含むセルは、数字のセルとして折り返さない
 PLACEHOLDER_RE = re.compile(r"\{\{\s*([A-Za-z_]\w*)\s*\}\}")
 DATE_RE = re.compile(r"^\d{4}-\d{2}-\d{2}$")
+
+# 原稿の検査（[注意]）で使う目安。超えても生成は止めない。
+TITLE_MAX = 56  # 見出しの字数（目安は45字前後）
+SUMMARY_ITEM_MAX = 100  # 要約1行の字数
+MAIN_STORY_MAX = 2000  # 主記事（号の中で最も長い記事）の字数。数え方は Story.text_length
+SIDE_STORY_MAX = 1000  # 2本目以降の字数（主記事の半分以下が目安）
+STORIES_MAX = 3  # 1号の本数
+TABLE_COLS_MAX = 4  # スマホの幅に収まる表の列数
+HEDGE_MAX = 2  # 推測で締める文の数（1記事あたり）
+HEDGE_RE = re.compile(r"(?:そうです|かもしれません|可能性があります)。")
+PROCEDURE_RE = re.compile(r"複数の発信者|今回読んだ投稿|今回確認した(?:投稿|タイムライン|範囲)|言及を確認|独立した(?:投稿|言及)")
+SPEC_ITEM_RE = re.compile(r"^\*\*[^*]+\*\*[:：]")  # メモ欄の1行「**項目**：内容」
+# 公開リポジトリに載せないリンク（Xの投稿）。見つけたら生成を止める。
+X_LINK_RE = re.compile(r"https?://(?:[A-Za-z0-9-]+\.)*(?:x\.com|twitter\.com|t\.co)(?![A-Za-z0-9.-])")
 
 
 # ---------------------------------------------------------------------------
@@ -335,6 +350,9 @@ class _StoryBuilder:
 
 def parse_issue(path: Path) -> Issue:
     raw = path.read_text(encoding="utf-8")
+    x_link = X_LINK_RE.search(raw)
+    if x_link:
+        raise SystemExit(f"{path.name}: Xへのリンクは載せられません（{x_link.group(0)}…）。本文で内容を説明し、リンクは外してください")
     meta, body = parse_front_matter(raw)
     date_text = meta.get("date") or path.stem
     if not DATE_RE.match(date_text):
@@ -375,19 +393,91 @@ def parse_issue(path: Path) -> Issue:
     return Issue(date=date, meta=meta, intro=intro, stories=stories, source_text=raw)
 
 
+def story_sections(st: Story) -> list[tuple[str, Block]]:
+    """本文の各ブロックに、それが属する節の種類（小見出しより前は空文字）を添えて返す。"""
+    kind, out = "", []
+    for block in st.body:
+        if isinstance(block, Heading):
+            kind = block.kind
+        out.append((kind, block))
+    return out
+
+
+def is_brief(st: Story) -> bool:
+    """短信（要約・書き出し・メモだけで、本文の節も意見欄もない記事）か。"""
+    return not any(isinstance(b, Heading) and b.kind in ("plain", "insight", "caution") for b in st.body)
+
+
+def warn_story(st: Story, is_main: bool) -> list[str]:
+    """1本の記事について、書き方の目安から外れている点を返す。"""
+    out: list[str] = []
+    sections = story_sections(st)
+    if not st.lead:
+        out.append("書き出しの段落（見出しの直後か、要約の直後）がありません")
+    if not st.body:
+        out.append("本文がありません")
+    if not st.sources:
+        out.append("出典がありません")
+    if len(st.title) > TITLE_MAX:
+        out.append(f"見出しが長すぎます（{len(st.title)}字。目安は45字前後、上限{TITLE_MAX}字）")
+
+    items = st.summary_items()
+    if items is None:
+        out.append("要約（### 3行で言うと）がありません")
+    elif items != SUMMARY_ITEMS:
+        out.append(f"要約は箇条書き{SUMMARY_ITEMS}行にしてください（現在 {items}行）")
+    for kind, block in sections:
+        if kind == "summary" and isinstance(block, ListBlock):
+            for n, (text, _) in enumerate(block.items, 1):
+                if len(text) > SUMMARY_ITEM_MAX:
+                    out.append(f"要約の{n}行目が長すぎます（{len(text)}字。上限{SUMMARY_ITEM_MAX}字）")
+
+    brief = is_brief(st)
+    if not brief and not any(isinstance(b, Heading) and b.kind == "insight" for b in st.body):
+        out.append("意見欄（### どう見るか）がありません。短信にするなら本文の節をなくし、要約・書き出し・メモだけにします")
+    length = st.text_length()
+    limit = MAIN_STORY_MAX if is_main else SIDE_STORY_MAX
+    if length > limit:
+        role = "主記事" if is_main else "2本目以降の記事"
+        out.append(f"{role}が長すぎます（{length}字。上限{limit}字）。同じ事実の言い直しと、優先度の低い数字を削ります")
+
+    tables = [b for b in st.body if isinstance(b, TableBlock)]
+    if len(tables) > 1:
+        out.append(f"表は1記事に1つまでにします（現在 {len(tables)}つ）")
+    for table in tables:
+        if len(table.header) > TABLE_COLS_MAX:
+            out.append(f"表の列が多すぎます（{len(table.header)}列。スマホで収まるのは{TABLE_COLS_MAX}列まで）")
+    for kind, block in sections:
+        if kind == "spec" and isinstance(block, ListBlock):
+            if any(not SPEC_ITEM_RE.match(text) for text, _ in block.items):
+                out.append("メモ欄の各行は「**項目**：内容」の形にします")
+
+    for block in st.body:
+        if isinstance(block, Heading) and (block.text.endswith(("（分析）", "(分析)")) or block.text.startswith("ただし")):
+            out.append(f"旧形式の小見出しです（{block.text}）。意見は「どう見るか」に、留保は本文の該当箇所に書きます")
+        if isinstance(block, Quote) and not block.cite:
+            out.append("締めの一文（> ）は使いません。結論は「どう見るか」に書きます")
+    prose = [st.lead] + [b.text for kind, b in sections if isinstance(b, Paragraph) and kind != "spec"]
+    hedges = sum(len(HEDGE_RE.findall(text)) for text in prose)
+    if hedges > HEDGE_MAX:
+        out.append(f"推測で締める文が多すぎます（「〜そうです」「〜かもしれません」「〜可能性があります」が{hedges}回。上限{HEDGE_MAX}回）")
+    for text in prose:
+        m = PROCEDURE_RE.search(text)
+        if m:
+            out.append(f"取材の手続きは本文に書きません（「{m.group(0)}」）。確認した範囲は front matter の scope に書きます")
+            break
+    return out
+
+
 def warn_issue(issue: Issue, name: str) -> None:
-    for i, st in enumerate(issue.stories, 1):
-        if not st.lead:
-            print(f"[注意] {name} 記事{i}: 書き出しの段落（見出しの直後か、要約の直後）がありません", file=sys.stderr)
-        if not st.body:
-            print(f"[注意] {name} 記事{i}: 本文がありません", file=sys.stderr)
-        if not st.sources:
-            print(f"[注意] {name} 記事{i}: 出典がありません", file=sys.stderr)
-        items = st.summary_items()
-        if items is None:
-            print(f"[注意] {name} 記事{i}: 要約（### 3行で言うと）がありません", file=sys.stderr)
-        elif items != SUMMARY_ITEMS:
-            print(f"[注意] {name} 記事{i}: 要約は箇条書き{SUMMARY_ITEMS}行にしてください（現在 {items}行）", file=sys.stderr)
+    """原稿の検査結果を [注意] として表示する。目安から外れても生成は止めない。"""
+    lengths = [st.text_length() for st in issue.stories]
+    main = lengths.index(max(lengths))  # 号の中で最も長い記事を主記事とみなす
+    for i, st in enumerate(issue.stories):
+        for message in warn_story(st, is_main=(i == main)):
+            print(f"[注意] {name} 記事{i + 1}: {message}", file=sys.stderr)
+    if len(issue.stories) > STORIES_MAX:
+        print(f"[注意] {name}: 記事が多すぎます（{len(issue.stories)}本。主記事1本と、短い記事を{STORIES_MAX - 1}本まで）", file=sys.stderr)
 
 
 # ---------------------------------------------------------------------------
@@ -769,7 +859,6 @@ def load_issues() -> list[Issue]:
         if issue.slug in seen:
             raise SystemExit(f"{path.name}: {seen[issue.slug]} と date が重複しています（1日1ファイル）")
         seen[issue.slug] = path.name
-        warn_issue(issue, path.name)
         issues.append(issue)
     issues.sort(key=lambda i: i.date)
     for n, iss in enumerate(issues, 1):
@@ -807,7 +896,13 @@ def write(path: Path, content: str) -> None:
 
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    parser.add_argument("--check", action="store_true", help="原稿を解析して構造を表示するだけで、ファイルを書かない")
+    parser.add_argument(
+        "--check",
+        nargs="?",
+        const="",
+        metavar="YYYY-MM-DD",
+        help="原稿を解析して構造と [注意] を表示するだけで、ファイルを書かない。日付を付けるとその号だけを見る",
+    )
     parser.add_argument("--url", metavar="YYYY-MM-DD", help="その号の公開URLを表示して終了する")
     args = parser.parse_args()
 
@@ -818,12 +913,20 @@ def main() -> None:
         print(f"{site['base_url']}articles/{args.url}.html")
         return
     issues = load_issues()
-    if args.check:
+    if args.check is not None:
+        targets = [iss for iss in issues if not args.check or iss.slug == args.check]
+        if args.check and not targets:
+            raise SystemExit(f"content/{args.check}.md がありません")
         if not issues:
             print("content/ に原稿（YYYY-MM-DD.md）がありません")
-        check(issues)
+        for iss in targets:
+            warn_issue(iss, f"{iss.slug}.md")
+        check(targets)
         return
 
+    # 生成時の [注意] は最新号だけに出す（過去の号は公開済みで、書き直しの対象ではないため）
+    if issues:
+        warn_issue(issues[-1], f"{issues[-1].slug}.md")
     for i, iss in enumerate(issues):
         prev = issues[i - 1] if i > 0 else None
         nxt = issues[i + 1] if i + 1 < len(issues) else None
