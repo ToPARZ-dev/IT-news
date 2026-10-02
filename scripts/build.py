@@ -69,8 +69,9 @@ DATE_RE = re.compile(r"^\d{4}-\d{2}-\d{2}$")
 # 原稿の検査（[注意]）で使う目安。超えても生成は止めない。
 TITLE_MAX = 56  # 見出しの字数（目安は45字前後）
 SUMMARY_ITEM_MAX = 100  # 要約1行の字数
-MAIN_STORY_MAX = 2000  # 主記事（号の中で最も長い記事）の字数。数え方は Story.text_length
+MAIN_STORY_MAX = 2000  # 主記事（1本目）の字数。数え方は Story.text_length
 SIDE_STORY_MAX = 1000  # 2本目以降の字数（主記事の半分以下が目安）
+ISSUE_MAX = 2800  # 1号の合計字数（目標は2,500字、読了5分）
 STORIES_MAX = 3  # 1号の本数
 TABLE_COLS_MAX = 4  # スマホの幅に収まる表の列数
 HEDGE_MAX = 2  # 推測で締める文の数（1記事あたり）
@@ -438,7 +439,7 @@ def warn_story(st: Story, is_main: bool) -> list[str]:
     length = st.text_length()
     limit = MAIN_STORY_MAX if is_main else SIDE_STORY_MAX
     if length > limit:
-        role = "主記事" if is_main else "2本目以降の記事"
+        role = "主記事（1本目）" if is_main else "2本目以降の記事"
         out.append(f"{role}が長すぎます（{length}字。上限{limit}字）。同じ事実の言い直しと、優先度の低い数字を削ります")
 
     tables = [b for b in st.body if isinstance(b, TableBlock)]
@@ -453,7 +454,7 @@ def warn_story(st: Story, is_main: bool) -> list[str]:
                 out.append("メモ欄の各行は「**項目**：内容」の形にします")
 
     for block in st.body:
-        if isinstance(block, Heading) and (block.text.endswith(("（分析）", "(分析)")) or block.text.startswith("ただし")):
+        if isinstance(block, Heading) and (block.text.endswith(("（分析）", "(分析)")) or block.kind == "caution"):
             out.append(f"旧形式の小見出しです（{block.text}）。意見は「どう見るか」に、留保は本文の該当箇所に書きます")
         if isinstance(block, Quote) and not block.cite:
             out.append("締めの一文（> ）は使いません。結論は「どう見るか」に書きます")
@@ -471,11 +472,13 @@ def warn_story(st: Story, is_main: bool) -> list[str]:
 
 def warn_issue(issue: Issue, name: str) -> None:
     """原稿の検査結果を [注意] として表示する。目安から外れても生成は止めない。"""
-    lengths = [st.text_length() for st in issue.stories]
-    main = lengths.index(max(lengths))  # 号の中で最も長い記事を主記事とみなす
     for i, st in enumerate(issue.stories):
-        for message in warn_story(st, is_main=(i == main)):
+        # 主記事は1本目（読者の仕事にいちばん関係する話題を1本目に置く決まり）
+        for message in warn_story(st, is_main=(i == 0)):
             print(f"[注意] {name} 記事{i + 1}: {message}", file=sys.stderr)
+    total = sum(st.text_length() for st in issue.stories) + sum(len(p) for p in issue.intro)
+    if total > ISSUE_MAX:
+        print(f"[注意] {name}: 号の合計が長すぎます（{total}字。上限{ISSUE_MAX}字、目標2,500字）。2本目以降を短信にするか、本数を減らします", file=sys.stderr)
     if len(issue.stories) > STORIES_MAX:
         print(f"[注意] {name}: 記事が多すぎます（{len(issue.stories)}本。主記事1本と、短い記事を{STORIES_MAX - 1}本まで）", file=sys.stderr)
 
