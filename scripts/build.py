@@ -74,6 +74,8 @@ SIDE_STORY_MAX = 1000  # 2本目以降の字数（主記事の半分以下が目
 ISSUE_MAX = 2800  # 1号の合計字数（目標は2,500字、読了5分）
 STORIES_MAX = 3  # 1号の本数
 TABLE_COLS_MAX = 4  # スマホの幅に収まる表の列数
+SPEC_ITEMS_MAX = 8  # メモ欄の項目数
+BRIEF_SPEC_ITEMS_MAX = 5  # 短信のメモ欄の項目数
 HEDGE_MAX = 2  # 推測で締める文の数（1記事あたり）
 HEDGE_RE = re.compile(r"(?:そうです|かもしれません|可能性があります)。")
 PROCEDURE_RE = re.compile(r"複数の発信者|今回読んだ投稿|今回確認した(?:投稿|タイムライン|範囲)|言及を確認|独立した(?:投稿|言及)")
@@ -432,6 +434,8 @@ def warn_story(st: Story, is_main: bool) -> list[str]:
             for n, (text, _) in enumerate(block.items, 1):
                 if len(text) > SUMMARY_ITEM_MAX:
                     out.append(f"要約の{n}行目が長すぎます（{len(text)}字。上限{SUMMARY_ITEM_MAX}字）")
+                if "`" in text:
+                    out.append(f"要約の{n}行目にコマンドや設定の名前（`…`）があります。エンジニアでない読者にも分かる言葉で書きます")
 
     brief = is_brief(st)
     if not brief and not any(isinstance(b, Heading) and b.kind == "insight" for b in st.body):
@@ -452,6 +456,9 @@ def warn_story(st: Story, is_main: bool) -> list[str]:
         if kind == "spec" and isinstance(block, ListBlock):
             if any(not SPEC_ITEM_RE.match(text) for text, _ in block.items):
                 out.append("メモ欄の各行は「**項目**：内容」の形にします")
+            spec_max = BRIEF_SPEC_ITEMS_MAX if is_brief(st) else SPEC_ITEMS_MAX
+            if len(block.items) > spec_max:
+                out.append(f"メモ欄の項目が多すぎます（{len(block.items)}項目。上限{spec_max}項目）。設定の手引きにせず、確かめたい人が要る条件に絞ります")
 
     for block in st.body:
         if isinstance(block, Heading) and (block.text.endswith(("（分析）", "(分析)")) or block.kind == "caution"):
