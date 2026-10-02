@@ -59,7 +59,13 @@ TOP_ITEM_RE = re.compile(r"^- (.*)$")
 SUB_ITEM_RE = re.compile(r"^(?: {2,}|\t+)- (.*)$")
 TABLE_ROW_RE = re.compile(r"^\|(.*)\|\s*$")
 TABLE_RULE_RE = re.compile(r"^:?-{2,}:?$")  # 表の2行目（区切り行）のセル
-NAME_NOBREAK_RE = re.compile(r"[A-Za-z0-9][A-Za-z0-9.]*(?:-[A-Za-z0-9.]+)+")  # GLM-5.3、GPT-6.1 など
+NAME_NOBREAK_RE = re.compile(
+    r"「[A-Za-z0-9][A-Za-z0-9 .\-]{0,20}」[のがをにはでともへや]?"  # 「Gemini 4 Argon」の（かぎ括弧の名前と直後の助詞）
+    r"|[^「」\s<>&;]{4}」[のがをにはでともへや]?"  # 引用の終わりの4文字と閉じかぎ（「…全面禁止」と）
+    r"|[A-Za-z0-9][A-Za-z0-9.]*(?:-[A-Za-z0-9.]+)+"  # GLM-5.3、GPT-6.1 など
+    r"|\d+分の\d+(?:以下|以上)?"  # 4分の1以下
+    r"|約?\d[\d,]*(?:\.\d+)?(?:万|億)?(?:円|ドル)(?:相当)?"  # 約3,200円相当、20.40ドル
+)
 NAME_NOBREAK_MAX = 24  # これより長いものは、狭い画面からはみ出すので折り返しを許す
 TABLE_NUM_RE = re.compile(r"\d")
 TABLE_NUM_MAX = 14  # これより短く数字を含むセルは、数字のセルとして折り返さない
@@ -585,7 +591,7 @@ def render_sources(sources: list[str]) -> str:
 
 
 def keep_names_together(fragment: str) -> str:
-    """「GPT-6.1」「GLM-5.3」のような名前が、ハイフンの位置で行をまたがないようにする。
+    """名前（「Gemini 4 Argon」、GPT-6.1）、数字（4分の1以下、約3,200円相当）、引用の終わりが、途中で行をまたがないようにする。
 
     タグの中（URLなど）とコード表記の中は触らない。
     """
@@ -607,6 +613,15 @@ def keep_names_together(fragment: str) -> str:
     return "".join(out)
 
 
+def render_title(title: str) -> str:
+    """見出しを全角スペースで前半と後半に分け、狭い画面ではその位置で折り返すようにする。"""
+    parts = title.split("　")
+    if len(parts) != 2:
+        return inline(title)
+    gap = '<span class="title-gap"> </span>'
+    return gap.join(f'<span class="title-part">{inline(part)}</span>' for part in parts)
+
+
 def render_story(story: Story, index: int) -> str:
     return keep_names_together(_render_story(story, index))
 
@@ -615,7 +630,7 @@ def _render_story(story: Story, index: int) -> str:
     out = [
         f'<article class="story" id="story-{index}">',
         f'<p class="story-num">{index:02d}</p>',
-        f'<h2 class="story-title">{inline(story.title)}</h2>',
+        f'<h2 class="story-title">{render_title(story.title)}</h2>',
     ]
     lead = f'<p class="story-lead">{inline(story.lead)}</p>' if story.lead else ""
     if lead and not story.lead_after_summary:
@@ -727,7 +742,13 @@ def site_context(site: dict[str, str]) -> dict[str, object]:
         "tagline": html.escape(site["tagline"]),
         "publisher": html.escape(site["publisher"]),
         "policy": html.escape(site["policy"]),
+        "css_version": css_version(),
     }
+
+
+def css_version() -> str:
+    """CSSの内容から決まる版。CSSを変えたときに、ブラウザに残った古いCSSが使われないようにする。"""
+    return hashlib.sha256((ROOT / "assets" / "style.css").read_bytes()).hexdigest()[:8]
 
 
 def build_id(issue: Issue) -> str:

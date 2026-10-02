@@ -317,7 +317,16 @@ code {
   word-break: auto-phrase; /* 対応ブラウザでは文節の切れ目で改行する */
 }
 
-/* 「GPT-6.1」のような名前をハイフンの位置で折り返さない */
+/* 見出しの前半と後半。1行に収まらないときは、全角スペースの位置で折り返す */
+.title-part {
+  display: inline-block;
+}
+
+.title-gap {
+  word-spacing: 0.7em;
+}
+
+/* 名前（GPT-6.1）、数字（4分の1以下）、引用の終わりを、途中で折り返さない */
 .nobr {
   white-space: nowrap;
 }
