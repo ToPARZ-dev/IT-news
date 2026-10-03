@@ -5,8 +5,15 @@
     <link>https://toparz-dev.github.io/IT-news/</link>
     <description>AIを仕事で使う人のための日刊ニュース。話題になった動きを、発表元の資料と報道で確かめて届けます。</description>
     <language>ja</language>
-    <lastBuildDate>Fri, 02 Oct 2026 09:00:00 +0900</lastBuildDate>
+    <lastBuildDate>Sat, 03 Oct 2026 09:00:00 +0900</lastBuildDate>
     <atom:link href="https://toparz-dev.github.io/IT-news/feed.xml" rel="self" type="application/rss+xml"/>
+    <item>
+      <title>2026年10月3日（土）のIT・AIニュース（1本）</title>
+      <link>https://toparz-dev.github.io/IT-news/articles/2026-10-03.html</link>
+      <guid isPermaLink="true">https://toparz-dev.github.io/IT-news/articles/2026-10-03.html</guid>
+      <pubDate>Sat, 03 Oct 2026 09:00:00 +0900</pubDate>
+      <description>&lt;ol&gt;&lt;li&gt;常時働くAIを自社で作る「OpenDots」が公開　チーム利用はまだ開発途中&lt;/li&gt;&lt;/ol&gt;</description>
+    </item>
     <item>
       <title>2026年10月2日（金）のIT・AIニュース（2本）</title>
       <link>https://toparz-dev.github.io/IT-news/articles/2026-10-02.html</link>
