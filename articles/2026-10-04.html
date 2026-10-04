@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>2026年10月4日（日）のIT・AIニュース｜ToPARZ IT News</title>
+<meta name="description" content="今日の1本：AnthropicのAI「Claude Opus 5.5」の性能低下説は未決着　契約変更前に不調を記録">
+<link rel="canonical" href="https://toparz-dev.github.io/IT-news/articles/2026-10-04.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="ToPARZ IT News">
+<meta property="og:title" content="2026年10月4日（日）のIT・AIニュース｜ToPARZ IT News">
+<meta property="og:description" content="今日の1本：AnthropicのAI「Claude Opus 5.5」の性能低下説は未決着　契約変更前に不調を記録">
+<meta property="og:url" content="https://toparz-dev.github.io/IT-news/articles/2026-10-04.html">
+<meta property="og:locale" content="ja_JP">
+<meta property="article:published_time" content="2026-10-04">
+<meta name="build-id" content="77f0d4d6cd279fb1">
+<meta name="twitter:card" content="summary">
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+<link rel="alternate" type="application/rss+xml" title="ToPARZ IT News" href="../feed.xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="../assets/style.css?v=3cab6eb8">
+</head>
+<body>
+<a class="skip" href="#main">本文へ移動</a>
+
+<header class="masthead">
+  <div class="wrap masthead-inner">
+    <a class="brand" href="../">ToPARZ IT News</a>
+    <p class="masthead-tagline">AIを仕事で使う人のための日刊ニュース。話題になった動きを、発表元の資料と報道で確かめて届けます。</p>
+  </div>
+</header>
+
+<main id="main" class="wrap">
+  <header class="issue-head">
+    <p class="kicker">Daily IT News ・ No.5</p>
+    <h1 class="issue-title">2026年10月4日（日）</h1>
+    <p class="issue-meta"><span>1本</span><span>読了 約4分</span></p>
+    
+  </header>
+
+  
+
+  <article class="story" id="story-1">
+<p class="story-num">01</p>
+<h2 class="story-title"><span class="title-part">AnthropicのAI<span class="nobr">「Claude Opus 5.5」の</span>性能低下説は未決着</span><span class="title-gap"> </span><span class="title-part">契約変更前に不調を記録</span></h2>
+<section class="part part-summary">
+<h3 class="part-title">3行で言うと</h3>
+<ul class="story-list"><li>費用も含む公開指標<span class="nobr">「Nerf Bench」の</span>10月2日値は、発売時100%に対し94.2%。測定側が通常とする90〜110%の範囲内だ</li><li>別の調査<span class="nobr">「LiveNerf」は</span>比較の基準を集め終えた段階。チャットや、AIが道具を使って開発する仕事は測定対象外だ</li><li>Claude Codeで不調があるなら、担当者に設定と失敗内容の記録を頼みたい。使うAIや契約を変える判断には、同じ条件の結果を使う</li></ul>
+</section>
+<p class="story-lead">AIの答えの質を日ごとに追う公開プロジェクト<span class="nobr">「LiveNerf」が</span>、10月3日付で最初の10日分の測定を終えました。対象はAnthropicのClaude Opus 5.5です。性能が変わったかを判定するための基準がそろった段階で、低下したという結論はまだ出ていません。</p>
+<section class="part part-plain">
+<h3 class="part-title">Nerf Benchの値は正答率ではない</h3>
+<p>もう一つの公開測定、BridgeMindの<span class="nobr">「Nerf Bench」は</span>、課題の出来、使ったトークン数、費用を合わせた独自の指標です。発売時を基準に、その後の値を公表しています。同サイトの説明では、答えの質が同じでも、必要なトークン数や費用が増えると値が下がります。</p>
+<div class="table-wrap"><table class="story-table"><thead><tr><th class="left" scope="col">測定日（サイト表記）</th><th class="right" scope="col">発売時を基準にした値</th></tr></thead><tbody><tr><td class="left num">9月22日</td><td class="right num">100.0%</td></tr><tr><td class="left num">9月27日</td><td class="right num">99.2%</td></tr><tr><td class="left num">10月1日</td><td class="right num">103.8%</td></tr><tr><td class="left num">10月2日</td><td class="right num">94.2%</td></tr></tbody></table></div>
+<p>最新の値は前日から下がりましたが、同サイト自身が通常の変動範囲としています。正答率や、回答の質が落ちた割合を示す値ではありません。</p>
+<p>測定方法にも限界があります。実際の課題や重み付けは非公開で、説明ページの計算式は架空の値を使った例です。外部の人が同じ試験をやり直して、何が値を下げたかを確かめられる資料にはなっていません。</p>
+</section>
+<section class="part part-plain">
+<h3 class="part-title">LiveNerfの判定は、さらに20日間の比較を待つ</h3>
+<p>LiveNerfは、同じ78問を毎日解かせる仕組みです。Claude Codeの版を2.1.280に固定し、推論の強さ（答える前に考える深さ）もhighにそろえています。最初の10日分を基準に、その後の2つの期間（各10日間）で変化を調べます。プロジェクトは、最初に判定できる時期を10月24日ごろとしています。</p>
+<p>この調査が測るのは、Maxプランの1アカウントで動くClaude Codeです。使う端末と地域も一つに限られます。一般のチャット、長い会話、ツールを使った自律的な開発は対象に含まれません。最新のClaude Codeを使う人が、更新後に感じた変化も、版を固定した試験では直接測れません。</p>
+<p>評価範囲を説明する文書は、小さな変化を見逃すこともあると明記しています。今後「変化を検出し<span class="nobr">なかった」と</span>なっても、あらゆる仕事で問題がないという保証にはなりません。</p>
+</section>
+<section class="part part-plain">
+<h3 class="part-title">手元の設定と測定の条件を分ける</h3>
+<p>Anthropicの公式文書では、Claude CodeのOpus 5.5の推論の強さは、利用者や組織が別に指定しない限りmediumです。LiveNerfの条件を、自分の普段の利用条件と同じだと思い込まないようにします。</p>
+<p>不調を記録する際は、まず次の3点を控えます。</p>
+<ul class="story-list"><li>ターミナルで <code>claude --version</code> を実行し、Claude Codeの版を残します。</li><li>Claude Codeの会話内で <code>/status</code> を開き、現在使っているAIを確認します。</li><li>セッション見出しで、モデル名の隣に表示される推論の強さを控えます。</li></ul>
+<p>そのうえで、失敗した指示・実際の結果・期待した結果を残し、同じ作業対象と設定で再確認します。</p>
+</section>
+<section class="part part-insight">
+<h3 class="part-title">どう見るか</h3>
+<p>契約の切り替えより、不調が続く条件を突き止めることを優先します。Claude Opus 5.5の公開測定は、会社で任せている仕事全体を評価していないためです。経営側は担当者に「どの作業が失敗し、条件をそろえて何回試すと再<span class="nobr">現するか」を</span>確認し、顧客には実際に起きた支障と原因の調査状況を分けて伝えてください。公開指標が通常の範囲でも、自社の納品を妨げる失敗が再現するなら、その仕事を別のAIや人に回す判断は必要です。</p>
+</section>
+<section class="part part-spec">
+<h3 class="part-title">メモ：測定を読むときの条件</h3>
+<ul class="story-list"><li><strong>確認時点</strong>：10月4日朝（日本時間）。Nerf Benchの最新測定日は10月2日（サイト表記）</li><li><strong>LiveNerfの開始</strong>：9月24日22:10 UTC。発売当日からの連続測定ではない</li><li><strong>発表元の対応</strong>：確認したAnthropicの公式障害履歴には、今回の性能低下説について説明する記載は見当たらない</li></ul>
+</section>
+<footer class="story-source"><span class="label">出典</span><span class="source-item"><a href="https://www.bridgebench.ai/nerf-bench/claude-opus-5-5" target="_blank" rel="noopener">Nerf Benchの測定履歴</a><span class="domain">bridgebench.ai</span></span><span class="source-item"><a href="https://www.bridgebench.ai/blog/how-nerf-bench-works" target="_blank" rel="noopener">Nerf Benchの測定方法</a><span class="domain">bridgebench.ai</span></span><span class="source-item"><a href="https://github.com/ninjahawk/livenerf" target="_blank" rel="noopener">LiveNerfの進捗と方法</a><span class="domain">github.com</span></span><span class="source-item"><a href="https://github.com/ninjahawk/livenerf/blob/main/docs/EVAL_CARD.md" target="_blank" rel="noopener">LiveNerfの評価範囲と限界</a><span class="domain">github.com</span></span><span class="source-item"><a href="https://code.claude.com/docs/en/model-config" target="_blank" rel="noopener">Claude Codeのモデル・推論設定</a><span class="domain">code.claude.com</span></span><span class="source-item"><a href="https://code.claude.com/docs/en/cli-reference" target="_blank" rel="noopener">Claude Codeのコマンド一覧</a><span class="domain">code.claude.com</span></span><span class="source-item"><a href="https://status.claude.com/" target="_blank" rel="noopener">Anthropicの障害履歴</a><span class="domain">status.claude.com</span></span></footer>
+</article>
+
+  <p class="issue-scope">この号について：10月4日朝（日本時間）にXホームと関連検索で直近24時間を中心に確認し、公開測定の原資料・公式文書・報道で内容を確かめました</p>
+
+  <nav class="issue-nav" aria-label="前後の号"><a class="prev" href="2026-10-03.html"><small>前の号</small>← 2026年10月3日（土）</a></nav>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p class="policy">編集方針：Xで話題になった動きから、仕事への影響が大きいものを選びます。内容と数値は、発表元の資料、第三者の計測、報道で確かめます。発表元の主張と確かめた事実を書き分け、編集部の見方は「どう見るか」の欄に分けて書きます。誤りは、訂正の注記を付けて直します。</p>
+    <p class="colophon">© 2026 合同会社ToPARZ ・ <a href="../">バックナンバー</a> ・ <a href="../feed.xml">RSS</a></p>
+  </div>
+</footer>
+</body>
+</html>
