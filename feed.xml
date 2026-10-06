@@ -5,8 +5,15 @@
     <link>https://toparz-dev.github.io/IT-news/</link>
     <description>AIを仕事で使う人のための日刊ニュース。話題になった動きを、発表元の資料と報道で確かめて届けます。</description>
     <language>ja</language>
-    <lastBuildDate>Tue, 06 Oct 2026 09:00:00 +0900</lastBuildDate>
+    <lastBuildDate>Wed, 07 Oct 2026 09:00:00 +0900</lastBuildDate>
     <atom:link href="https://toparz-dev.github.io/IT-news/feed.xml" rel="self" type="application/rss+xml"/>
+    <item>
+      <title>2026年10月7日（水）のIT・AIニュース（1本）</title>
+      <link>https://toparz-dev.github.io/IT-news/articles/2026-10-07.html</link>
+      <guid isPermaLink="true">https://toparz-dev.github.io/IT-news/articles/2026-10-07.html</guid>
+      <pubDate>Wed, 07 Oct 2026 09:00:00 +0900</pubDate>
+      <description>&lt;ol&gt;&lt;li&gt;Googleの文書・表・スライドをClaudeが直接編集　変更は利用者名で履歴に残る&lt;/li&gt;&lt;/ol&gt;</description>
+    </item>
     <item>
       <title>2026年10月6日（火）のIT・AIニュース（1本）</title>
       <link>https://toparz-dev.github.io/IT-news/articles/2026-10-06.html</link>
