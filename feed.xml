@@ -5,8 +5,15 @@
     <link>https://toparz-dev.github.io/IT-news/</link>
     <description>AIを仕事で使う人のための日刊ニュース。話題になった動きを、発表元の資料と報道で確かめて届けます。</description>
     <language>ja</language>
-    <lastBuildDate>Thu, 08 Oct 2026 09:00:00 +0900</lastBuildDate>
+    <lastBuildDate>Fri, 09 Oct 2026 09:00:00 +0900</lastBuildDate>
     <atom:link href="https://toparz-dev.github.io/IT-news/feed.xml" rel="self" type="application/rss+xml"/>
+    <item>
+      <title>2026年10月9日（金）のIT・AIニュース（2本）</title>
+      <link>https://toparz-dev.github.io/IT-news/articles/2026-10-09.html</link>
+      <guid isPermaLink="true">https://toparz-dev.github.io/IT-news/articles/2026-10-09.html</guid>
+      <pubDate>Fri, 09 Oct 2026 09:00:00 +0900</pubDate>
+      <description>&lt;ol&gt;&lt;li&gt;OpenAIのGPT-6.1 Solに最速モード　Codex・Workの契約内利用枠は通常の8倍消費&lt;/li&gt;&lt;li&gt;Claudeが集計画面と説明アニメを作成　アニメはTeam・Enterprise限定&lt;/li&gt;&lt;/ol&gt;</description>
+    </item>
     <item>
       <title>2026年10月8日（木）のIT・AIニュース（1本）</title>
       <link>https://toparz-dev.github.io/IT-news/articles/2026-10-08.html</link>
