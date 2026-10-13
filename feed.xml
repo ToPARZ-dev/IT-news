@@ -5,8 +5,15 @@
     <link>https://toparz-dev.github.io/IT-news/</link>
     <description>AIを仕事で使う人のための日刊ニュース。話題になった動きを、発表元の資料と報道で確かめて届けます。</description>
     <language>ja</language>
-    <lastBuildDate>Mon, 12 Oct 2026 09:00:00 +0900</lastBuildDate>
+    <lastBuildDate>Tue, 13 Oct 2026 09:00:00 +0900</lastBuildDate>
     <atom:link href="https://toparz-dev.github.io/IT-news/feed.xml" rel="self" type="application/rss+xml"/>
+    <item>
+      <title>2026年10月13日（火）のIT・AIニュース（1本）</title>
+      <link>https://toparz-dev.github.io/IT-news/articles/2026-10-13.html</link>
+      <guid isPermaLink="true">https://toparz-dev.github.io/IT-news/articles/2026-10-13.html</guid>
+      <pubDate>Tue, 13 Oct 2026 09:00:00 +0900</pubDate>
+      <description>&lt;ol&gt;&lt;li&gt;Metaの新AI「Muse Wonder」、長い開発作業向けに提供　上位版は専用ツール限定&lt;/li&gt;&lt;/ol&gt;</description>
+    </item>
     <item>
       <title>2026年10月12日（月）のIT・AIニュース（1本）</title>
       <link>https://toparz-dev.github.io/IT-news/articles/2026-10-12.html</link>
