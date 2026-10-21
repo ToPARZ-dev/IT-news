@@ -5,8 +5,15 @@
     <link>https://toparz-dev.github.io/IT-news/</link>
     <description>AIを仕事で使う人のための日刊ニュース。話題になった動きを、発表元の資料と報道で確かめて届けます。</description>
     <language>ja</language>
-    <lastBuildDate>Tue, 20 Oct 2026 09:00:00 +0900</lastBuildDate>
+    <lastBuildDate>Wed, 21 Oct 2026 09:00:00 +0900</lastBuildDate>
     <atom:link href="https://toparz-dev.github.io/IT-news/feed.xml" rel="self" type="application/rss+xml"/>
+    <item>
+      <title>2026年10月21日（水）のIT・AIニュース（1本）</title>
+      <link>https://toparz-dev.github.io/IT-news/articles/2026-10-21.html</link>
+      <guid isPermaLink="true">https://toparz-dev.github.io/IT-news/articles/2026-10-21.html</guid>
+      <pubDate>Wed, 21 Oct 2026 09:00:00 +0900</pubDate>
+      <description>&lt;ol&gt;&lt;li&gt;聞き取りから返答までを一括調整　電話応対にも使える音声AI「Eleven Realtime」&lt;/li&gt;&lt;/ol&gt;</description>
+    </item>
     <item>
       <title>2026年10月20日（火）のIT・AIニュース（1本）</title>
       <link>https://toparz-dev.github.io/IT-news/articles/2026-10-20.html</link>
