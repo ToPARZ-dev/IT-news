@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>2026年10月22日（木）のIT・AIニュース｜ToPARZ IT News</title>
+<meta name="description" content="今日の1本：サイトの基盤「PHP」に緊急修正　AIで攻撃を実証、運営者は更新を確認">
+<link rel="canonical" href="https://toparz-dev.github.io/IT-news/articles/2026-10-22.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="ToPARZ IT News">
+<meta property="og:title" content="2026年10月22日（木）のIT・AIニュース｜ToPARZ IT News">
+<meta property="og:description" content="今日の1本：サイトの基盤「PHP」に緊急修正　AIで攻撃を実証、運営者は更新を確認">
+<meta property="og:url" content="https://toparz-dev.github.io/IT-news/articles/2026-10-22.html">
+<meta property="og:locale" content="ja_JP">
+<meta property="article:published_time" content="2026-10-22">
+<meta name="build-id" content="8748b3784a2af5a3">
+<meta name="twitter:card" content="summary">
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+<link rel="alternate" type="application/rss+xml" title="ToPARZ IT News" href="../feed.xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="../assets/style.css?v=3cab6eb8">
+</head>
+<body>
+<a class="skip" href="#main">本文へ移動</a>
+
+<header class="masthead">
+  <div class="wrap masthead-inner">
+    <a class="brand" href="../">ToPARZ IT News</a>
+    <p class="masthead-tagline">AIを仕事で使う人のための日刊ニュース。話題になった動きを、発表元の資料と報道で確かめて届けます。</p>
+  </div>
+</header>
+
+<main id="main" class="wrap">
+  <header class="issue-head">
+    <p class="kicker">Daily IT News ・ No.22</p>
+    <h1 class="issue-title">2026年10月22日（木）</h1>
+    <p class="issue-meta"><span>1本</span><span>読了 約4分</span></p>
+    
+  </header>
+
+  
+
+  <article class="story" id="story-1">
+<p class="story-num">01</p>
+<h2 class="story-title"><span class="title-part">サイトの基盤<span class="nobr">「PHP」に</span>緊急修正</span><span class="title-gap"> </span><span class="title-part">AIで攻撃を実証、運営者は更新を確認</span></h2>
+<section class="part part-summary">
+<h3 class="part-title">3行で言うと</h3>
+<ul class="story-list"><li>ログインなしでサーバー上のプログラムを実行できる脆弱性が2件。PHP側は利用者に直ちに更新するよう呼びかけた</li><li>WordPressなどのアプリや追加機能の更新だけでは直らない。その下で動くPHP本体の更新が必要になる</li><li>自社や顧客のサイトを運営する会社は、保守担当者に対応状況を聞く。レンタルサーバーでも、運営会社への確認が必要だ</li></ul>
+</section>
+<p class="story-lead">セキュリティ企業Wizは、WordPress・Drupal・Joomlaで攻撃を実証したと報告しています。テスト時点で最新のコンテナイメージ（実行環境をまとめた配布物）を使った結果です。PHPの開発元は10月21日付で、2件の脆弱性を直す修正版を公開しました。</p>
+<section class="part part-plain">
+<h3 class="part-title">修正版は4系統、配布元独自の修正も確認する</h3>
+<p>対象は、ウェブからの要求を処理するPHPの未修正版です。PHP公式は、PHPをサーバーで動かす方式のうち、Apacheのmod_phpでリスクが最も高いとしています。<span class="nobr">PHP-FPM</span>などの別の方式も対象です。</p>
+<div class="table-wrap"><table class="story-table"><thead><tr><th class="left" scope="col">使用する系統</th><th class="left" scope="col">10月21日公開の修正版</th></tr></thead><tbody><tr><td class="left num">PHP 8.5</td><td class="left num">8.5.12</td></tr><tr><td class="left num">PHP 8.4</td><td class="left num">8.4.27</td></tr><tr><td class="left num">PHP 8.3</td><td class="left num">8.3.36</td></tr><tr><td class="left num">PHP 8.2</td><td class="left num">8.2.35</td></tr></tbody></table></div>
+<p>同じ系統内の更新で修正を取り込めます。研究者の対処ガイドは、使っているすべてのPHP実行環境を更新したうえで、該当するApache・<span class="nobr">PHP-FPM</span>や、長時間動いているPHPの処理を再起動するよう求めています。</p>
+<p>Linuxの配布元や長期サポートの業者が、修正を既存の版へ取り込んで提供する場合もあります。そうした環境では、表の版番号だけで未修正と判断せず、配布元の更新情報で確認します。</p>
+<p>PHP 8.1以前は通常の更新対象から外れています。今回、PHP側は7.4・8.0・8.1向けにも、ソースコードから組み立てる人などのために最小限の修正を用意しました。古い環境を使う場合は、契約先の修正提供を確認するか、サポート中の版へ移行する必要があります。</p>
+</section>
+<section class="part part-plain">
+<h3 class="part-title">兆候は2024年にあり、今回の研究で攻撃が具体化した</h3>
+<p>Wizは、脆弱性の発見や攻撃の実証、修正の確認などにAIが貢献したと説明しています。</p>
+<p>PHP財団によると、一方の問題の兆候はPHPの開発者が2024年に見つけていました。当時は具体的な攻撃経路が見つからず、修正には既存ソフトとの互換性や性能への影響もありました。財団は、判断体制と人員不足によって対応が遅れたと認めています。</p>
+<p>「AIが未知の問題を最初から見つけ、すべ<span class="nobr">て直した」と</span>いう経緯ではありません。財団は、AIを報告の検証や分類に使いつつ、判断と修正は人が担っていると説明しています。</p>
+</section>
+<section class="part part-plain">
+<h3 class="part-title">攻撃を遮断する仕組みがあっても、更新は必要</h3>
+<p>セキュリティ企業Cloudflareは、顧客を狙う攻撃通信を観測したと報告しました。攻撃通信の観測は、侵害の成功を示すものではありません。同社はWAF（ウェブへの攻撃を検知・遮断する仕組み）で防御していても、PHPを更新するよう勧めています。PHP公式も、設定変更による緩和策だけでは安全にならないとしています。</p>
+<p>技術メディアThe Recordが取材したSophosの担当者は、修正を入れるだけでなく、PHPが動いている場所をすべて把握することが課題だと指摘しました。PHPは他社製品やホスティング基盤にも含まれ、利用者からは見えにくい場合があります。</p>
+</section>
+<section class="part part-insight">
+<h3 class="part-title">どう見るか</h3>
+<p>サイトを保守する会社は、対応済みだと思い込んで確認を漏らす事態を防ぐべきです。経営・事務の担当者は、保守担当者やサーバー会社に「当社と顧客のどのサイトが対象か。PHPの修正を反映し、必要な再起動まで終<span class="nobr">わったか」と</span>聞いてください。</p>
+<p>開発担当者には、実際にサイトを動かすPHPが修正済みかを確認し、通常のページ表示や業務処理も確かめてもらいます。更新できない公開システムがあれば、いつ対応するか、それまで外部からの接続を止めるかを担当者と決めます。</p>
+</section>
+<section class="part part-spec">
+<h3 class="part-title">メモ：対応状況を照会するときの番号</h3>
+<ul class="story-list"><li><strong>脆弱性の識別番号</strong>：<span class="nobr">CVE-2026-109618</span>、<span class="nobr">CVE-2026-109619</span>。研究者は一連の問題を<span class="nobr">「PHP2Shell」と</span>呼んでいる</li></ul>
+</section>
+<footer class="story-source"><span class="label">出典</span><span class="source-item"><a href="https://www.php.net/archive/2026.php#2026-10-21-5" target="_blank" rel="noopener">PHPの修正告知</a><span class="domain">php.net</span></span><span class="source-item"><a href="https://thephp.foundation/blog/2026/10/21/todays-php-security-release-and-how-were-strengthening-php-security/" target="_blank" rel="noopener">PHP財団による経緯の説明</a><span class="domain">thephp.foundation</span></span><span class="source-item"><a href="https://www.wiz.io/blog/php2shell-php-rce" target="_blank" rel="noopener">Wizの研究報告</a><span class="domain">wiz.io</span></span><span class="source-item"><a href="https://www.php2shell.com/" target="_blank" rel="noopener">研究者の対処ガイド</a><span class="domain">php2shell.com</span></span><span class="source-item"><a href="https://blog.cloudflare.com/php-vulnerabilities-waf-protection" target="_blank" rel="noopener">Cloudflareの観測と対策</a><span class="domain">blog.cloudflare.com</span></span><span class="source-item"><a href="https://therecord.media/php-script-vulnerabilities-warnings" target="_blank" rel="noopener">The Recordの報道と専門家への取材</a><span class="domain">therecord.media</span></span></footer>
+</article>
+
+  <p class="issue-scope">この号について：10月22日朝（日本時間）にXホームで話題を確認し、PHP開発元と研究者の発表、対処の案内、独立した報道の本文を照合しました</p>
+
+  <nav class="issue-nav" aria-label="前後の号"><a class="prev" href="2026-10-21.html"><small>前の号</small>← 2026年10月21日（水）</a></nav>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p class="policy">編集方針：Xで話題になった動きから、仕事への影響が大きいものを選びます。内容と数値は、発表元の資料、第三者の計測、報道で確かめます。発表元の主張と確かめた事実を書き分け、編集部の見方は「どう見るか」の欄に分けて書きます。誤りは、訂正の注記を付けて直します。</p>
+    <p class="colophon">© 2026 合同会社ToPARZ ・ <a href="../">バックナンバー</a> ・ <a href="../feed.xml">RSS</a></p>
+  </div>
+</footer>
+</body>
+</html>
