@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>2026年10月23日（金）のIT・AIニュース｜ToPARZ IT News</title>
+<meta name="description" content="今日の1本：Claudeアプリで自動承認を標準に　送信や編集を任せる前に設定を確認">
+<link rel="canonical" href="https://toparz-dev.github.io/IT-news/articles/2026-10-23.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="ToPARZ IT News">
+<meta property="og:title" content="2026年10月23日（金）のIT・AIニュース｜ToPARZ IT News">
+<meta property="og:description" content="今日の1本：Claudeアプリで自動承認を標準に　送信や編集を任せる前に設定を確認">
+<meta property="og:url" content="https://toparz-dev.github.io/IT-news/articles/2026-10-23.html">
+<meta property="og:locale" content="ja_JP">
+<meta property="article:published_time" content="2026-10-23">
+<meta name="build-id" content="e62fba1712db72ad">
+<meta name="twitter:card" content="summary">
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+<link rel="alternate" type="application/rss+xml" title="ToPARZ IT News" href="../feed.xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="../assets/style.css?v=3cab6eb8">
+</head>
+<body>
+<a class="skip" href="#main">本文へ移動</a>
+
+<header class="masthead">
+  <div class="wrap masthead-inner">
+    <a class="brand" href="../">ToPARZ IT News</a>
+    <p class="masthead-tagline">AIを仕事で使う人のための日刊ニュース。話題になった動きを、発表元の資料と報道で確かめて届けます。</p>
+  </div>
+</header>
+
+<main id="main" class="wrap">
+  <header class="issue-head">
+    <p class="kicker">Daily IT News ・ No.23</p>
+    <h1 class="issue-title">2026年10月23日（金）</h1>
+    <p class="issue-meta"><span>1本</span><span>読了 約4分</span></p>
+    
+  </header>
+
+  
+
+  <article class="story" id="story-1">
+<p class="story-num">01</p>
+<h2 class="story-title"><span class="title-part">Claudeアプリで自動承認を標準に</span><span class="title-gap"> </span><span class="title-part">送信や編集を任せる前に設定を確認</span></h2>
+<section class="part part-summary">
+<h3 class="part-title">3行で言うと</h3>
+<ul class="story-list"><li>連携サービスの操作を「承<span class="nobr">認が必要」に</span>していても、自動モードでは実行の可否をAIが判断する。人への確認を毎回待つ設定ではない</li><li>Pro・Max・Teamでは、多くのClaudeアプリの新しい会話が来週から順次、自動モードで始まる。Enterpriseは手動承認が標準で、変更前に管理者へ通知が届く</li><li>Claudeにメール送信や顧客資料の変更を任せる会社は、今週中に人の確認を残す作業を決めたい。利用者の設定を確かめ、会社で制限できる範囲は管理者に確認する</li></ul>
+</section>
+<p class="story-lead">開発用のClaude Codeでは、Pro・Max・Team向けに8月から自動モードの標準化が始まっています。Anthropicは10月22日付の発表への追記で、この方式を多くのClaudeアプリに広げると予告しました。安全と判定した操作は進め、危険と判定した操作は止めて別の方法を探す仕組みです。</p>
+<section class="part part-plain">
+<h3 class="part-title">連携サービスの設定と会話のモードを確かめる</h3>
+<p>対象には、すでに接続している連携サービス（コネクター）や追加機能、内蔵ブラウザなども含まれます。</p>
+<p>公式ヘルプは、コネクターの操作権限と会話のモードの関係を次のように説明しています。</p>
+<div class="table-wrap"><table class="story-table"><thead><tr><th class="left" scope="col">コネクターの操作権限</th><th class="left" scope="col">手動モード</th><th class="left" scope="col">自動モード</th></tr></thead><tbody><tr><td class="left">常に許可（Always allow）</td><td class="left">実行する</td><td class="left">読み取りは実行。書き込み・削除はClaudeが判断</td></tr><tr><td class="left">承認が必要（Needs approval）</td><td class="left">人に確認する</td><td class="left">Claudeが判断する</td></tr><tr><td class="left">禁止（Blocked）</td><td class="left">実行しない</td><td class="left">実行しない</td></tr></tbody></table></div>
+<p>使うコネクターは、入力欄の「＋」か<code>Customize &gt; Connectors</code>で管理できます。組織が、書き込み可能な操作に作業ごとの承認を求める制約を設けている場合もあります。</p>
+</section>
+<section class="part part-plain">
+<h3 class="part-title">初期設定の変更と、自動モードの禁止は別の設定</h3>
+<p>新しい会話画面では、入力欄にある権限設定で<code>Auto</code>から<code>Manual</code>へ変更できます。設定は会話全体に適用され、途中でも切り替えられます。特定の操作だけを手動確認にしたつもりで、会話全体のモードを見落とさないようにします。</p>
+<p>Team・Enterpriseの管理者は、作業を任せる機能<span class="nobr">「Cowork」の</span>自動モードを<code>Organization settings &gt; Capabilities</code>で設定します。次の2つは別の設定です。</p>
+<ul class="story-list"><li><code>Start new tasks in &quot;Automatically approve&quot; mode</code>をオフにすると、新しい作業を手動承認で始めます。利用者は会話中にモードを変えられます。</li><li><code>Allow &quot;Automatically approve&quot; mode</code>をオフにすると、利用者の選択肢から自動モード自体が消えます。</li></ul>
+<p>初期設定だけを手動にするか、自動モードの利用そのものを止めるかは、会社で決めます。開始時期は「翌週<span class="nobr">から順次」で</span>、切り替わる正確な日時は示されていません。</p>
+</section>
+<section class="part part-plain">
+<h3 class="part-title">開発用の試験結果を業務アプリの保証にしない</h3>
+<p>Anthropicは、中断を減らして長い作業を任せやすくする狙いを説明しています。8月のClaude Codeの変更を報じた9to5Macも、経験者には適した標準設定だろうと評価しました。今回の一般向けアプリを試した評価ではありません。</p>
+<p>外部の評価機関Apollo Researchは、7月13日の報告で、コード作業中の自動チェックに攻撃を試す検証を公表しました。利用者の承認をどう解釈するか、情報をどこへ移してよいかなどを課題に挙げ、Anthropicが改善提案を反映したと説明しています。</p>
+<p>今回の発表への追記も、掲載している試験データはClaude Codeのものだと明記しています。確認した範囲では、アプリ展開後の安全性に関する第三者の計測結果は公表されていません。Anthropic自身も、本人名義での送信や重要なファイルの変更では、そばで確認するか、手動承認へ戻すことを検討するよう案内しています。</p>
+</section>
+<section class="part part-insight">
+<h3 class="part-title">どう見るか</h3>
+<p>仕事のメール送信や顧客資料の変更では、まず人の確認を残します。自動で安全を判定することと、会社としてその送信や変更を認めることは、同じ判断ではありません。</p>
+<p>経営・事務の担当者は自動で進めてよい作業の範囲を決め、作業を任せる機能<span class="nobr">「Cowork」を</span>使っている場合は、その開始設定を管理者に確認してもらってください。重要な送信・変更を頼む利用者は、対象の連携操作の権限が「承<span class="nobr">認が必要」に</span>、会話が手動モードに設定されているか確かめます。確認画面では宛先と変更内容を読んで判断します。</p>
+</section>
+<section class="part part-spec">
+<h3 class="part-title">メモ：利用条件</h3>
+<ul class="story-list"><li><strong>利用枠</strong>：作業は契約プランの利用枠を消費する。使用量は<code>Settings &gt; Usage</code>で確認。10月22日の追記に、この変更専用の追加料金の記載はない</li><li><strong>Enterpriseへの通知</strong>：標準設定を変更する前に、管理者へメールで通知する案内</li></ul>
+</section>
+<footer class="story-source"><span class="label">出典</span><span class="source-item"><a href="https://claude.com/resources/articles/auto-mode-default-in-claude-code" target="_blank" rel="noopener">Anthropicの10月22日の追記</a><span class="domain">claude.com</span></span><span class="source-item"><a href="https://support.claude.com/en/articles/13345190-get-started-with-claude-cowork" target="_blank" rel="noopener">操作権限とモードの対応表</a><span class="domain">support.claude.com</span></span><span class="source-item"><a href="https://support.claude.com/en/articles/16761823" target="_blank" rel="noopener">会話画面の設定と利用枠</a><span class="domain">support.claude.com</span></span><span class="source-item"><a href="https://support.claude.com/en/articles/13455879-use-claude-cowork-on-team-and-enterprise-plans" target="_blank" rel="noopener">組織の初期設定と利用制限</a><span class="domain">support.claude.com</span></span><span class="source-item"><a href="https://apolloresearch.ai/monitoring/pilot-automode-campaign" target="_blank" rel="noopener">Apollo Researchの7月の外部検証</a><span class="domain">apolloresearch.ai</span></span><span class="source-item"><a href="https://9to5mac.com/2026/08/14/psa-claude-code-enabling-auto-mode-as-default-next-week-anthropic-says/" target="_blank" rel="noopener">9to5Macの8月の報道</a><span class="domain">9to5mac.com</span></span></footer>
+</article>
+
+  <p class="issue-scope">この号について：10月23日朝（日本時間）にXホームと公式投稿への反応で話題を確認し、Anthropicの発表・現行ヘルプ、外部検証と報道の本文を照合しました</p>
+
+  <nav class="issue-nav" aria-label="前後の号"><a class="prev" href="2026-10-22.html"><small>前の号</small>← 2026年10月22日（木）</a></nav>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p class="policy">編集方針：Xで話題になった動きから、仕事への影響が大きいものを選びます。内容と数値は、発表元の資料、第三者の計測、報道で確かめます。発表元の主張と確かめた事実を書き分け、編集部の見方は「どう見るか」の欄に分けて書きます。誤りは、訂正の注記を付けて直します。</p>
+    <p class="colophon">© 2026 合同会社ToPARZ ・ <a href="../">バックナンバー</a> ・ <a href="../feed.xml">RSS</a></p>
+  </div>
+</footer>
+</body>
+</html>
