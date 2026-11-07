@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>2026年11月7日（土）のIT・AIニュース｜ToPARZ IT News</title>
+<meta name="description" content="今日の1本：画像編集で細部を保ちやすくしたとOpenAI　ChatGPTの「Images 2.6」">
+<link rel="canonical" href="https://toparz-dev.github.io/IT-news/articles/2026-11-07.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="ToPARZ IT News">
+<meta property="og:title" content="2026年11月7日（土）のIT・AIニュース｜ToPARZ IT News">
+<meta property="og:description" content="今日の1本：画像編集で細部を保ちやすくしたとOpenAI　ChatGPTの「Images 2.6」">
+<meta property="og:url" content="https://toparz-dev.github.io/IT-news/articles/2026-11-07.html">
+<meta property="og:locale" content="ja_JP">
+<meta property="article:published_time" content="2026-11-07">
+<meta name="build-id" content="49dd95ed32a98dea">
+<meta name="twitter:card" content="summary">
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+<link rel="alternate" type="application/rss+xml" title="ToPARZ IT News" href="../feed.xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="../assets/style.css?v=3cab6eb8">
+</head>
+<body>
+<a class="skip" href="#main">本文へ移動</a>
+
+<header class="masthead">
+  <div class="wrap masthead-inner">
+    <a class="brand" href="../">ToPARZ IT News</a>
+    <p class="masthead-tagline">AIを仕事で使う人のための日刊ニュース。話題になった動きを、発表元の資料と報道で確かめて届けます。</p>
+  </div>
+</header>
+
+<main id="main" class="wrap">
+  <header class="issue-head">
+    <p class="kicker">Daily IT News ・ No.32</p>
+    <h1 class="issue-title">2026年11月7日（土）</h1>
+    <p class="issue-meta"><span>1本</span><span>読了 約4分</span></p>
+    
+  </header>
+
+  
+
+  <article class="story" id="story-1">
+<p class="story-num">01</p>
+<h2 class="story-title"><span class="title-part">画像編集で細部を保ちやすくしたとOpenAI</span><span class="title-gap"> </span><span class="title-part">ChatGPTの<span class="nobr">「Images 2.6」</span></span></h2>
+<section class="part part-summary">
+<h3 class="part-title">3行で言うと</h3>
+<ul class="story-list"><li>商品やキャラクターの細部を保ちながら、画像を速く作り直せるようにしたとOpenAIは説明。静止画から、動きを繰り返す画像（GIF）も作れる</li><li>静止画の生成・編集はChatGPT・Codexの全プランが対象。GIFはChatGPTで順次提供。修正箇所の外まで変わることもある</li><li>仕事の画像は、背景など一か所の修正から試したい。担当者には、商品形状や文字が変わっていないか、元画像と比べてもらう</li></ul>
+</section>
+<p class="story-lead">商品の写真を動くループ画像にしたり、手描きのキャラクターをアニメーションにしたりできます。OpenAIは11月4日（米国時間）、画像生成AI<span class="nobr">「Images 2.6」を</span>発表しました。ChatGPTでは、自分で持ち込んだアニメーションGIFの編集には対応していません。</p>
+<section class="part part-plain">
+<h3 class="part-title">ChatGPTでは、変える部分と残す部分を言葉にする</h3>
+<p>既存の画像をアップロードするか、ChatGPTで作った画像を選んで変更を頼みます。たとえば「背景だけ白に変えて。商品の形、ラベルの文字、色はそのま<span class="nobr">まにして」と</span>、変更したいものと残したいものを分けます。画像の一部を選択して指示する方法もあります。</p>
+<p>公式ヘルプは、選択した範囲の外まで編集が及ぶことがあると明記しています。仕上がりを使う前に、商品名や価格、形状など、変えてはいけない箇所を元画像と照合します。</p>
+<p>GIFを作る場合は、動かしたいものと繰り返す動作を伝えます。ChatGPTでのGIF作成は順次提供なので、使えるかを確かめてから顧客に制作日程を約束します。</p>
+</section>
+<section class="part part-plain">
+<h3 class="part-title">APIの部分修正は、画質設定を固定して考える量を下げて試す</h3>
+<p>システムに組み込むAPI（ソフトからAIを呼ぶ仕組み）には、速さを重視する<span class="nobr">「GPT Image 2.6 Flare」と</span>、細部や精密な編集を重視する<span class="nobr">「Sunburst」が</span>あります。</p>
+<p>新しい<code>complexity</code>は、描画前にAIが計画する量を調整します。選択肢は<code>low</code>・<code>medium</code>・<code>high</code>で、省略するとどちらも<code>high</code>です。画質を決める<code>quality</code>とは別の設定です。</p>
+<p>OpenAIは、一か所を変える編集には<code>complexity=&quot;low&quot;</code>から試すよう案内しています。文字の多い図や複雑な配置では高い設定が役立つ一方、待ち時間が増えたり、望まない変更が入ったりする場合もあると説明しています。比較するときは画質設定を固定し、計画する量だけを変えます。</p>
+<p>APIの標準トークン単価は2.5から据え置きです。トークンは入力・出力を数える課金単位です。ただし、同じ画質設定でもAIによって消費量は違います。単価が同じだから1枚の費用も同じ、とは限りません。組み込み済みのサービスでは、切り替え前後の<code>usage</code>で消費量を記録し、採用できた画像1枚あたりの費用を比べます。</p>
+</section>
+<section class="part part-plain">
+<h3 class="part-title">第三者評価の首位でも、編集の差が明確とは言えない</h3>
+<p>11月7日朝時点のArtificial Analysisでは、画質を最大の<code>max</code>にした2.6 Sunburstが、静止画の生成と編集の両方で表示上の首位でした。これはAIの名前を伏せ、人が好む画像を選ぶ評価です。</p>
+<p>編集の評価では、同じく<code>max</code>の2.6 Flareや従来の2.5 Sunburstと、スコアの不確かさを示す95％信頼区間が重なっています。順位だけから編集精度の明確な差は判断できません。この評価は、仕事で指定した文字が正確か、商品が元どおりかを保証するものでもありません。</p>
+</section>
+<section class="part part-insight">
+<h3 class="part-title">どう見るか</h3>
+<p>既存の制作手順に、Images 2.6を部分修正の候補として加えるとよいでしょう。経営・事務の担当者は「公開済みの商品写真で背景だけを変えて、残すべき形と文字を確認して。作り直しの回数と待ち時間<span class="nobr">も教えて」と</span>制作担当に頼みます。</p>
+<p>APIを使う会社は、生成に成功した枚数だけで費用を比べず、手直しを経て使えた枚数で判断します。残すべき部分の修正が増える仕事では、今の制作方法を続けます。</p>
+</section>
+<section class="part part-spec">
+<h3 class="part-title">メモ：組み込み前に確認する条件</h3>
+<ul class="story-list"><li><strong>APIの指定名</strong>：<code>gpt-image-2.6-flare</code>、<code>gpt-image-2.6-sunburst</code>。利用には組織の確認手続きが必要になる場合がある</li><li><strong>標準料金</strong>：100万トークンあたり文字入力<span class="nobr">5ドル</span>、画像入力<span class="nobr">8ドル</span>、画像出力<span class="nobr">30ドル</span></li><li><strong>APIのGIF</strong>：選んだAIのGIF試用アクセスが必要。2〜16フレームを指定できる。ChatGPTでの提供状況とは別</li><li><strong>SVG出力</strong>：形や色を後から編集できる形式。画像生成側のAPIで使い、画像編集側では出せない。参照画像の生成に加え、SVGを作るAIの処理も課金される</li></ul>
+</section>
+<footer class="story-source"><span class="label">出典</span><span class="source-item"><a href="https://openai.com/index/introducing-images-2-6/" target="_blank" rel="noopener">OpenAIの11月4日の発表</a><span class="domain">openai.com</span></span><span class="source-item"><a href="https://help.openai.com/en/articles/11084440-images-in-chatgpt" target="_blank" rel="noopener">ChatGPTの画像・GIFの利用条件</a><span class="domain">help.openai.com</span></span><span class="source-item"><a href="https://developers.openai.com/api/docs/guides/image-generation" target="_blank" rel="noopener">APIの画像生成・編集ガイド</a><span class="domain">developers.openai.com</span></span><span class="source-item"><a href="https://developers.openai.com/api/docs/guides/image-prompting" target="_blank" rel="noopener">AI選択と編集指示の公式ガイド</a><span class="domain">developers.openai.com</span></span><span class="source-item"><a href="https://developers.openai.com/api/docs/pricing" target="_blank" rel="noopener">API料金表</a><span class="domain">developers.openai.com</span></span><span class="source-item"><a href="https://developers.openai.com/api/reference/resources/images/methods/generate" target="_blank" rel="noopener">GIFのAPI仕様と試用条件</a><span class="domain">developers.openai.com</span></span><span class="source-item"><a href="https://artificialanalysis.ai/image/leaderboard/text-to-image" target="_blank" rel="noopener">Artificial Analysisの画像生成評価</a><span class="domain">artificialanalysis.ai</span></span><span class="source-item"><a href="https://artificialanalysis.ai/image/leaderboard/editing" target="_blank" rel="noopener">Artificial Analysisの画像編集評価</a><span class="domain">artificialanalysis.ai</span></span><span class="source-item"><a href="https://www.itmedia.co.jp/news/article/2611/05/2000002894/" target="_blank" rel="noopener">ITmediaの報道</a><span class="domain">itmedia.co.jp</span></span></footer>
+</article>
+
+  <p class="issue-scope">この号について：11月7日朝（日本時間）に専用のX収集リスト・ホーム・検索で話題を確認し、OpenAIの発表・公式文書と第三者評価、報道の本文を照合しました</p>
+
+  <nav class="issue-nav" aria-label="前後の号"><a class="prev" href="2026-11-06.html"><small>前の号</small>← 2026年11月6日（金）</a></nav>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p class="policy">編集方針：Xで話題になった動きから、仕事への影響が大きいものを選びます。内容と数値は、発表元の資料、第三者の計測、報道で確かめます。発表元の主張と確かめた事実を書き分け、編集部の見方は「どう見るか」の欄に分けて書きます。誤りは、訂正の注記を付けて直します。</p>
+    <p class="colophon">© 2026 合同会社ToPARZ ・ <a href="../">バックナンバー</a> ・ <a href="../feed.xml">RSS</a></p>
+  </div>
+</footer>
+</body>
+</html>
