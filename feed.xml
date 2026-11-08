@@ -5,8 +5,15 @@
     <link>https://toparz-dev.github.io/IT-news/</link>
     <description>AIを仕事で使う人のための日刊ニュース。話題になった動きを、発表元の資料と報道で確かめて届けます。</description>
     <language>ja</language>
-    <lastBuildDate>Sat, 07 Nov 2026 09:00:00 +0900</lastBuildDate>
+    <lastBuildDate>Sun, 08 Nov 2026 09:00:00 +0900</lastBuildDate>
     <atom:link href="https://toparz-dev.github.io/IT-news/feed.xml" rel="self" type="application/rss+xml"/>
+    <item>
+      <title>2026年11月8日（日）のIT・AIニュース（1本）</title>
+      <link>https://toparz-dev.github.io/IT-news/articles/2026-11-08.html</link>
+      <guid isPermaLink="true">https://toparz-dev.github.io/IT-news/articles/2026-11-08.html</guid>
+      <pubDate>Sun, 08 Nov 2026 09:00:00 +0900</pubDate>
+      <description>&lt;ol&gt;&lt;li&gt;AIの記憶を整理する「dreaming」を検証　Anthropicが効果と失敗を報告&lt;/li&gt;&lt;/ol&gt;</description>
+    </item>
     <item>
       <title>2026年11月7日（土）のIT・AIニュース（1本）</title>
       <link>https://toparz-dev.github.io/IT-news/articles/2026-11-07.html</link>

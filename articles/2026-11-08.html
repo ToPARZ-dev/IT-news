@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>2026年11月8日（日）のIT・AIニュース｜ToPARZ IT News</title>
+<meta name="description" content="今日の1本：AIの記憶を整理する「dreaming」を検証　Anthropicが効果と失敗を報告">
+<link rel="canonical" href="https://toparz-dev.github.io/IT-news/articles/2026-11-08.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="ToPARZ IT News">
+<meta property="og:title" content="2026年11月8日（日）のIT・AIニュース｜ToPARZ IT News">
+<meta property="og:description" content="今日の1本：AIの記憶を整理する「dreaming」を検証　Anthropicが効果と失敗を報告">
+<meta property="og:url" content="https://toparz-dev.github.io/IT-news/articles/2026-11-08.html">
+<meta property="og:locale" content="ja_JP">
+<meta property="article:published_time" content="2026-11-08">
+<meta name="build-id" content="7aca01286ab65e45">
+<meta name="twitter:card" content="summary">
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+<link rel="alternate" type="application/rss+xml" title="ToPARZ IT News" href="../feed.xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="../assets/style.css?v=3cab6eb8">
+</head>
+<body>
+<a class="skip" href="#main">本文へ移動</a>
+
+<header class="masthead">
+  <div class="wrap masthead-inner">
+    <a class="brand" href="../">ToPARZ IT News</a>
+    <p class="masthead-tagline">AIを仕事で使う人のための日刊ニュース。話題になった動きを、発表元の資料と報道で確かめて届けます。</p>
+  </div>
+</header>
+
+<main id="main" class="wrap">
+  <header class="issue-head">
+    <p class="kicker">Daily IT News ・ No.33</p>
+    <h1 class="issue-title">2026年11月8日（日）</h1>
+    <p class="issue-meta"><span>1本</span><span>読了 約1分</span></p>
+    
+  </header>
+
+  
+
+  <article class="story" id="story-1">
+<p class="story-num">01</p>
+<h2 class="story-title"><span class="title-part">AIの記憶を整理する<span class="nobr">「dreaming」を</span>検証</span><span class="title-gap"> </span><span class="title-part">Anthropicが効果と失敗を報告</span></h2>
+<section class="part part-summary">
+<h3 class="part-title">3行で言うと</h3>
+<ul class="story-list"><li>社内資料への25問で、回答が評価項目を満たす割合は検索のみの53％から、Wiki（関連ページをつないだ文書集）併用の最高61％へ上がった。Anthropicの社内実験値だ</li><li>別の契約資料の実験では、複数のAIによる共通ページの上書きで情報が欠落。担当とページを分け、原文を引用する形に直すと改善した</li><li>社内WikiをAI向けに開発する人の参考になる研究だ。普段のチャットや開発AIの設定を今日変える必要はない</li></ul>
+</section>
+<p class="story-lead">10月26日は、古い指示書による開発AIの誤動作を紹介しました。今回の報告は、AIが自ら作る記録を過去のログと照合して修正し、次の作業で読み返せるように整理する方法を扱っています。Anthropicは11月6日付で、この処理を<span class="nobr">「dreaming」と</span>呼ぶ技術報告を公開しました。第三者による再現計測は、確認した範囲では公表されていません。</p>
+<section class="part part-spec">
+<h3 class="part-title">メモ：実験と公開サンプルの条件</h3>
+<ul class="story-list"><li><strong>Wikiの評価</strong>：約35万の社内ファイルをClaude Opus 5で最大128回の作業を通じて整理。スコアは回答が評価項目を満たした割合で、25問の正答率ではない。Wikiのみでは最高48％だった</li><li><strong>改善の限界</strong>：契約資料の実験は、ページの分割と原文引用を同時に変更したもの。分割だけの効果とは言えない。公式Wiki構築サンプルでも、共有ページの上書きで情報が欠落する場合がある</li><li><strong>開発者向けの提供</strong>：サンプルはClaude Managed Agentsのベータ版を使う。AIのトークン料金に加え、セッションの稼働には1時間あたり<span class="nobr">0.08ドル</span>がかかる。組み込みのdreamingは別途申請が必要な限定試用</li></ul>
+</section>
+<footer class="story-source"><span class="label">出典</span><span class="source-item"><a href="https://www.anthropic.com/research/components-of-agent-memory" target="_blank" rel="noopener">Anthropicの11月6日の技術報告</a><span class="domain">anthropic.com</span></span><span class="source-item"><a href="https://github.com/anthropics/claude-quickstarts/tree/main/managed-agents/knowledge-wiki" target="_blank" rel="noopener">公式Wiki構築サンプルと既知の制約</a><span class="domain">github.com</span></span><span class="source-item"><a href="https://platform.claude.com/docs/en/managed-agents/overview" target="_blank" rel="noopener">Managed Agentsの提供条件</a><span class="domain">platform.claude.com</span></span><span class="source-item"><a href="https://platform.claude.com/docs/en/about-claude/pricing#claude-managed-agents-pricing" target="_blank" rel="noopener">Managed Agentsの料金</a><span class="domain">platform.claude.com</span></span><span class="source-item"><a href="https://neuralbrew.ai/en/articles/2026/11/anthropic-agent-memory-dreaming-claude/" target="_blank" rel="noopener">Neural Brewの報道</a><span class="domain">neuralbrew.ai</span></span></footer>
+</article>
+
+  <p class="issue-scope">この号について：11月8日朝（日本時間）に専用のX収集リスト・ホーム・検索で話題を確認し、Anthropicの技術報告・公式コード・文書と報道の本文を照合しました</p>
+
+  <nav class="issue-nav" aria-label="前後の号"><a class="prev" href="2026-11-07.html"><small>前の号</small>← 2026年11月7日（土）</a></nav>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p class="policy">編集方針：Xで話題になった動きから、仕事への影響が大きいものを選びます。内容と数値は、発表元の資料、第三者の計測、報道で確かめます。発表元の主張と確かめた事実を書き分け、編集部の見方は「どう見るか」の欄に分けて書きます。誤りは、訂正の注記を付けて直します。</p>
+    <p class="colophon">© 2026 合同会社ToPARZ ・ <a href="../">バックナンバー</a> ・ <a href="../feed.xml">RSS</a></p>
+  </div>
+</footer>
+</body>
+</html>
