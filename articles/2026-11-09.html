@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>2026年11月9日（月）のIT・AIニュース｜ToPARZ IT News</title>
+<meta name="description" content="今日の1本：開発AI「Claude Code」の設定公開で秘密情報が流出　社内の変更履歴を確認">
+<link rel="canonical" href="https://toparz-dev.github.io/IT-news/articles/2026-11-09.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="ToPARZ IT News">
+<meta property="og:title" content="2026年11月9日（月）のIT・AIニュース｜ToPARZ IT News">
+<meta property="og:description" content="今日の1本：開発AI「Claude Code」の設定公開で秘密情報が流出　社内の変更履歴を確認">
+<meta property="og:url" content="https://toparz-dev.github.io/IT-news/articles/2026-11-09.html">
+<meta property="og:locale" content="ja_JP">
+<meta property="article:published_time" content="2026-11-09">
+<meta name="build-id" content="16301d8065a62604">
+<meta name="twitter:card" content="summary">
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+<link rel="alternate" type="application/rss+xml" title="ToPARZ IT News" href="../feed.xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="../assets/style.css?v=3cab6eb8">
+</head>
+<body>
+<a class="skip" href="#main">本文へ移動</a>
+
+<header class="masthead">
+  <div class="wrap masthead-inner">
+    <a class="brand" href="../">ToPARZ IT News</a>
+    <p class="masthead-tagline">AIを仕事で使う人のための日刊ニュース。話題になった動きを、発表元の資料と報道で確かめて届けます。</p>
+  </div>
+</header>
+
+<main id="main" class="wrap">
+  <header class="issue-head">
+    <p class="kicker">Daily IT News ・ No.34</p>
+    <h1 class="issue-title">2026年11月9日（月）</h1>
+    <p class="issue-meta"><span>1本</span><span>読了 約4分</span></p>
+    
+  </header>
+
+  
+
+  <article class="story" id="story-1">
+<p class="story-num">01</p>
+<h2 class="story-title"><span class="title-part">開発AI<span class="nobr">「Claude Code」の</span>設定公開で秘密情報が流出</span><span class="title-gap"> </span><span class="title-part">社内の変更履歴を確認</span></h2>
+<section class="part part-summary">
+<h3 class="part-title">3行で言うと</h3>
+<ul class="story-list"><li>公開された設定ファイル10万4,185件のうち1,122件に秘密情報を発見したとApiiroが報告。実際に使える値かどうかは試していない</li><li>「今後確<span class="nobr">認しない」で</span>許可したコマンドにパスワードなどが含まれると、設定に残る場合がある。そのファイルを公開すると漏えいする</li><li>Claude Codeで開発する会社は、設定と過去の変更履歴を担当者に確認してもらいたい。公開していた鍵やパスワードは、ファイルを消す前に失効・変更する</li></ul>
+</section>
+<p class="story-lead">11月4日は、Cursorで配られた拡張の改ざんを伝えました。今回は承認設定が公開された問題です。セキュリティ企業Apiiroが11月5日付で、GitHubの公開ファイルを調べた結果を公表しました。</p>
+<section class="part part-plain">
+<h3 class="part-title">追跡済みの設定には、後から除外を足しても効かない</h3>
+<p>Claude Codeの公式文書によると、CLI（コマンドで使う版）でBashコマンドの承認時に「Yes, and don&#x27;t ask a<span class="nobr">gain」を</span>選ぶと、<code>.claude/settings.local.json</code>に許可ルールを保存します。iTnewsの報道では、完全なコマンド文字列がルールになった場合、そこに書かれた秘密情報も一緒に残ります。</p>
+<p>公式文書によると、Gitリポジトリ（コードと変更履歴の保存場所）内で初めてこのファイルを書くとき、未除外なら端末の除外設定に追加します。プロジェクトの<code>.gitignore</code>には追加しません。手動で作り、Claude Codeがまだ書き込んでいないファイルは、自分で除外します。</p>
+<p>Gitの公式文書では、共同開発者へ配る除外規則はプロジェクトの<code>.gitignore</code>に置きます。すでにGitが変更の記録対象にしている（追跡している）ファイルには、後から除外を足すだけでは効きません。</p>
+</section>
+<section class="part part-plain">
+<h3 class="part-title">ファイルの中身と、過去に保存した履歴を別々に調べる</h3>
+<p>開発担当者は、まず手元の設定ファイルをエディターで開き、<code>permissions.allow</code>の中にパスワードやAPIキー、秘密情報を含む接続文字列がないかを見ます。確認した値を報告用のチャットや共有文書へ貼り直さないようにします。</p>
+<p>次に、履歴のそろった作業コピーで調べます。以下のGitコマンドは、リポジトリのルートで実行します。</p>
+<ul class="story-list"><li><code>git ls-files -- .claude/settings.local.json</code>でパスが出れば、現在Gitの追跡対象です。これだけでは、外部へ公開済みかは分かりません。</li><li><code>git log --all --full-history --oneline -- .claude/settings.local.json</code>で、そのファイルを変更した手元の履歴を確認します。今は削除済みでも、履歴に残っている場合があります。</li></ul>
+<p>履歴が見つかったら、当時の内容とGitHubなどへの公開状況を確認します。何も表示されなくても、別の階層にある設定や、取得していない履歴まで調べたことにはなりません。</p>
+</section>
+<section class="part part-plain">
+<h3 class="part-title">漏れた鍵を無効にしてから、公開物を片付ける</h3>
+<p>GitHubの公式案内は、秘密情報を公開していた場合、まず失効させるか新しい値へ変更するよう求めています。現在のファイルを消しても、過去の履歴や他の人のコピーまでは消えません。</p>
+<p>追跡済みのローカル設定は、<code>git rm --cached -- .claude/settings.local.json</code>で手元のファイルを残して追跡を外します。プロジェクトの<code>.gitignore</code>には<code>**/.claude/settings.local.json</code>を追加し、変更を共有します。過去の履歴から除去する必要があれば、共同開発者と作業を調整します。</p>
+<p>今後は、コマンドに秘密の値を直書きせず、別に管理した環境変数（実行時に参照する設定値）などを参照させます。iTnewsによると、AnthropicのClaude Code担当者は、秘密情報を検出する仕組みなどの対策を試作すると説明しています。修正済みという発表ではありません。</p>
+</section>
+<section class="part part-insight">
+<h3 class="part-title">どう見るか</h3>
+<p>確認対象に、開発AIが保存する許可ルールを加えます。経営・事務の担当者は「Claude Codeの設定と履歴に顧客サービスへ接続できる鍵が残っていないか確認して。公開していた鍵の失効・変更状況と、未確認の範囲も<span class="nobr">報告して」と</span>開発担当に頼みます。</p>
+<p>利用者全員の認証情報が漏れたという調査ではありません。自社の保存内容と公開履歴に基づいて、鍵の変更と顧客への説明を判断します。</p>
+</section>
+<section class="part part-spec">
+<h3 class="part-title">メモ：確認範囲の取り違えを防ぐ</h3>
+<ul class="story-list"><li><strong>調査時点</strong>：Apiiroは11月1〜3日にGitHubの公開ファイルとコミットを収集した。認証情報を使った接続試験は行っていない</li><li><strong>保存場所</strong>：旧版や起動場所・環境によって別の階層にも設定がある。本文のコマンドは直下の1ファイルを調べる例</li><li><strong>共有する設定</strong>：<code>.claude/settings.json</code>はチームで共有する別ファイル。VS Code拡張では許可ルールの保存先にも選べるため、中身を確認する。フォルダ全体を一律に除外しない</li></ul>
+</section>
+<footer class="story-source"><span class="label">出典</span><span class="source-item"><a href="https://apiiro.com/blog/coding-agents-leaking-secrets-github-dont-ask-again" target="_blank" rel="noopener">Apiiroの調査と11月8日の追記</a><span class="domain">apiiro.com</span></span><span class="source-item"><a href="https://code.claude.com/docs/en/settings" target="_blank" rel="noopener">Claude Codeの設定保存・除外の公式仕様</a><span class="domain">code.claude.com</span></span><span class="source-item"><a href="https://www.itnews.com.au/news/dont-ask-again-in-anthropics-claude-code-leaks-developer-secrets-630203" target="_blank" rel="noopener">iTnewsの報道とAnthropic側の説明</a><span class="domain">itnews.com.au</span></span><span class="source-item"><a href="https://git-scm.com/docs/gitignore" target="_blank" rel="noopener">Gitの除外と追跡解除</a><span class="domain"><span class="nobr">git-scm.com</span></span></span><span class="source-item"><a href="https://git-scm.com/docs/git-ls-files" target="_blank" rel="noopener">追跡ファイルの確認</a><span class="domain"><span class="nobr">git-scm.com</span></span></span><span class="source-item"><a href="https://git-scm.com/docs/git-log" target="_blank" rel="noopener">変更履歴の確認</a><span class="domain"><span class="nobr">git-scm.com</span></span></span><span class="source-item"><a href="https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/removing-sensitive-data-from-a-repository" target="_blank" rel="noopener">GitHubの秘密情報公開時の対応</a><span class="domain">docs.github.com</span></span></footer>
+</article>
+
+  <p class="issue-scope">この号について：11月9日朝（日本時間）に専用のX収集リスト・ホーム・検索で話題を確認し、Apiiroの調査、Claude Code・Git・GitHubの公式文書と報道の本文を照合しました</p>
+
+  <nav class="issue-nav" aria-label="前後の号"><a class="prev" href="2026-11-08.html"><small>前の号</small>← 2026年11月8日（日）</a></nav>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p class="policy">編集方針：Xで話題になった動きから、仕事への影響が大きいものを選びます。内容と数値は、発表元の資料、第三者の計測、報道で確かめます。発表元の主張と確かめた事実を書き分け、編集部の見方は「どう見るか」の欄に分けて書きます。誤りは、訂正の注記を付けて直します。</p>
+    <p class="colophon">© 2026 合同会社ToPARZ ・ <a href="../">バックナンバー</a> ・ <a href="../feed.xml">RSS</a></p>
+  </div>
+</footer>
+</body>
+</html>
