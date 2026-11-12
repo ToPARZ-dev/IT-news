@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>2026年11月12日（木）のIT・AIニュース｜ToPARZ IT News</title>
+<meta name="description" content="今日の2本：Notion AIの会話記録に流出の恐れ　通知を受けた会社は対象データを確認／Googleの判定専用AI「Gemini Decision 1」登場　業務システムへの組み込み向け">
+<link rel="canonical" href="https://toparz-dev.github.io/IT-news/articles/2026-11-12.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="ToPARZ IT News">
+<meta property="og:title" content="2026年11月12日（木）のIT・AIニュース｜ToPARZ IT News">
+<meta property="og:description" content="今日の2本：Notion AIの会話記録に流出の恐れ　通知を受けた会社は対象データを確認／Googleの判定専用AI「Gemini Decision 1」登場　業務システムへの組み込み向け">
+<meta property="og:url" content="https://toparz-dev.github.io/IT-news/articles/2026-11-12.html">
+<meta property="og:locale" content="ja_JP">
+<meta property="article:published_time" content="2026-11-12">
+<meta name="build-id" content="cd0cc7296313b1f9">
+<meta name="twitter:card" content="summary">
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+<link rel="alternate" type="application/rss+xml" title="ToPARZ IT News" href="../feed.xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="../assets/style.css?v=3cab6eb8">
+</head>
+<body>
+<a class="skip" href="#main">本文へ移動</a>
+
+<header class="masthead">
+  <div class="wrap masthead-inner">
+    <a class="brand" href="../">ToPARZ IT News</a>
+    <p class="masthead-tagline">AIを仕事で使う人のための日刊ニュース。話題になった動きを、発表元の資料と報道で確かめて届けます。</p>
+  </div>
+</header>
+
+<main id="main" class="wrap">
+  <header class="issue-head">
+    <p class="kicker">Daily IT News ・ No.37</p>
+    <h1 class="issue-title">2026年11月12日（木）</h1>
+    <p class="issue-meta"><span>2本</span><span>読了 約6分</span></p>
+    
+  </header>
+
+  
+
+  <article class="story" id="story-1">
+<p class="story-num">01</p>
+<h2 class="story-title"><span class="title-part">Notion AIの会話記録に流出の恐れ</span><span class="title-gap"> </span><span class="title-part">通知を受けた会社は対象データを確認</span></h2>
+<section class="part part-summary">
+<h3 class="part-title">3行で言うと</h3>
+<ul class="story-list"><li>委託先Fireworks AIへの不正アクセスで、全ワークスペース（チームごとの作業場所）の1％未満に影響とNotionは説明</li><li>対象はAIへの入力と応答を含む会話記録。NotionのEnterpriseプランでも、履歴や利用分析用に残すデータは「保<span class="nobr">存しない」と</span>いう約束の対象外だ</li><li>まず管理者に通知の有無を確認する。対象なら会話に含まれた情報を調べ、接続用の鍵やパスワードがあれば変更する</li></ul>
+</section>
+<p class="story-lead">Notionは、管理者がAIの利用状況を把握する<span class="nobr">「Insights」の</span>分析に保存した会話を使っていました。Notionは11月9日に対象顧客へ連絡したと説明しています。国内でもLRMが11月11日、取引先の担当者名などを含む記録が対象だったと公表しました。会話の内容によっては、顧客への説明も必要になります。</p>
+<section class="part part-plain">
+<h3 class="part-title">通知の有無と、会話に入った情報を確認する</h3>
+<p>Notionの公式案内によると、本人にもワークスペースの管理者（オーナー）にも通知がなければ、そのワークスペースは影響が確認されておらず、現時点で対応は不要です。調査は続いているため、通知がないことを最終的な安全確認とは扱いません。</p>
+<p>対象の会話記録には、チャットに書き込まれたAIへの入力と応答が含まれます。AI議事録の音声・文字起こし・要約は、Notion AIのチャットへの入力に使われていなければ対象外だと説明しています。議事録の機能名だけで判断せず、会話に取り込んだかを見ます。</p>
+<p>Notionは、調査で見つけた同社の流出APIキー（サービスへ接続するための鍵）を11月11日に失効させました。会話に他社サービスの鍵を貼っていた場合まで、Notion側で無効にしたという説明ではありません。</p>
+</section>
+<section class="part part-plain">
+<h3 class="part-title">オーナーはPCから対象データを取得する</h3>
+<p>影響を受けたワークスペースでは、最新のNotionをPCのブラウザで開き、サイドバーの<code>?</code>から<code>セキュリティインシデントの確認</code>へ進みます。スマホでは対象データを取得できません。</p>
+<ul class="story-list"><li><strong>対象者を調べる</strong>：<code>影響を受けたメンバーをダウンロード</code>で、名前・メールアドレスなどの一覧を取得します。</li><li><strong>会話の内容を調べる</strong>：ドメインを検証済みのワークスペースでは、オーナーが<code>affected_content.csv</code>を取得できます。未検証で取得できない場合は、担当のアカウントチームへ相談します。</li><li><strong>本人に確認してもらう</strong>：オーナーが<code>リンクをコピー</code>で案内すると、対象メンバーは自分のデータだけを取得できます。</li></ul>
+<p>Notionは、対象データを流出したものとして扱うよう勧めています。含まれていたパスワードや接続用の鍵は、使うサービス側で変更・再発行します。調査用に取得した会話を誰でも見られる社内チャットへ貼り直さないようにします。</p>
+</section>
+<section class="part part-plain">
+<h3 class="part-title">保存しない契約の範囲と、分析用の保存は別に見る</h3>
+<p>EnterpriseのZDR（データを保持しない取り決め）は、Notion AIの回答を作るために外部のAI提供者へ送るAPIリクエストに適用されます。Notionは、履歴やInsightsなど、機能を提供するために保存が必要な用途には、この約束が及ばないと説明しています。</p>
+<p>一方、Notionによると、Fireworksは同社との契約でデータを保持しないと約束していました。それでも、実際に使っていた接続先では保持されていたことが調査で分かったとしています。契約の名前だけで、どこにも会話が残らないとは判断できません。</p>
+<p>Notionは11月3日までにFireworksとの接続を解除し、同社内のデータを削除したと説明しています。Insightsも無効化しました。これらの措置は、すでに外部へ出た可能性のあるデータの回収を意味しません。</p>
+</section>
+<section class="part part-insight">
+<h3 class="part-title">どう見るか</h3>
+<p>通知対象の会社は、影響を受けた会話を確かめます。経営・事務の担当者は「Notionから通知が届いているか。対象の会話に顧客名・案件情報・接続用の鍵があるか、鍵の変更状況と合わせて<span class="nobr">報告して」と</span>管理者に頼みます。</p>
+<p>顧客への説明は、会話に含まれた情報と契約に沿って決めます。通知が来ていない会社まで、すべてのパスワードを変更するよう求められた事案ではありません。</p>
+</section>
+<section class="part part-spec">
+<h3 class="part-title">メモ：対象データを読むときの条件</h3>
+<ul class="story-list"><li><strong>注釈付きCSV</strong>：<code>affected_content_annotated.csv</code>には調査用の情報も付く。後から加えたユーザーIDやワークスペースIDなどは、流出したデータではないとNotionは説明</li><li><strong>日付</strong>：Notionの連絡・対応日は公式告知の表記。LRMの公表日は日本時間</li></ul>
+</section>
+<footer class="story-source"><span class="label">出典</span><span class="source-item"><a href="https://www.notion.com/security/advisories/security-incident-involving-a-third-party-ai-vendor" target="_blank" rel="noopener">Notionの公式速報と11月11日の追記</a><span class="domain">notion.com</span></span><span class="source-item"><a href="https://www.notion.com/ja/help/security-incident-involving-a-third-party-ai-vendor" target="_blank" rel="noopener">対象データの確認手順と保存条件</a><span class="domain">notion.com</span></span><span class="source-item"><a href="https://fireworks.ai/security/bulletins/october-2026-security-incident-update" target="_blank" rel="noopener">Fireworksの調査報告</a><span class="domain">fireworks.ai</span></span><span class="source-item"><a href="https://www.lrm.jp/info/news/info_20261111/" target="_blank" rel="noopener">LRMの被害・対応に関する公表</a><span class="domain">lrm.jp</span></span><span class="source-item"><a href="https://www.itmedia.co.jp/aiplus/article/2611/11/2000003104/" target="_blank" rel="noopener">ITmediaの報道</a><span class="domain">itmedia.co.jp</span></span></footer>
+</article>
+
+<article class="story" id="story-2">
+<p class="story-num">02</p>
+<h2 class="story-title"><span class="title-part">Googleの判定専用AI<span class="nobr">「Gemini Decision 1」</span>登場</span><span class="title-gap"> </span><span class="title-part">業務システムへの組み込み向け</span></h2>
+<section class="part part-summary">
+<h3 class="part-title">3行で言うと</h3>
+<ul class="story-list"><li>一つの入力に最大1,000問をまとめて判定し、選択肢ごとの確率を返す。問い合わせの担当部署や、処理に使うAIを選ぶ用途だ</li><li>文章は生成しない。入力の標準料金は100万トークン（入力を数える課金単位）あたり<span class="nobr">0.10ドル</span>で、出力の課金はない</li><li>問い合わせ分類などを組み込む受託開発の候補になる。既存のチャットを置き換える製品ではなく、採用時は分類の精度も判断材料になる</li></ul>
+</section>
+<p class="story-lead">Googleは11月11日（米国時間）、専用AI<span class="nobr">「Gemini Decision 1」を</span>使う<span class="nobr">「Gemini Decisions API」を</span>公開しました。APIはソフトからAIを呼ぶ仕組みです。テキストのほか、画像・音声・動画・PDFを入力し、「はい<span class="nobr">／いいえ」</span>、選択肢、段階別の評価を求められます。</p>
+<section class="part part-plain">
+<h3 class="part-title">共有する入力は一度の課金でも、質問の分は加算される</h3>
+<p>同じ要求内で質問に共通する入力は、一度だけ課金されます。質問ごとの指示や判定条件は、追加の入力として数えます。別の要求で同じ資料を送る場合は、入力の再利用による割引はありません。</p>
+<p>公式文書は、どの選択肢にも合わない入力でも確率を割り振ると説明しています。「その他」の選択肢や、人の確認へ戻す条件をシステム側に用意する設計です。</p>
+</section>
+<section class="part part-plain">
+<h3 class="part-title">第三者の文書評価では、比較相手に届かない</h3>
+<p>11月12日朝に確認したArtificial Analysisの<span class="nobr">「AA-Paperclip」は</span>、履歴書・請求書など1,500文書を使う評価です。各文書の15問すべてに正解した割合はGemini Decision 1が33％、同じ判定専用AIのDrex Max v1.1が63％でした。これは質問1問ごとの正答率ではありません。</p>
+</section>
+<section class="part part-insight">
+<h3 class="part-title">どう見るか</h3>
+<p>単価の低さだけでは、既存の分類処理を置き換える根拠になりません。業務側が分類先と例外の扱いを決め、開発側がその条件で精度を確かめる製品です。日本から試す場合、有効な請求先を紐づけていないプロジェクトでのAPI利用では、機密情報や個人情報の投入が規約で禁止されています。</p>
+</section>
+<section class="part part-spec">
+<h3 class="part-title">メモ：開発者が使うときの条件</h3>
+<ul class="story-list"><li><strong>指定名</strong>：<code>gemini-decision-1</code>。Gemini Developer APIの<code>v1beta</code>を使用。公式SDKは3.2以降</li><li><strong>上限</strong>：共有入力と全質問の合計で262,144トークン。最大1,000問もこの範囲内</li><li><strong>無料枠</strong>：試作用あり</li></ul>
+</section>
+<footer class="story-source"><span class="label">出典</span><span class="source-item"><a href="https://blog.google/innovation-and-ai/technology/developers-tools/gemini-decisions-api/" target="_blank" rel="noopener">Googleの11月11日の発表</a><span class="domain">blog.google</span></span><span class="source-item"><a href="https://aistudio.google.com/docs/decisions-api" target="_blank" rel="noopener">判定の仕様と制約</a><span class="domain">aistudio.google.com</span></span><span class="source-item"><a href="https://aistudio.google.com/docs/pricing#gemini-decision" target="_blank" rel="noopener">公式料金表</a><span class="domain">aistudio.google.com</span></span><span class="source-item"><a href="https://artificialanalysis.ai/evaluations/artificial-analysis-decision-index" target="_blank" rel="noopener">第三者評価の結果</a><span class="domain">artificialanalysis.ai</span></span><span class="source-item"><a href="https://artificialanalysis.ai/evaluations/aa-paperclip" target="_blank" rel="noopener">文書評価の方法</a><span class="domain">artificialanalysis.ai</span></span><span class="source-item"><a href="https://aistudio.google.com/docs/terms" target="_blank" rel="noopener">APIのデータ利用規約</a><span class="domain">aistudio.google.com</span></span><span class="source-item"><a href="https://www.itmedia.co.jp/aiplus/article/2611/12/2000003123/" target="_blank" rel="noopener">ITmediaの発表報道</a><span class="domain">itmedia.co.jp</span></span></footer>
+</article>
+
+  <p class="issue-scope">この号について：11月12日朝（日本時間）に専用のX収集リスト・ホーム・検索で話題を確認し、発表元の告知・公式文書、被害企業の発表、第三者評価と報道を照合しました</p>
+
+  <nav class="issue-nav" aria-label="前後の号"><a class="prev" href="2026-11-11.html"><small>前の号</small>← 2026年11月11日（水）</a></nav>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p class="policy">編集方針：Xで話題になった動きから、仕事への影響が大きいものを選びます。内容と数値は、発表元の資料、第三者の計測、報道で確かめます。発表元の主張と確かめた事実を書き分け、編集部の見方は「どう見るか」の欄に分けて書きます。誤りは、訂正の注記を付けて直します。</p>
+    <p class="colophon">© 2026 合同会社ToPARZ ・ <a href="../">バックナンバー</a> ・ <a href="../feed.xml">RSS</a></p>
+  </div>
+</footer>
+</body>
+</html>
