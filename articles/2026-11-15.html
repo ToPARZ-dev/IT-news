@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>2026年11月15日（日）のIT・AIニュース｜ToPARZ IT News</title>
+<meta name="description" content="今日の1本：開発AI「Cursor」の作業記録から接続用の鍵が流出　管理者への通知を確認">
+<link rel="canonical" href="https://toparz-dev.github.io/IT-news/articles/2026-11-15.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="ToPARZ IT News">
+<meta property="og:title" content="2026年11月15日（日）のIT・AIニュース｜ToPARZ IT News">
+<meta property="og:description" content="今日の1本：開発AI「Cursor」の作業記録から接続用の鍵が流出　管理者への通知を確認">
+<meta property="og:url" content="https://toparz-dev.github.io/IT-news/articles/2026-11-15.html">
+<meta property="og:locale" content="ja_JP">
+<meta property="article:published_time" content="2026-11-15">
+<meta name="build-id" content="252280b618b1d459">
+<meta name="twitter:card" content="summary">
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+<link rel="alternate" type="application/rss+xml" title="ToPARZ IT News" href="../feed.xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="../assets/style.css?v=3cab6eb8">
+</head>
+<body>
+<a class="skip" href="#main">本文へ移動</a>
+
+<header class="masthead">
+  <div class="wrap masthead-inner">
+    <a class="brand" href="../">ToPARZ IT News</a>
+    <p class="masthead-tagline">AIを仕事で使う人のための日刊ニュース。話題になった動きを、発表元の資料と報道で確かめて届けます。</p>
+  </div>
+</header>
+
+<main id="main" class="wrap">
+  <header class="issue-head">
+    <p class="kicker">Daily IT News ・ No.40</p>
+    <h1 class="issue-title">2026年11月15日（日）</h1>
+    <p class="issue-meta"><span>1本</span><span>読了 約4分</span></p>
+    
+  </header>
+
+  
+
+  <article class="story" id="story-1">
+<p class="story-num">01</p>
+<h2 class="story-title"><span class="title-part">開発AI<span class="nobr">「Cursor」の</span>作業記録から接続用の鍵が流出</span><span class="title-gap"> </span><span class="title-part">管理者への通知を確認</span></h2>
+<section class="part part-summary">
+<h3 class="part-title">3行で言うと</h3>
+<ul class="story-list"><li>委託先へ渡した接続用の鍵で、保存済みのAI作業記録が盗まれたとCursorが説明。記録に残った認証情報（ログインや接続に使う情報）から、社内ツールへの侵入が広がった</li><li>当時、学習に使わせない設定だった作業の指示とコードは影響外との説明だ。サポートへ送った情報と、改ざんされた追加機能（拡張）の影響は別に確認する</li><li>Cursorを使う会社は、管理者に届いた通知と、変更を求められた鍵の対応状況を確かめたい。端末の調査だけでは確認を終えられない</li></ul>
+</section>
+<p class="story-lead">11月4日は、Cursorで配られた<span class="nobr">「Claude Code」</span>拡張の改ざんを伝えました。今回は、その侵入経路と過去の作業記録への影響が分かりました。Cursorは11月13日付で調査報告を公開しました。</p>
+<section class="part part-plain">
+<h3 class="part-title">盗まれた作業記録は、主に2025年のもの</h3>
+<p>Cursorによると、攻撃者は同社がAIの学習・実行を委託するFireworksへ発行したアクセス鍵を入手しました。その鍵で、両社がデータを共有するストレージから記録を複製したといいます。</p>
+<p>主に2025年の記録でした。学習に使わせない<span class="nobr">「Privacy Mode」を</span>使わずに行った作業の記録で、学習用に利用できるものの一部です。Cursorによると、一部の記録に認証情報が伏せられずに残っており、攻撃者はそれを使って同社の社内ツールへ侵入しました。</p>
+<p>その先で、一部のサポート情報やメール、AIとの会話の要約、利用者がサポートへ送った認証情報などにアクセスしたといいます。さらに、社内から盗んだ認証情報を使い、拡張を配るキャッシュ（一時保存先）へ不正なファイルを置きました。</p>
+<p>BleepingComputerも、この経路を報じています。ただし、被害の範囲はCursorの調査説明に基づくものです。Fireworksの11月9日付報告も調査継続を明記しており、全容が第三者の監査で確定したという発表ではありません。</p>
+</section>
+<section class="part part-plain">
+<h3 class="part-title">通知に書かれた対象を分けて対応する</h3>
+<p>Cursorは、流出した認証情報がある場合、変更すべき鍵の一覧をチーム管理者へメールしたと説明しています。サポートや業務上のデータに影響が及んだ可能性のある顧客にも、直接通知したとしています。</p>
+<p>担当者には、通知の対象を確認してもらいます。</p>
+<ul class="story-list"><li><strong>鍵の流出</strong>：通知の一覧と照合し、対象サービスでの再発行・変更と、古い鍵の無効化が済んでいるか確かめます。</li><li><strong>サポート情報など</strong>：対象のやり取りに何を送ったかを調べ、顧客の情報や接続用の鍵が含まれていれば、対応と説明の範囲を決めます。</li><li><strong>改ざん拡張</strong>：対象の版を該当時間に入れた端末では、公式告知の調査・除去手順を続けます。拡張を削除するだけでは足りない場合があります。</li></ul>
+<p>Cursorは、通知がない人のデータは今回流出した作業記録に含まれないと説明しています。この説明で、改ざん拡張を入れていないと判断しないようにします。</p>
+</section>
+<section class="part part-plain">
+<h3 class="part-title">学習を止める設定と、過去の影響確認を分ける</h3>
+<p>今後の学習利用を止めるには、<code>Cursor Settings &gt; General</code>で<code>Privacy Mode</code>をオンにします。チーム管理者は、全員に適用し、各人が解除できないようにも設定できます。現在オンになっていることだけで、過去の記録が対象外だったとは判断しません。</p>
+<p>CursorはFireworksへの接続を切り、認証情報の変更や監視を進めたと説明しています。最後に観測した11月1日の攻撃者の活動は遮断したとしています。</p>
+</section>
+<section class="part part-insight">
+<h3 class="part-title">どう見るか</h3>
+<p>今回の追加確認は、通知された情報と鍵への対応に絞ります。経営・事務の担当者は「Cursorから管理者に通知が来ているか。対象の鍵はいつ変更し、古い鍵を無効にしたか。サポートへ送った顧客情報にも影響があるかを<span class="nobr">報告して」と</span>開発担当に頼みます。</p>
+<p>通知内容や導入履歴を見ずに、利用者全員の全パスワードを変更する話へ広げる必要はありません。</p>
+</section>
+<section class="part part-spec">
+<h3 class="part-title">メモ：確認範囲を取り違えないために</h3>
+<ul class="story-list"><li><strong>改ざん拡張の対象</strong>：Cursorの配布元から入れたmacOS・Windows向け<code>Anthropic.claude-code</code>の2.1.312／2.1.313。日本時間10月29日18時27分〜30日5時35分ごろの導入・更新が対象</li><li><strong>端末にも影響がある場合</strong>：その端末から使える認証情報やログイン状態は、信頼できる別端末から変更・失効させるという公式案内</li><li><strong>学習停止の設定</strong>：無料版でも利用可能。学習を止めても、一部のAIには提供元でデータを保持する条件がある。保存条件は利用するAIごとに確認</li></ul>
+</section>
+<footer class="story-source"><span class="label">出典</span><span class="source-item"><a href="https://cursor.com/blog/security-incident-update" target="_blank" rel="noopener">Cursorの11月13日付調査報告</a><span class="domain">cursor.com</span></span><span class="source-item"><a href="https://cursor.com/blog/claude-code-extension-security-notice" target="_blank" rel="noopener">改ざん拡張の対象と公式対処手順</a><span class="domain">cursor.com</span></span><span class="source-item"><a href="https://cursor.com/help/security-and-privacy/privacy" target="_blank" rel="noopener">Privacy Modeの設定手順</a><span class="domain">cursor.com</span></span><span class="source-item"><a href="https://cursor.com/security" target="_blank" rel="noopener">設定の対象プラン</a><span class="domain">cursor.com</span></span><span class="source-item"><a href="https://fireworks.ai/security/bulletins/october-2026-security-incident-update" target="_blank" rel="noopener">Fireworksの11月9日付調査報告</a><span class="domain">fireworks.ai</span></span><span class="source-item"><a href="https://www.bleepingcomputer.com/news/security/cursor-confirms-security-breach-led-to-malicious-claude-code-extension/" target="_blank" rel="noopener">BleepingComputerの11月14日付報道</a><span class="domain">bleepingcomputer.com</span></span></footer>
+</article>
+
+  <p class="issue-scope">この号について：11月15日朝（日本時間）に専用のX収集リスト・ホーム・検索で話題を確認し、CursorとFireworksの事故報告、公式文書、報道の本文を照合しました</p>
+
+  <nav class="issue-nav" aria-label="前後の号"><a class="prev" href="2026-11-14.html"><small>前の号</small>← 2026年11月14日（土）</a></nav>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p class="policy">編集方針：Xで話題になった動きから、仕事への影響が大きいものを選びます。内容と数値は、発表元の資料、第三者の計測、報道で確かめます。発表元の主張と確かめた事実を書き分け、編集部の見方は「どう見るか」の欄に分けて書きます。誤りは、訂正の注記を付けて直します。</p>
+    <p class="colophon">© 2026 合同会社ToPARZ ・ <a href="../">バックナンバー</a> ・ <a href="../feed.xml">RSS</a></p>
+  </div>
+</footer>
+</body>
+</html>
