@@ -5,8 +5,15 @@
     <link>https://toparz-dev.github.io/IT-news/</link>
     <description>AIを仕事で使う人のための日刊ニュース。話題になった動きを、発表元の資料と報道で確かめて届けます。</description>
     <language>ja</language>
-    <lastBuildDate>Thu, 19 Nov 2026 09:00:00 +0900</lastBuildDate>
+    <lastBuildDate>Fri, 20 Nov 2026 09:00:00 +0900</lastBuildDate>
     <atom:link href="https://toparz-dev.github.io/IT-news/feed.xml" rel="self" type="application/rss+xml"/>
+    <item>
+      <title>2026年11月20日（金）のIT・AIニュース（2本）</title>
+      <link>https://toparz-dev.github.io/IT-news/articles/2026-11-20.html</link>
+      <guid isPermaLink="true">https://toparz-dev.github.io/IT-news/articles/2026-11-20.html</guid>
+      <pubDate>Fri, 20 Nov 2026 09:00:00 +0900</pubDate>
+      <description>&lt;ol&gt;&lt;li&gt;音声アプリ開発向けに待機割引　OpenAIが「GPT-Live-1.1」を提供&lt;/li&gt;&lt;li&gt;GoogleのAI「Gemini」がMacを代わりに操作　米国の個人向け有料プランで提供&lt;/li&gt;&lt;/ol&gt;</description>
+    </item>
     <item>
       <title>2026年11月19日（木）のIT・AIニュース（1本）</title>
       <link>https://toparz-dev.github.io/IT-news/articles/2026-11-19.html</link>

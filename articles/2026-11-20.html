@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>2026年11月20日（金）のIT・AIニュース｜ToPARZ IT News</title>
+<meta name="description" content="今日の2本：音声アプリ開発向けに待機割引　OpenAIが「GPT-Live-1.1」を提供／GoogleのAI「Gemini」がMacを代わりに操作　米国の個人向け有料プランで提供">
+<link rel="canonical" href="https://toparz-dev.github.io/IT-news/articles/2026-11-20.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="ToPARZ IT News">
+<meta property="og:title" content="2026年11月20日（金）のIT・AIニュース｜ToPARZ IT News">
+<meta property="og:description" content="今日の2本：音声アプリ開発向けに待機割引　OpenAIが「GPT-Live-1.1」を提供／GoogleのAI「Gemini」がMacを代わりに操作　米国の個人向け有料プランで提供">
+<meta property="og:url" content="https://toparz-dev.github.io/IT-news/articles/2026-11-20.html">
+<meta property="og:locale" content="ja_JP">
+<meta property="article:published_time" content="2026-11-20">
+<meta name="build-id" content="e32284a0a644d5b1">
+<meta name="twitter:card" content="summary">
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+<link rel="alternate" type="application/rss+xml" title="ToPARZ IT News" href="../feed.xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="../assets/style.css?v=3cab6eb8">
+</head>
+<body>
+<a class="skip" href="#main">本文へ移動</a>
+
+<header class="masthead">
+  <div class="wrap masthead-inner">
+    <a class="brand" href="../">ToPARZ IT News</a>
+    <p class="masthead-tagline">AIを仕事で使う人のための日刊ニュース。話題になった動きを、発表元の資料と報道で確かめて届けます。</p>
+  </div>
+</header>
+
+<main id="main" class="wrap">
+  <header class="issue-head">
+    <p class="kicker">Daily IT News ・ No.45</p>
+    <h1 class="issue-title">2026年11月20日（金）</h1>
+    <p class="issue-meta"><span>2本</span><span>読了 約5分</span></p>
+    
+  </header>
+
+  
+
+  <article class="story" id="story-1">
+<p class="story-num">01</p>
+<h2 class="story-title"><span class="title-part">音声アプリ開発向けに待機割引</span><span class="title-gap"> </span><span class="title-part">OpenAIが<span class="nobr">「GPT-Live-1.1」を</span>提供</span></h2>
+<section class="part part-summary">
+<h3 class="part-title">3行で言うと</h3>
+<ul class="story-list"><li>通常は1分<span class="nobr">0.05ドル</span>、待機は<span class="nobr">0.02ドル</span>。待機の割引は、ブラウザなどで音声をつなぐWebRTCでAIの処理を一時停止した時間に限る</li><li>多言語の発音、アクセントの一貫性、文字起こしを改善したとOpenAIは説明。待機割引は旧<span class="nobr">GPT-Live-1</span>でも使える</li><li>音声応対アプリを作る会社は、接続方式と会話中の待ち時間を確認したい。電話受付の費用が一律に下がる前提で見積もらない</li></ul>
+</section>
+<p class="story-lead">話しながら相手の発言を聞ける音声AIを自社のアプリに組み込めます。OpenAIは11月19日（米国時間）、新しい音声AIを提供すると告知しました。API（ソフトからAIを呼ぶ仕組み）で利用できます。会話を切らずに低い料金で待つ<span class="nobr">「standby」は</span>、旧<span class="nobr">GPT-Live-1</span>にも追加されます。</p>
+<section class="part part-plain">
+<h3 class="part-title">黙っていても通常料金が続く時間がある</h3>
+<p>料金を分ける基準は、人が話しているかどうかだけではありません。通常のアクティブ状態では、待機へ移るまでの無言の時間も、別のAIやシステムの処理を待つ間も課金されます。マイクを消音するだけでは、この状態は終わりません。</p>
+<p>音声の料金は秒単位で計算され、アクティブ時は1分あたり<span class="nobr">0.05ドル</span>、待機時は<span class="nobr">0.02ドル</span>です。裏側で使う別のAIや外部ツールの利用料は別にかかります。通常料金の時間と待機料金の時間からそれぞれ費用を計算し、裏側の処理費用を加えます。待機が長い案件ほど、会話している分数だけで見積もると実際の費用とずれます。</p>
+<p>公式文書は、割引の対象をWebRTCの接続に限っています。ミーネクストの解説も、電話回線をつなぐSIPで同じ待機機能が使えるとは書かれていない点を指摘しています。既存の電話受付サービスに、この割引をそのまま当てはめないようにします。</p>
+</section>
+<section class="part part-plain">
+<h3 class="part-title">待機への移行と、話し始めの応答を確かめる</h3>
+<p>開発者はWebRTCの接続を作るとき、次の二つを設定します。</p>
+<ul class="story-list"><li><strong>最初の発話を待つ</strong>：<code>session.wake_policy.type</code>を<code>&quot;speech&quot;</code>にします。</li><li><strong>会話の中断後も待機へ戻す</strong>：<code>session.idle_timeout_s</code>に5〜60の整数を指定します。たとえば20なら、入力・出力どちらの文字起こしもない状態が20秒続くと待機に戻ります。</li></ul>
+<p>待機までの秒数を設定しないと、最初に動き始めた後は接続を終えるまでアクティブ状態が続きます。最初の発話を待つ設定だけで、会話の合間も自動で安くなるわけではありません。</p>
+<p>待機中もマイクの音声トラックは有効にしておきます。人が話し始めると、同じ接続で会話の履歴を戻しながら再開します。公式ガイドは、待機から戻った後の短い発話に対する最初の応答が遅くなる場合があると説明しています。費用とともに、再開時の待ち時間も試験の対象です。</p>
+</section>
+<section class="part part-plain">
+<h3 class="part-title">声の改善と、業務の完了を分けて確認する</h3>
+<p>聞き取りや発音の改善はOpenAIの説明です。新しい1.1の精度について、第三者の計測は確認した範囲では公表されていません。Artificial Analysisの音声評価一覧に載っている<span class="nobr">GPT-Live-1</span>の結果を、新版の実証として扱うことはできません。</p>
+<p>公式ガイドでは、音声AIが会話を担い、注文確認などの処理は別のAIやシステムへ任せます。権限の確認や必要な承認、処理の進み具合の保存は、アプリ側が行う設計です。自然に話せることだけで、注文や予約の変更まで正しく終えたとは判断しません。</p>
+</section>
+<section class="part part-insight">
+<h3 class="part-title">どう見るか</h3>
+<p>音声応対アプリの見積もりは、発話時間だけでなく、待ち時間の扱いまで確認してから決めます。経営・事務の担当者は「今の接続方式で待機割引が使えるか。通常料金の時間と待機時間、別のAIの費用を分けて、代表的な問い合わせの費用<span class="nobr">を示して」と</span>開発担当やサービス提供元に頼みます。</p>
+<p>開発担当者は、利用者が資料を探してから話し直す場面を試し、応答の遅れと処理結果を確認します。費用の削減を先に約束せず、会話の再開を妨げない設定を選びます。</p>
+</section>
+<section class="part part-spec">
+<h3 class="part-title">メモ：開発者が確認する項目</h3>
+<ul class="story-list"><li><strong>AIの指定名</strong>：<code>gpt-live-1.1</code>。開始時に選ぶ。会話の途中でAIを変更するには、新しい接続を作る</li><li><strong>状態の確認</strong>：<code>session.paused</code>が待機入り、<code>session.resumed</code>が推論の準備完了。サイドバンド接続か、該当イベントを許可したWebRTCのデータチャネルで受け取る</li><li><strong>同時接続数</strong>：新版と旧版は別の上限。利用する組織のAPI上限を確認する</li></ul>
+</section>
+<footer class="story-source"><span class="label">出典</span><span class="source-item"><a href="https://developers.openai.com/api/docs/changelog" target="_blank" rel="noopener">OpenAIの11月19日付更新履歴</a><span class="domain">developers.openai.com</span></span><span class="source-item"><a href="https://developers.openai.com/api/docs/models/gpt-live-1.1" target="_blank" rel="noopener"><span class="nobr">GPT-Live-1.1</span>の仕様</a><span class="domain">developers.openai.com</span></span><span class="source-item"><a href="https://developers.openai.com/api/docs/guides/live-conversations" target="_blank" rel="noopener">待機設定と会話の管理</a><span class="domain">developers.openai.com</span></span><span class="source-item"><a href="https://developers.openai.com/api/docs/guides/voice-latency-cost?api=live" target="_blank" rel="noopener">音声の料金と費用の計算法</a><span class="domain">developers.openai.com</span></span><span class="source-item"><a href="https://developers.openai.com/api/docs/pricing" target="_blank" rel="noopener">公式料金表</a><span class="domain">developers.openai.com</span></span><span class="source-item"><a href="https://developers.openai.com/api/docs/guides/live" target="_blank" rel="noopener">音声と業務処理の役割</a><span class="domain">developers.openai.com</span></span><span class="source-item"><a href="https://artificialanalysis.ai/speech-to-speech" target="_blank" rel="noopener">Artificial Analysisの音声評価一覧</a><span class="domain">artificialanalysis.ai</span></span><span class="source-item"><a href="https://menext.jp/news/gpt-live-1-1-api-voice-support" target="_blank" rel="noopener">ミーネクストの解説</a><span class="domain">menext.jp</span></span></footer>
+</article>
+
+<article class="story" id="story-2">
+<p class="story-num">02</p>
+<h2 class="story-title"><span class="title-part">GoogleのAI<span class="nobr">「Gemini」が</span>Macを代わりに操作</span><span class="title-gap"> </span><span class="title-part">米国の個人向け有料プランで提供</span></h2>
+<section class="part part-summary">
+<h3 class="part-title">3行で言うと</h3>
+<ul class="story-list"><li>ファイルから情報を読み、別のアプリへの入力まで進める。利用者の画面とカーソルを空けたまま、別の画面で操作する</li><li>対象は、米国で英語を使う18歳以上の人。個人アカウントとGoogle AI Plus・Pro・Ultraが必要で、職場・学校のアカウントは対象外だ</li><li>日本向けの開始日は今回の発表にない。国内で使うために契約を増やす必要はなく、提供範囲が広がるかを待つ段階だ</li></ul>
+</section>
+<p class="story-lead">Googleは11月19日（米国時間）、Mac版Geminiに<span class="nobr">「computer use」を</span>追加すると発表しました。作例は、PDFから配送先などを読み取ってフォームへ入力する作業や、写真の一括加工です。アプリごとに操作を許可し、重要な操作では確認を求める仕組みです。公式ヘルプは、別画面で実行していても、アプリによっては変更を元に戻せないと説明しています。</p>
+<section class="part part-spec">
+<h3 class="part-title">メモ：提供先で使うときの条件</h3>
+<ul class="story-list"><li><strong>端末</strong>：Apple Silicon搭載Mac、macOS Sequoia 15.0以上</li><li><strong>許可</strong>：アプリに<span class="nobr">「Always allow」を</span>選ぶと、以後そのアプリへのアクセスでは毎回確認しない。重要な操作の確認は別に行う</li><li><strong>停止</strong>：実行中の<code>Stop task</code>から止められる</li></ul>
+</section>
+<footer class="story-source"><span class="label">出典</span><span class="source-item"><a href="https://blog.google/innovation-and-ai/products/gemini-app/computer-use-mac/" target="_blank" rel="noopener">Googleの11月19日付発表と脚注</a><span class="domain">blog.google</span></span><span class="source-item"><a href="https://support.google.com/gemini/answer/18956635?hl=en" target="_blank" rel="noopener">対象アカウント・権限・操作上の制約</a><span class="domain">support.google.com</span></span><span class="source-item"><a href="https://www.macrumors.com/2026/11/19/google-gemini-mac-app-control/" target="_blank" rel="noopener">MacRumorsの報道</a><span class="domain">macrumors.com</span></span></footer>
+</article>
+
+  <p class="issue-scope">この号について：11月20日朝（日本時間）に専用のX収集リスト・ホーム・検索で話題を確認し、OpenAIとGoogleの公式文書、第三者の評価一覧と報道の本文を照合しました</p>
+
+  <nav class="issue-nav" aria-label="前後の号"><a class="prev" href="2026-11-19.html"><small>前の号</small>← 2026年11月19日（木）</a></nav>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p class="policy">編集方針：Xで話題になった動きから、仕事への影響が大きいものを選びます。内容と数値は、発表元の資料、第三者の計測、報道で確かめます。発表元の主張と確かめた事実を書き分け、編集部の見方は「どう見るか」の欄に分けて書きます。誤りは、訂正の注記を付けて直します。</p>
+    <p class="colophon">© 2026 合同会社ToPARZ ・ <a href="../">バックナンバー</a> ・ <a href="../feed.xml">RSS</a></p>
+  </div>
+</footer>
+</body>
+</html>
