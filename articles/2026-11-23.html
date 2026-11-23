@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>2026年11月23日（月）のIT・AIニュース｜ToPARZ IT News</title>
+<meta name="description" content="今日の2本：AIの処理を仲介する「OpenRouter」の接続先で情報流出　利用企業は送信内容を確認／メッセージアプリ「Signal」がAIの画面読み取りを制限　Macは同じ保護の対象外">
+<link rel="canonical" href="https://toparz-dev.github.io/IT-news/articles/2026-11-23.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="ToPARZ IT News">
+<meta property="og:title" content="2026年11月23日（月）のIT・AIニュース｜ToPARZ IT News">
+<meta property="og:description" content="今日の2本：AIの処理を仲介する「OpenRouter」の接続先で情報流出　利用企業は送信内容を確認／メッセージアプリ「Signal」がAIの画面読み取りを制限　Macは同じ保護の対象外">
+<meta property="og:url" content="https://toparz-dev.github.io/IT-news/articles/2026-11-23.html">
+<meta property="og:locale" content="ja_JP">
+<meta property="article:published_time" content="2026-11-23">
+<meta name="build-id" content="35c0c90078273626">
+<meta name="twitter:card" content="summary">
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+<link rel="alternate" type="application/rss+xml" title="ToPARZ IT News" href="../feed.xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="../assets/style.css?v=3cab6eb8">
+</head>
+<body>
+<a class="skip" href="#main">本文へ移動</a>
+
+<header class="masthead">
+  <div class="wrap masthead-inner">
+    <a class="brand" href="../">ToPARZ IT News</a>
+    <p class="masthead-tagline">AIを仕事で使う人のための日刊ニュース。話題になった動きを、発表元の資料と報道で確かめて届けます。</p>
+  </div>
+</header>
+
+<main id="main" class="wrap">
+  <header class="issue-head">
+    <p class="kicker">Daily IT News ・ No.48</p>
+    <h1 class="issue-title">2026年11月23日（月）</h1>
+    <p class="issue-meta"><span>2本</span><span>読了 約5分</span></p>
+    
+  </header>
+
+  
+
+  <article class="story" id="story-1">
+<p class="story-num">01</p>
+<h2 class="story-title"><span class="title-part">AIの処理を仲介する<span class="nobr">「OpenRouter」の</span>接続先で情報流出</span><span class="title-gap"> </span><span class="title-part">利用企業は送信内容を確認</span></h2>
+<section class="part part-summary">
+<h3 class="part-title">3行で言うと</h3>
+<ul class="story-list"><li>第三者の調査では、保存しない指定を付けた要求から盗まれたテスト用の鍵もあった。OpenRouterは、影響しうる顧客へ通知したと説明</li><li>125の接続先を指示や応答を保存しない<span class="nobr">「ZDR」の</span>対象から外した。予防的な除外も含み、125件すべてで流出が確認されたという意味ではない</li><li>利用する会社は、通知と送信履歴を照合し、顧客情報や接続用の鍵を送ったかを確認したい。現在の設定だけで過去の影響を判断しない</li></ul>
+</section>
+<p class="story-lead">アプリからAIへ送った指示やコードは、複数の会社を経由して処理されることがあります。要求を複数のAI提供会社へ振り分けるOpenRouterは、11月22日付で接続先3社の除外などを発表しました。同社は、今回の調査結果はOpenRouter自体への侵入や不正アクセスを示していないと説明しています。</p>
+<section class="part part-plain">
+<h3 class="part-title">保存方針と、侵入された後の保護は別</h3>
+<p>セキュリティ会社Dragosは11月19日付の報告で、7〜11月に約200万件のテスト要求をAIサービスへ送ったと説明しました。要求ごとに専用のURLや鍵を入れ、後から誰かが使うかを観測した調査です。この件数は、被害を受けた利用者の数ではありません。</p>
+<p>調査では、侵入された提供会社からテスト用の鍵が盗まれ、ログインなどに使われました。盗まれた要求の一部にはZDRの指定がありました。保存しないという方針があっても、処理中の情報を侵入者から守れるとは限りません。</p>
+<p>Ars Technicaも、侵入による窃取、再販業者による記録、保存方針への違反を分けて報じています。同じAIを使っていても、どの会社へ送ったかで確認対象が変わります。AIの名前だけを記録して、実際の処理先を見落とさないようにします。</p>
+</section>
+<section class="part part-plain">
+<h3 class="part-title">対象の期間と、送った情報から対応を決める</h3>
+<p>提供会社Phalaは公式報告で、OpenRouter経由で同社へ届いた「DeepSeek V4 Flash <span class="nobr">0731」の</span>要求を挙げています。日本時間10月21日9時〜11月8日14時35分に送った内容は、流出したものとして扱うよう求めています。</p>
+<p>Phalaによると、悪用が確認されたテスト用の鍵は、研究者がUTCの10月21日と22日に送った要求に含まれていました。ただし、すべての要求や閲覧を観測できたわけではないため、対応すべき期間は広めに設定しています。「別の日だか<span class="nobr">ら対象外」と</span>狭めないことが大切です。</p>
+<p>対象期間に送った要求に鍵・トークン・パスワードなどが含まれる場合、Phalaはそれらの変更と、該当アカウントでの不審な利用の確認を勧めています。AIサービスへ接続する鍵だけでなく、指示やコードに含めて送った別サービスの鍵も対象です。</p>
+<p>Phalaは11月8日に侵入を封じ込めたと説明する一方、調査と対策の検証は継続中です。サービスが復旧したことと、送信済みの秘密情報への対応が終わったことは分けて考えます。</p>
+</section>
+<section class="part part-plain">
+<h3 class="part-title">公開された社名だけで、影響の有無を決めない</h3>
+<p>OpenRouterの告知は、影響のあった提供会社すべてが公表しているわけではないと明記しています。報告がある会社と、除外した3社が同じだとも書いていません。公開記事の社名に見覚えがないことを理由に、個別の通知を読み飛ばさないようにします。</p>
+<p>同社は、継続的な試験や第三者への転送経路の検証を進めるとしています。ZDRの対象に戻す前にも確認を求める方針です。今後の改善策であり、すべての接続先の安全確認が完了したという発表ではありません。</p>
+</section>
+<section class="part part-insight">
+<h3 class="part-title">どう見るか</h3>
+<p>今週は、OpenRouter経由で送った情報の影響確認を優先します。経営・事務の担当者は「利用した案件と、届いた通知の対象期間・接続先を示して。顧客情報や鍵を送っていれば、変更する鍵と顧客への説明の要否を<span class="nobr">報告して」と</span>開発担当に頼みます。</p>
+<p>開発担当者は、通知と手元の送信記録を照合し、対象の鍵を各サービスで変更します。今後の接続先を選び直す作業と、過去に送った情報への対応を分けて進めます。</p>
+</section>
+<section class="part part-spec">
+<h3 class="part-title">メモ：対象を照合するときの条件</h3>
+<ul class="story-list"><li><strong>Phalaの時刻</strong>：公式表記はUTCの10月21日0時〜11月8日5時35分。本文は9時間を足した日本時間</li><li><strong>別の接続先</strong>：Phalaの期間や対象AIを他社にも当てはめない。OpenRouterの個別通知と各社の事故報告が確認先</li><li><strong>調査の限界</strong>：Dragosの要求は研究者が作ったテスト用。全利用者の流出件数や被害率を測った調査ではない</li></ul>
+</section>
+<footer class="story-source"><span class="label">出典</span><span class="source-item"><a href="https://openrouter.ai/blog/announcements/data-processing-incidents-on-inference-providers/" target="_blank" rel="noopener">OpenRouterの11月22日付告知</a><span class="domain">openrouter.ai</span></span><span class="source-item"><a href="https://www.dragos.com/blog/ai-supply-chain-security-canary-tokens" target="_blank" rel="noopener">Dragosの調査方法と観測結果</a><span class="domain">dragos.com</span></span><span class="source-item"><a href="https://phala.com/posts/phala-november-preliminary-incident-report" target="_blank" rel="noopener">Phalaの対象期間・対処・調査状況</a><span class="domain">phala.com</span></span><span class="source-item"><a href="https://arstechnica.com/security/2026/11/a-leaky-ai-supply-chain-is-exposing-secret-user-data-at-an-alarming-rate/" target="_blank" rel="noopener">Ars Technicaの報道</a><span class="domain">arstechnica.com</span></span></footer>
+</article>
+
+<article class="story" id="story-2">
+<p class="story-num">02</p>
+<h2 class="story-title"><span class="title-part">メッセージアプリ<span class="nobr">「Signal」が</span>AIの画面読み取りを制限</span><span class="title-gap"> </span><span class="title-part">Macは同じ保護の対象外</span></h2>
+<section class="part part-summary">
+<h3 class="part-title">3行で言うと</h3>
+<ul class="story-list"><li>SiriやGeminiから会話を保護するため、スクリーンショットを制限する。保護中は利用者自身も会話の画面を撮れなくなる</li><li>対応版では、iOS 27以上のiPhoneで標準オン。AndroidはAIの読み取りを初めて検知するとオンになるが、全端末をカバーしない。暗号化方式は変わらない</li><li>Signalを使う人は、画面を撮れないことを一律に不具合と判断しない。解除すると、AIからの読み取りも許すことになる</li></ul>
+</section>
+<p class="story-lead">Signalは11月20日付で、スマホのOSに組み込まれたAIから会話を保護する設定を発表しました。対象は、Signal 8.37以上とiOS 27以上を使うiPhone、Signal 8.35.1以上でAIの画面アクセスを検知できるAndroidです。暗号化された通信でも、端末に表示した内容をAIが取り出すとSignalの管理外になるという問題への対応です。</p>
+<section class="part part-plain">
+<h3 class="part-title">一時的な解除も、保護を外す操作</h3>
+<p>iPhoneには、10分だけ保護を止め、その後自動で戻す選択肢があります。Android Authorityも、この操作上の不便と、保護が完全ではない点を報じています。</p>
+</section>
+<section class="part part-plain">
+<h3 class="part-title">画面以外からの取得は残る</h3>
+<p>Signalは、端末内のファイルを読むなど、別の経路による取得までは防げないと説明しています。Macではスクリーンショットを確実に止められず、スマホと同じ保護はできないとしています。スマホの対応を理由に、PCも含めたすべてのAIから会話が守られるとは判断できません。</p>
+</section>
+<section class="part part-insight">
+<h3 class="part-title">どう見るか</h3>
+<p>スクリーンショットのために保護を常時解除する運用は勧めません。非公開の会話をAIへ渡さない目的と、画面を共有する必要性を合わせて判断します。Signalを使っていない会社に、今回の発表だけを理由に移行を求める話ではありません。</p>
+</section>
+<section class="part part-spec">
+<h3 class="part-title">メモ：設定と利用条件</h3>
+<ul class="story-list"><li><strong>iPhoneのSignal内設定</strong>：<code>Settings → Privacy → Block Siri AI</code>。一時解除は<code>Off for 10 Minutes</code></li><li><strong>Macでの案内</strong>：macOS 27では<code>System Settings &gt; Siri &gt; Excluded Apps</code>へSignalを加えることを開発元が推奨。Siriの能動的な取得に対する案内で、すべてのAIを遮断する設定ではない</li><li><strong>料金</strong>：Signalのメッセージ利用は無料。非営利団体が運営</li></ul>
+</section>
+<footer class="story-source"><span class="label">出典</span><span class="source-item"><a href="https://signal.org/blog/protecting-your-privacy/" target="_blank" rel="noopener">Signalの11月20日付発表と脚注</a><span class="domain">signal.org</span></span><span class="source-item"><a href="https://support.signal.org/hc/en-us/articles/11338514641306-Screen-security-blocking-Google-Gemini-and-Siri-AI" target="_blank" rel="noopener">対応版と設定の公式ヘルプ</a><span class="domain">support.signal.org</span></span><span class="source-item"><a href="https://www.androidauthority.com/signal-blocks-gemini-siri-ai-private-messages-3737647/" target="_blank" rel="noopener">Android Authorityの報道</a><span class="domain">androidauthority.com</span></span><span class="source-item"><a href="https://signal.org/" target="_blank" rel="noopener">Signalの利用・運営方針</a><span class="domain">signal.org</span></span></footer>
+</article>
+
+  <p class="issue-scope">この号について：11月23日朝（日本時間）に専用のX収集リスト・ホーム・検索で話題を確認し、公式告知・事故報告・独立調査と報道の本文を照合しました</p>
+
+  <nav class="issue-nav" aria-label="前後の号"><a class="prev" href="2026-11-22.html"><small>前の号</small>← 2026年11月22日（日）</a></nav>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p class="policy">編集方針：Xで話題になった動きから、仕事への影響が大きいものを選びます。内容と数値は、発表元の資料、第三者の計測、報道で確かめます。発表元の主張と確かめた事実を書き分け、編集部の見方は「どう見るか」の欄に分けて書きます。誤りは、訂正の注記を付けて直します。</p>
+    <p class="colophon">© 2026 合同会社ToPARZ ・ <a href="../">バックナンバー</a> ・ <a href="../feed.xml">RSS</a></p>
+  </div>
+</footer>
+</body>
+</html>
