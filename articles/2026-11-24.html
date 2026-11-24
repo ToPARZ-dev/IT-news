@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>2026年11月24日（火）のIT・AIニュース｜ToPARZ IT News</title>
+<meta name="description" content="今日の2本：開発AI「Claude Ship」がコードの修正・承認まで支援　会社の承認ルールが前提／ChatGPTの通常チャットにも「GPT-6.2」を提供　Plusなど四つのプランが対象">
+<link rel="canonical" href="https://toparz-dev.github.io/IT-news/articles/2026-11-24.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="ToPARZ IT News">
+<meta property="og:title" content="2026年11月24日（火）のIT・AIニュース｜ToPARZ IT News">
+<meta property="og:description" content="今日の2本：開発AI「Claude Ship」がコードの修正・承認まで支援　会社の承認ルールが前提／ChatGPTの通常チャットにも「GPT-6.2」を提供　Plusなど四つのプランが対象">
+<meta property="og:url" content="https://toparz-dev.github.io/IT-news/articles/2026-11-24.html">
+<meta property="og:locale" content="ja_JP">
+<meta property="article:published_time" content="2026-11-24">
+<meta name="build-id" content="acc7ae003d406f6e">
+<meta name="twitter:card" content="summary">
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+<link rel="alternate" type="application/rss+xml" title="ToPARZ IT News" href="../feed.xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="../assets/style.css?v=3cab6eb8">
+</head>
+<body>
+<a class="skip" href="#main">本文へ移動</a>
+
+<header class="masthead">
+  <div class="wrap masthead-inner">
+    <a class="brand" href="../">ToPARZ IT News</a>
+    <p class="masthead-tagline">AIを仕事で使う人のための日刊ニュース。話題になった動きを、発表元の資料と報道で確かめて届けます。</p>
+  </div>
+</header>
+
+<main id="main" class="wrap">
+  <header class="issue-head">
+    <p class="kicker">Daily IT News ・ No.49</p>
+    <h1 class="issue-title">2026年11月24日（火）</h1>
+    <p class="issue-meta"><span>2本</span><span>読了 約5分</span></p>
+    
+  </header>
+
+  
+
+  <article class="story" id="story-1">
+<p class="story-num">01</p>
+<h2 class="story-title"><span class="title-part">開発AI<span class="nobr">「Claude Ship」が</span>コードの修正・承認まで支援</span><span class="title-gap"> </span><span class="title-part">会社の承認ルールが前提</span></h2>
+<section class="part part-summary">
+<h3 class="part-title">3行で言うと</h3>
+<ul class="story-list"><li>変更内容の点検に加え、指摘された問題の修正と、会社が決めた条件に沿う承認まで扱う。修正役と承認役は別の機能だ</li><li>組織向けはClaude Team・Enterpriseとコード管理サービスGitHubが対象。契約の利用枠とは別課金で、承認しない試行でもAI判定やレビューを動かせば有料だ</li><li>導入する会社は、人の承認を残した試行から始めたい。費用の上限と、AIだけで通してよい変更の範囲を先に決める</li></ul>
+</section>
+<p class="story-lead">AIが書いたコードを誰が確認して取り込むのでしょうか。Anthropicは11月23日（米国時間）、この工程を支援するClaude Shipを発表しました。既存のCode Reviewに、修正を続けるPR Stewardと、承認を判断するClaude Approvalsを加えます。新しい二つはベータ版です。</p>
+<section class="part part-plain">
+<h3 class="part-title">修正を任せても、取り込みの制限は別に必要</h3>
+<p>対象は、コードの変更を取り込むための申請「プルリ<span class="nobr">クエスト」で</span>す。修正役は、失敗した自動テスト、他の変更との衝突、人やAIからの指摘に対応し、修正したコードを送ります。承認役は、コードの保管場所であるリポジトリに置いたルールを読み、人の承認が何人必要か、Claudeが承認してよいかを判断します。</p>
+<p>修正役は、承認や、本流のコードへ取り込む「マージ」をしない設計です。それでも、公式文書は、マージを確実に制限するにはGitHub側の保護ルールが必要だと説明しています。コマンドの書き方を見て止める処理やAIの判断だけでは、別の書き方で通る場合があるためです。</p>
+<p>GitHubで自動マージを使い、人の承認を求めないルールなら、誰も操作せずに変更が取り込まれる場合があります。AIの点検を入れたことと、人が最終確認する体制を残したことは別です。</p>
+</section>
+<section class="part part-plain">
+<h3 class="part-title">課金を止めるには、機能ごとの停止が必要</h3>
+<p>承認役には、結果を表示するだけで承認しない監視モードがあります。公式の導入例ではこの状態から始めます。承認役の基本料金はありませんが、判断に使うAIやコードレビューには費用がかかります。</p>
+<p>組織向けの費用は、入力や出力を数える単位「<span class="nobr">トークン」の</span>使用量に応じて計算します。レビュー1回あたりの定額はありません。レビューの深さや実行回数、修正の量で変わり、月額契約に含まれる利用枠とは別です。修正役には、設定するまで専用の支出上限がありません。</p>
+<p>利用クレジットをオフにするだけでは、稼働中の機能と課金は止まりません。停止は、承認役、修正役、レビューの順です。修正役はオフにしても既存の処理が続くため、先に対象のプルリクエストから<code>claude-pr-steward-watching</code>ラベルを外します。</p>
+</section>
+<section class="part part-plain">
+<h3 class="part-title">個人で始めるコマンドは、通常のClaude Code利用として扱う</h3>
+<p>手元のClaude Codeにも<code>/ship</code>が加わります。自分の変更を送ってプルリクエストを開き、レビュー後の修正を進めるコマンドで、通常のClaude Codeの利用量に含まれます。組織向けサービスとは、実行場所と課金が異なります。</p>
+<p>公式の端末向け手順では、追加の確認なしにコミットや送信へ進み、未コミットの新規ファイルも対象になりえます。使う前に<code>git status</code>で含めるファイルを確かめ、ファイル内の秘密情報も確認します。</p>
+<p>レビューや承認の正確さを測った第三者の計測は、確認した範囲では公表されていません。開発元も、バグや脆弱性の見落としがありうると明記しています。</p>
+</section>
+<section class="part part-insight">
+<h3 class="part-title">どう見るか</h3>
+<p>最初から全案件の承認をAIへ移す導入は勧めません。経営・事務の担当者は「試す案件を一つ選び、人が承認すべき変更と月の支出上限を示して。AIと人の判断が食い違った例も<span class="nobr">報告して」と</span>開発責任者に頼みます。</p>
+<p>開発担当者は、GitHubで必要な承認を強制し、Claudeのアプリを保護ルールの例外に入れません。修正役は<code>Manual (@claude steward)</code>、承認ルールのファイル<code>.claude/approvals.yml</code>には<code>mode: observe</code>を指定して試し、判断と費用を見て対象を広げます。</p>
+</section>
+<section class="part part-spec">
+<h3 class="part-title">メモ：導入できる環境と制限</h3>
+<ul class="story-list"><li><strong>管理画面</strong>：<code>Organization settings &gt; Claude Ship</code>。設定にはClaude組織のOwner権限が必要</li><li><strong>対象外の組織</strong>：Zero Data Retention、HIPAA向け設定、顧客管理の暗号鍵を使う組織</li><li><strong>端末のコマンド</strong>：Claude Code 2.1.330以上、GitHub CLI 2.63以上、git 2.38以上が前提。クラウドセッションでは使えず、Windowsのネイティブ環境では継続監視が始まらない</li><li><strong>自前の実行環境</strong>：修正役の承認制限はAnthropic管理の環境についての説明。自前の環境で読めるGitHub認証情報を使う操作には、同じ制限を当てはめない</li></ul>
+</section>
+<footer class="story-source"><span class="label">出典</span><span class="source-item"><a href="https://claude.com/resources/articles/introducing-claude-ship" target="_blank" rel="noopener">Anthropicの11月23日付発表</a><span class="domain">claude.com</span></span><span class="source-item"><a href="https://code.claude.com/docs/en/claude-ship" target="_blank" rel="noopener">対象・課金・停止の公式ガイド</a><span class="domain">code.claude.com</span></span><span class="source-item"><a href="https://code.claude.com/docs/en/pr-steward-security" target="_blank" rel="noopener">修正役の権限と制限</a><span class="domain">code.claude.com</span></span><span class="source-item"><a href="https://code.claude.com/docs/en/pr-steward-setup" target="_blank" rel="noopener">修正役の設定と支出上限</a><span class="domain">code.claude.com</span></span><span class="source-item"><a href="https://code.claude.com/docs/en/approvals-setup" target="_blank" rel="noopener">承認ルールと監視モード</a><span class="domain">code.claude.com</span></span><span class="source-item"><a href="https://code.claude.com/docs/en/code-review-costs" target="_blank" rel="noopener">レビュー費用の公式説明</a><span class="domain">code.claude.com</span></span><span class="source-item"><a href="https://code.claude.com/docs/en/ship-command" target="_blank" rel="noopener">個人向けコマンドの条件と動作</a><span class="domain">code.claude.com</span></span><span class="source-item"><a href="https://claude.com/product/claude-ship" target="_blank" rel="noopener">製品FAQの注意事項</a><span class="domain">claude.com</span></span><span class="source-item"><a href="https://9to5mac.com/2026/11/23/anthropic-launches-new-claude-ship-feature-for-builders/" target="_blank" rel="noopener">9to5Macの報道</a><span class="domain">9to5mac.com</span></span></footer>
+</article>
+
+<article class="story" id="story-2">
+<p class="story-num">02</p>
+<h2 class="story-title"><span class="title-part">ChatGPTの通常チャットにも<span class="nobr">「GPT-6.2」を</span>提供</span><span class="title-gap"> </span><span class="title-part">Plusなど四つのプランが対象</span></h2>
+<section class="part part-summary">
+<h3 class="part-title">3行で言うと</h3>
+<ul class="story-list"><li>日常会話向けに調整したSolを提供し、細かな指示への対応、画像の読み取り、ネットでの調べ物を改善したとOpenAIは説明</li><li>Plus・Pro・Business・Enterpriseへ世界で順次提供。Enterpriseは職場の管理設定にも左右され、無料版とGoは今回の対象に含まれない</li><li>今回の提供を理由に、開発用Codexで選ぶAIを変える必要はない</li></ul>
+</section>
+<p class="story-lead">11月18日は、<span class="nobr">GPT-6.2</span>が仕事を任せるWorkと開発用Codexに入り、通常チャットは対象外だと伝えました。今回は、ふだんの質問や相談に使う通常チャットへの拡大です。OpenAIは11月23日（米国時間）、Chat向けに調整したSolの提供開始を発表しました。9to5Macも提供先の拡大を報じています。今回の更新で、Work・Codexを動かすAIは変わりません。</p>
+<section class="part part-spec">
+<h3 class="part-title">メモ：利用する画面と条件</h3>
+<ul class="story-list"><li><strong>表示</strong>：対象の選択画面では<code>GPT-6.2</code>と表示。<code>Latest</code>も、利用可能な推論設定で新版を使う</li><li><strong>最上位の選択肢</strong>：今回の更新はInstantとThinking。Proの選択肢は引き続き<span class="nobr">GPT-6</span> Proで、<span class="nobr">GPT-6.2</span> Proが追加されたわけではない</li><li><strong>費用</strong>：利用上限はプランと職場設定による。今回の提供告知に別料金の記載はない。Work・Codexの利用枠はChatとは別</li><li><strong>評価</strong>：性能改善はOpenAIの評価。会話向けの今回の版に対する第三者の計測は、確認した範囲では公表されていない</li></ul>
+</section>
+<footer class="story-source"><span class="label">出典</span><span class="source-item"><a href="https://help.openai.com/en/articles/6825453-chatgpt-release-notes" target="_blank" rel="noopener">OpenAIの11月23日付更新履歴</a><span class="domain">help.openai.com</span></span><span class="source-item"><a href="https://help.openai.com/en/articles/20001354-gpt-6-and-other-models-in-chatgpt" target="_blank" rel="noopener">Chatの選択画面・推論設定・利用枠</a><span class="domain">help.openai.com</span></span><span class="source-item"><a href="https://9to5mac.com/2026/11/23/chatgpt-expands-gpt-6-2-sol-as-openai-sets-retirement-date-for-two-models/" target="_blank" rel="noopener">9to5Macの報道</a><span class="domain">9to5mac.com</span></span></footer>
+</article>
+
+  <p class="issue-scope">この号について：11月24日朝（日本時間）に専用のX収集リスト・ホーム・検索で話題を確認し、公式発表・利用条件・安全上の制約と報道の本文を照合しました</p>
+
+  <nav class="issue-nav" aria-label="前後の号"><a class="prev" href="2026-11-23.html"><small>前の号</small>← 2026年11月23日（月）</a></nav>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p class="policy">編集方針：Xで話題になった動きから、仕事への影響が大きいものを選びます。内容と数値は、発表元の資料、第三者の計測、報道で確かめます。発表元の主張と確かめた事実を書き分け、編集部の見方は「どう見るか」の欄に分けて書きます。誤りは、訂正の注記を付けて直します。</p>
+    <p class="colophon">© 2026 合同会社ToPARZ ・ <a href="../">バックナンバー</a> ・ <a href="../feed.xml">RSS</a></p>
+  </div>
+</footer>
+</body>
+</html>
