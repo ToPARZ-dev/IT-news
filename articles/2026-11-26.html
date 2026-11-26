@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>2026年11月26日（木）のIT・AIニュース｜ToPARZ IT News</title>
+<meta name="description" content="今日の1本：テスト約98%合格でも旧システムと食い違い　AnthropicがClaudeを使った移行を報告">
+<link rel="canonical" href="https://toparz-dev.github.io/IT-news/articles/2026-11-26.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="ToPARZ IT News">
+<meta property="og:title" content="2026年11月26日（木）のIT・AIニュース｜ToPARZ IT News">
+<meta property="og:description" content="今日の1本：テスト約98%合格でも旧システムと食い違い　AnthropicがClaudeを使った移行を報告">
+<meta property="og:url" content="https://toparz-dev.github.io/IT-news/articles/2026-11-26.html">
+<meta property="og:locale" content="ja_JP">
+<meta property="article:published_time" content="2026-11-26">
+<meta name="build-id" content="51e31685937b910c">
+<meta name="twitter:card" content="summary">
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+<link rel="alternate" type="application/rss+xml" title="ToPARZ IT News" href="../feed.xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="../assets/style.css?v=3cab6eb8">
+</head>
+<body>
+<a class="skip" href="#main">本文へ移動</a>
+
+<header class="masthead">
+  <div class="wrap masthead-inner">
+    <a class="brand" href="../">ToPARZ IT News</a>
+    <p class="masthead-tagline">AIを仕事で使う人のための日刊ニュース。話題になった動きを、発表元の資料と報道で確かめて届けます。</p>
+  </div>
+</header>
+
+<main id="main" class="wrap">
+  <header class="issue-head">
+    <p class="kicker">Daily IT News ・ No.51</p>
+    <h1 class="issue-title">2026年11月26日（木）</h1>
+    <p class="issue-meta"><span>1本</span><span>読了 約4分</span></p>
+    
+  </header>
+
+  
+
+  <article class="story" id="story-1">
+<p class="story-num">01</p>
+<h2 class="story-title"><span class="title-part">テスト約98%合格でも旧システムと食い違い</span><span class="title-gap"> </span><span class="title-part">AnthropicがClaudeを使った移行を報告</span></h2>
+<section class="part part-summary">
+<h3 class="part-title">3行で言うと</h3>
+<ul class="story-list"><li>4月の新旧比較では、要求の受け付けからAIへ渡す文章の作成まで一致したのは、比較した要求の約<span class="nobr">4分の1</span>。顧客にエラーが起きた割合ではない</li><li>主要な処理の初版は約1週間でできたが、一般の要求を切り替えたのは9月。修正は人が審査し、実際の利用で差が消えたかを追ったという</li><li>システム改修を発注・受託する会社は、テストの合否に加え、現行版との比較結果と、人が承認した仕様変更を完了条件に入れたい</li></ul>
+</section>
+<p class="story-lead">10月26日は、AIが変更したテストの合格だけでは、既存機能を守れたと判断できないと伝えました。今回は、稼働中のサービスを基準に移行後の動作を照合した事例です。Anthropicは11月25日（米国時間）、Claudeを呼び出す窓口<span class="nobr">「Messages API」を</span>PythonからRustへ書き換えた検証方法を公開しました。</p>
+<section class="part part-plain">
+<h3 class="part-title">テスト自体も変わると、合格の意味が変わる</h3>
+<p>同社には約700件の統合テストがありました。要求を送って返答や他のサービスへ渡す内容を確認する試験です。元のテストはPythonの実装と結び付いていたため、サービスだけでなくテストの移し替えにもClaudeを使いました。</p>
+<p>監査では、元より判定条件が緩くなった箇所が100を超えて見つかりました。同社は、合格してもコードが正しいのか、誤ったコードを通すテストになったのかを区別できなかったと説明しています。テストで網羅していない機能の組み合わせも残りました。</p>
+<p>4月にはテストの約98%を通過していましたが、本番で入力側の処理が旧版と一致した要求は、比較対象の約<span class="nobr">4分の1</span>でした。比較対象の要求の約<span class="nobr">4分の3</span>でエラーが起きたという意味ではありません。要求を受け付けても、AIへ渡す文章の一部や文字の表し方が違えば、不一致に数えられます。</p>
+</section>
+<section class="part part-plain">
+<h3 class="part-title">AIを一度だけ動かし、前後の処理を比べる</h3>
+<p>Anthropicは、実際の要求を旧版と新版に通して差を調べる方法を採りました。同じ質問でもAIの返答は毎回同じとは限らず、二度の実行結果の差が移行によるものかを判断できません。利用枠や請求で二重に数えない設計も必要でした。</p>
+<ul class="story-list"><li>AIは一度だけ呼び、同じ出力を新版にも渡して、呼び出しの前後の各処理を比較しました。</li><li>顧客の要求や返答の本文を読まず、差が出た処理、文字列の長さ、不一致の位置を記録し、同種の問題をまとめました。</li><li>担当のAIは隔離した環境で自作の要求を使い、差を再現してから修正しました。人の審査を経て、本番で比べた結果も確認しました。</li></ul>
+</section>
+<section class="part part-plain">
+<h3 class="part-title">結果が一致しても、人が修正を却下した</h3>
+<p>検索ツールの説明文が抜ける問題では、AIが説明文をファイルへコピーする修正を提案しました。入力は一致し、手元の検査も通りました。担当者は、本来必要な社内サービスへの接続が未実装で、後で捨てるコードになるとして却下しました。</p>
+<p>Anthropicは、却下の理由を後続のAIが読む記録に残し、繰り返す誤りをルールやテストにも反映したと説明しています。数値上の一致だけでは、採用してよい修正かを決められなかった事例です。</p>
+<p>TNWの報道も、初版の作成後、検証に数か月かかった点を取り上げています。移行効果を同条件で追試した第三者の計測は、確認した範囲では公表されていません。Claudeを販売する会社による事例であり、他社の開発費の削減幅を示すものではありません。</p>
+</section>
+<section class="part part-insight">
+<h3 class="part-title">どう見るか</h3>
+<p>AIに移行を任せる案件では、今週の完了判定から「テスト<span class="nobr">が通った」</span>以外の証拠を求めます。経営・事務の担当者は「今のシステムと同じ入力を使い、出力や請求処理に差がないかを示して。変える仕様は、顧客の承認と対<span class="nobr">応付けて」と</span>開発担当者に頼みます。</p>
+<p>開発担当者は、検証用の入力で新旧を比較し、テストの判定条件を緩めていないかも確認します。本番の要求を比較に使う場合は、課金や更新処理が二重に走らない設計を先に用意します。</p>
+</section>
+<section class="part part-spec">
+<h3 class="part-title">メモ：報告された効果の条件</h3>
+<ul class="story-list"><li><strong>CPU使用量</strong>：要求1件あたり約70%減と同社が報告。図は一地域の8〜10月の測定で、線は7日平均</li><li><strong>応答の待ち時間</strong>：最初の出力までの時間の中央値が約20%減。顧客のClaude Codeの要求が対象で、CPUの図より短い9月の期間を比較。線は7日平均</li><li><strong>費用と提供</strong>：既存サービスの移行事例で、新料金の発表ではない。移行に使った総費用や人の作業時間は、この報告に示されていない</li></ul>
+</section>
+<footer class="story-source"><span class="label">出典</span><span class="source-item"><a href="https://www.anthropic.com/research/migrating-api-to-rust" target="_blank" rel="noopener">Anthropicの11月25日付技術報告と図の条件</a><span class="domain">anthropic.com</span></span><span class="source-item"><a href="https://thenextweb.com/news/anthropic-claude-messages-api-rust-migration" target="_blank" rel="noopener">TNWの報道</a><span class="domain">thenextweb.com</span></span><span class="source-item"><a href="https://toparz-dev.github.io/IT-news/articles/2026-10-26.html" target="_blank" rel="noopener">テストと既存機能の関係を扱った10月26日号</a><span class="domain"><span class="nobr">toparz-dev.github.io</span></span></span></footer>
+</article>
+
+  <p class="issue-scope">この号について：11月26日朝（日本時間）に専用のX収集リスト・ホーム・検索で話題を確認し、Anthropicの技術報告と図の条件、独立した報道の本文を照合しました</p>
+
+  <nav class="issue-nav" aria-label="前後の号"><a class="prev" href="2026-11-25.html"><small>前の号</small>← 2026年11月25日（水）</a></nav>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p class="policy">編集方針：Xで話題になった動きから、仕事への影響が大きいものを選びます。内容と数値は、発表元の資料、第三者の計測、報道で確かめます。発表元の主張と確かめた事実を書き分け、編集部の見方は「どう見るか」の欄に分けて書きます。誤りは、訂正の注記を付けて直します。</p>
+    <p class="colophon">© 2026 合同会社ToPARZ ・ <a href="../">バックナンバー</a> ・ <a href="../feed.xml">RSS</a></p>
+  </div>
+</footer>
+</body>
+</html>
