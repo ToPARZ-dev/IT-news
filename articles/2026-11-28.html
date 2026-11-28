@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>2026年11月28日（土）のIT・AIニュース｜ToPARZ IT News</title>
+<meta name="description" content="今日の1本：別のコード置き場の編集も自動承認　Googleの開発AI「Antigravity」">
+<link rel="canonical" href="https://toparz-dev.github.io/IT-news/articles/2026-11-28.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="ToPARZ IT News">
+<meta property="og:title" content="2026年11月28日（土）のIT・AIニュース｜ToPARZ IT News">
+<meta property="og:description" content="今日の1本：別のコード置き場の編集も自動承認　Googleの開発AI「Antigravity」">
+<meta property="og:url" content="https://toparz-dev.github.io/IT-news/articles/2026-11-28.html">
+<meta property="og:locale" content="ja_JP">
+<meta property="article:published_time" content="2026-11-28">
+<meta name="build-id" content="476b71319e6ef2aa">
+<meta name="twitter:card" content="summary">
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+<link rel="alternate" type="application/rss+xml" title="ToPARZ IT News" href="../feed.xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="../assets/style.css?v=3cab6eb8">
+</head>
+<body>
+<a class="skip" href="#main">本文へ移動</a>
+
+<header class="masthead">
+  <div class="wrap masthead-inner">
+    <a class="brand" href="../">ToPARZ IT News</a>
+    <p class="masthead-tagline">AIを仕事で使う人のための日刊ニュース。話題になった動きを、発表元の資料と報道で確かめて届けます。</p>
+  </div>
+</header>
+
+<main id="main" class="wrap">
+  <header class="issue-head">
+    <p class="kicker">Daily IT News ・ No.53</p>
+    <h1 class="issue-title">2026年11月28日（土）</h1>
+    <p class="issue-meta"><span>1本</span><span>読了 約4分</span></p>
+    
+  </header>
+
+  
+
+  <article class="story" id="story-1">
+<p class="story-num">01</p>
+<h2 class="story-title"><span class="title-part">別のコード置き場の編集も自動承認</span><span class="title-gap"> </span><span class="title-part">Googleの開発AI<span class="nobr">「Antigravity」</span></span></h2>
+<section class="part part-summary">
+<h3 class="part-title">3行で言うと</h3>
+<ul class="story-list"><li>別のリポジトリ（コードの保管場所）では、安全と判定された編集を人への確認なしで進める。作業中のプロジェクト外への上書きしないファイル追加も対象</li><li>対象はPC用のAntigravity Appの自動モード。禁止・確認の指定は自動承認より優先し、更新だけで全員が自動モードになるわけではない</li><li>仕事で使う会社は、案件ごとに保存先を分けるだけで人の確認が入ると考えず、更新後の承認ルールを確認したい</li></ul>
+</section>
+<p class="story-lead">11月19日はAntigravityで利用できるAIの拡充を伝えました。今回は、ファイルを変える前に人へ確認する範囲の変更です。Googleは11月27日付の更新履歴で、PC用のAntigravity App 2.36.0を案内しました。新版は段階的に配布され、全利用者に届くまで数日かかる場合があります。</p>
+<section class="part part-plain">
+<h3 class="part-title">自動承認には二つの対象が増える</h3>
+<p>対象となる<span class="nobr">「Auto」は</span>、操作を進めてよいか、Antigravityが自動で判断するモードです。新版で広がる範囲は、次の二つです。</p>
+<ul class="story-list"><li><strong>別のリポジトリ内の編集</strong>：変更履歴を管理しているリポジトリで、安全と判定したファイル編集を自動承認します。</li><li><strong>プロジェクト外への新規追加</strong>：既存のファイルを置き換えない追加を確認なしで進めます。</li></ul>
+<p>すべてのファイル操作を無条件に許可する変更ではありません。</p>
+<p>技術媒体vibecoding.incも、複数のリポジトリにまたがる仕事を人の承認で止めずに進められる更新として紹介しています。同記事は公式資料に基づき、自動承認の安全性を独自に測った報告ではありません。今回の版の判断精度について、第三者の計測は確認した範囲では公表されていません。</p>
+</section>
+<section class="part part-plain">
+<h3 class="part-title">人の確認を残すには、明示したルールを使う</h3>
+<p>公式文書では、利用者が指定した禁止・確認・許可のルールは、モードの標準動作より優先されます。ルール同士が重なる場合は、禁止の<span class="nobr">「Deny」</span>、確認の<span class="nobr">「Ask」</span>、許可の<span class="nobr">「Allow」の</span>順です。</p>
+<p>人が変更を見てから進めたい仕事では、Askに<code>write_file(*)</code>と<code>command(*)</code>を設定する方法があります。前者は直接のファイル書き込み、後者はコマンド実行のすべてを確認対象にします。コマンドでもファイルを変更できるため、直接の書き込みだけを確認して終わりにしません。読み取りだけのコマンドも止まるので、確認の回数は増えます。</p>
+<p>11月9日の更新履歴は、個人アカウントでは入力欄で変えたモードがその会話だけに適用されると説明しています。一方、設定ガイドには、全体やプロジェクトの設定を変えるという説明も残ります。説明が一致していないため、全体の設定だけでなく、実際に作業する会話の表示まで確かめます。</p>
+</section>
+<section class="part part-plain">
+<h3 class="part-title">会社の契約名だけで対象外と決めない</h3>
+<p>11月9日の更新履歴は、管理者の制御がないBusinessアカウントにもAutoを広げたと記しています。一方、現行の権限ガイドはBusiness・Enterpriseを対象外としています。公式資料の説明が一致していないため、会社の契約だから影響しないとは判断せず、利用画面のモードと管理者の制限を確認します。</p>
+<p>新版には、従来の権限設定でプロジェクト外へのアクセスを許した際、機密性の高い設定ファイルの保護を回避できた問題の修正も含まれます。自動承認を広げる変更と、従来の保護を直す変更は別です。</p>
+</section>
+<section class="part part-insight">
+<h3 class="part-title">どう見るか</h3>
+<p>Antigravityの自動モードを案件に使う会社は、更新後の作業前に、人の確認を残す範囲を決め直します。経営・事務の担当者は「別案件の保存先も編集できる設定か。変更前に人へ確認させる案件<span class="nobr">はどれか」を</span>開発担当者に確認します。</p>
+<p>開発担当者は承認ルールを設定し、顧客情報のない検証環境で、別リポジトリの既存ファイルの編集と、作業中のプロジェクト外への上書きしない追加を試します。どちらも、実行前に人への確認が出ることを確かめます。</p>
+</section>
+<section class="part part-spec">
+<h3 class="part-title">メモ：設定と提供の条件</h3>
+<ul class="story-list"><li><strong>全体の設定</strong>：<code>Settings &gt; General &gt; Global Permissions</code>。リモートエージェントが使える場合は<code>Permissions &gt; This Computer</code>。プロジェクト別は<code>Settings &gt; Projects</code></li><li><strong>標準のモード</strong>：公式ガイドではDefault。隔離した実行環境「サンド<span class="nobr">ボックス」が</span>使えない場合はRequest Review</li><li><strong>料金</strong>：今回の更新履歴には、専用の追加料金の記載はない。無料の個人アカウントにも利用枠があり、使えるAIと上限は契約により異なる</li><li><strong>版の区別</strong>：対象はAntigravity App。別製品のAntigravity IDE本体や、端末で操作するCLIの版番号と混同しない</li></ul>
+</section>
+<footer class="story-source"><span class="label">出典</span><span class="source-item"><a href="https://antigravity.google/docs/changelog" target="_blank" rel="noopener">Googleの11月27日・9日付更新履歴</a><span class="domain">antigravity.google</span></span><span class="source-item"><a href="https://antigravity.google/docs/permissions" target="_blank" rel="noopener">権限ルールと優先順位</a><span class="domain">antigravity.google</span></span><span class="source-item"><a href="https://antigravity.google/docs/agent-settings" target="_blank" rel="noopener">アカウント別の承認モード</a><span class="domain">antigravity.google</span></span><span class="source-item"><a href="https://antigravity.google/docs/settings" target="_blank" rel="noopener">全体・プロジェクト別の設定</a><span class="domain">antigravity.google</span></span><span class="source-item"><a href="https://antigravity.google/docs/plans" target="_blank" rel="noopener">個人向けプランと利用枠</a><span class="domain">antigravity.google</span></span><span class="source-item"><a href="https://antigravity.google/download" target="_blank" rel="noopener">アプリ別の配布版</a><span class="domain">antigravity.google</span></span><span class="source-item"><a href="https://vibecoding.inc/articles/google-ships-antigravity-2-36-0-cross-repo-auto-mode-and-voice-call-carryover" target="_blank" rel="noopener">vibecoding.incの報道</a><span class="domain">vibecoding.inc</span></span></footer>
+</article>
+
+  <p class="issue-scope">この号について：11月28日朝（日本時間）に専用のX収集リスト・ホーム・検索で話題を確認し、Googleの更新履歴・権限設定・提供条件と報道の本文を照合しました</p>
+
+  <nav class="issue-nav" aria-label="前後の号"><a class="prev" href="2026-11-27.html"><small>前の号</small>← 2026年11月27日（金）</a></nav>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p class="policy">編集方針：Xで話題になった動きから、仕事への影響が大きいものを選びます。内容と数値は、発表元の資料、第三者の計測、報道で確かめます。発表元の主張と確かめた事実を書き分け、編集部の見方は「どう見るか」の欄に分けて書きます。誤りは、訂正の注記を付けて直します。</p>
+    <p class="colophon">© 2026 合同会社ToPARZ ・ <a href="../">バックナンバー</a> ・ <a href="../feed.xml">RSS</a></p>
+  </div>
+</footer>
+</body>
+</html>
